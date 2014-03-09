@@ -13,6 +13,5 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', 'web.views.landing'), 
     url(r'^login/$', 'accounts.views.login'),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^test/$', TemplateView.as_view(template_name='test.html'),name="test"),
+    url(r'^main/$', TemplateView.as_view(template_name='main.html')),
 )
