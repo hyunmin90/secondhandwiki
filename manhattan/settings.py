@@ -37,6 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'categories',
+    'web',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,6 +54,7 @@ ROOT_URLCONF = 'manhattan.urls'
 
 WSGI_APPLICATION = 'manhattan.wsgi.application'
 
+LOGIN_URL = '/login'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
