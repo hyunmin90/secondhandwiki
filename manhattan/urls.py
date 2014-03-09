@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'manhattan.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+    url(r'^$', (web.views.landing)), 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^test/$', TemplateView.as_view(template_name='test.html'),name="test"),
 )
