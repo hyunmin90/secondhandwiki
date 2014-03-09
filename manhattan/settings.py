@@ -58,7 +58,9 @@ WSGI_APPLICATION = 'manhattan.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'ENGINE': 'django.db.backends.sqlite3',
     }
 }
 
