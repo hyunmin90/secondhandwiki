@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Profile(models.Model):
-    user = models.OnetoOneField(User)
+    user = models.OneToOneField(User)
     join_date = models.DateTimeField(auto_now=True)
     rating = models.IntegerField(default=0, blank=True, null=True)
     GENDER_CHOICES = (('M', 'Male'),('F', 'Female'),)
