@@ -7,11 +7,11 @@
         <br><br>
       </div>
   	</div>
+
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-          	<div class="well">
-
-
+            <!-- login form -->
+            <div class="well">
                 <form name="login_form" role="form">
                     <div id="id_email_absent" class="alert alert-danger" style="display:none;">
                         Please enter an email address
@@ -40,9 +40,42 @@
                     </div>
                 
                 </form>
-          </div>
-      	</div>
-    </div>
+            </div>
+            
+            <!-- sign up form -->
+            <div class="well">
+                <form name="signup_form" role="form">
+                    <div id="id_signup_error" class="alert alert-danger" style="display:none;">
+                        Please fill in all the fields
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label">E-Mail</label>
+                      <input class="form-control" name="email" id="id_signup_email" placeholder="hello@example.com" type="text">
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label">First Name</label>
+                      <input class="form-control" name="first_name" id="id_signup_first_name" placeholder="first name" type="text">
+                    </div>
+                    <!--
+                    <div class="form-group">
+                      <label class="control-label">Last Name</label>
+                      <input class="form-control" name="last_name" id="id_signup_last_name" placeholder="last name" type="text">
+                    </div>
+                    -->
+                    <div class="form-group">
+                      <label for="inputPassword" class="control-label">Password</label>
+                      <input class="form-control" name="password" id="id_signup_password" placeholder="******" type="password">
+                    </div>
+
+                    <div class="form-group">
+                      <button type="button" class="btn btn-primary btn-block" onclick="submit_signup();">Sign up</button>
+                    </div>
+                </form>
+            </div><!-- end sign up form -->
+        </div><!-- end col -->
+    </div><!-- end row -->
 </div>
 
 <script>
