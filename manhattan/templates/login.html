@@ -48,8 +48,6 @@
 <script>
 function submit_login()
 {
-    alert("login clicked");
-
     $('#id_email_absent').hide();
     $('#id_email_invalid').hide();
     $('#id_password_absent').hide();
@@ -80,7 +78,6 @@ function validate_email()
     if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
     {
         alert("Not a valid e-mail address");
-        $('#id_email_invalid').show();
         return false;
     }
     return true;
