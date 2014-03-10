@@ -8,6 +8,12 @@
                 <h3 style="text-align:center;">New User?</h3>
                 
                 <form action="/sign_up/" method="POST" id="id_signup_form" name="signup_form">
+                    {% if email_exists %}
+                        <div class="alert alert-danger" style="display:none;">
+                            The email provided is already being used. Please use another email.
+                        </div>
+                    {% endif %}
+
                     <div id="id_email_absent" class="alert alert-danger" style="display:none;">
                         Please enter an email address
                     </div>

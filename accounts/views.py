@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout
 
 from accounts.models import *
 
@@ -45,7 +45,7 @@ def sign_up(request):
             user = authenticate(username=username, password=password)
 
             if user.is_active:
-                login(request,user)
+                auth_login(request,user)
                 return HttpResponseRedirect('/main')
             else:
                 # should not get here
