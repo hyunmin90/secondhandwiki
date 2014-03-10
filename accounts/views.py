@@ -2,10 +2,16 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth import logout
 
 
 def login(request):
     return render(request, 'login.html', {})
+
+@login_required
+def logout(request):
+    logout(request)
+    return HttpResponseRedirect('/')
 
 @csrf_protect
 def sign_up(request):
