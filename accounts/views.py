@@ -7,9 +7,24 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 
 from accounts.models import *
 
-
+@csrf_protect
 def login(request):
-    return render(request, 'login.html', {})
+    if request.method == 'POST':
+        username = request.POST['email'].strip()
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                auth_login(request,user)
+                return HttpResponseRedirect('/main')
+            else:
+                # should not get here
+                return HttpResponseRedirect('/')
+        else:
+            # invalid login
+            return render(request, 'login.html', {'invalid':True})
+    else:
+        return render(request, 'login.html', {})
 
 @login_required
 def logout(request):
@@ -52,7 +67,7 @@ def sign_up(request):
                 return HttpResponseRedirect('/')
 
         else:
-            #email exists
+            # email already exists
             return render(request,'sign_up.html', {'email_exists':True})
     
     else:

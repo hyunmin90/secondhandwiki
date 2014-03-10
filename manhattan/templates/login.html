@@ -14,6 +14,15 @@
             <!-- login form -->
             <div class="well" style="margin-top: 20%;">
                 <form name="login_form" role="form">
+                    {% if invalid %}
+
+                    <div class="alert alert-danger">
+                        The email and password you entered does not belong to any account.
+                    </div>
+
+                    {% endif %}
+
+
                     <div id="id_email_absent" class="alert alert-danger" style="display:none;">
                         Please enter an email address
                     </div>

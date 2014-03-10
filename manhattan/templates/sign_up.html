@@ -9,7 +9,7 @@
                 
                 <form action="/sign_up/" method="POST" id="id_signup_form" name="signup_form">
                     {% if email_exists %}
-                        <div class="alert alert-danger"> 
+                        <div id="id_email_already_exists" class="alert alert-danger"> 
                             The email provided is already being used. Please use another email.
                         </div>
                     {% endif %}
@@ -63,6 +63,7 @@
 <script>
 function submit_signup()
 {
+    $('#id_email_already_exists').hide();
     $('#id_email_absent').hide();
     $('#id_email_invalid').hide();
     $('#id_first_name_absent').hide();
