@@ -54,8 +54,8 @@ function submit_login()
     $('#id_email_invalid').hide();
     $('#id_password_absent').hide();
 
-    email = $('#id_email').val;
-    password = $('#id_password').val;
+    email = $('#id_email').val();
+    password = $('#id_password').val();
 
     if(email=="" || email==null){
         $('#id_email_absent').show();
