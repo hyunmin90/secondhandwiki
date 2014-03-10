@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 
+from accounts.models import *
+
 
 def login(request):
     return render(request, 'login.html', {})
@@ -32,6 +34,7 @@ def sign_up(request):
                 new_user.save() 
 
                 new_profile = Profile(user=new_user)
+
                 new_profile.save()
             except:
                 # should not get here
