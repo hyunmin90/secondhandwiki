@@ -9,7 +9,7 @@
                 
                 <form action="/sign_up/" method="POST" id="id_signup_form" name="signup_form">
                     {% if email_exists %}
-                        <div class="alert alert-danger" style="display:none;">
+                        <div class="alert alert-danger"> 
                             The email provided is already being used. Please use another email.
                         </div>
                     {% endif %}
