@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <!-- sign up form -->
-            <div class="well" style="margin-top:20%;">
+            <div class="well" style="margin-top: 20%;">
                 <h3 style="text-align:center;">New User?</h3>
                 
-                <form name="signup_form" role="form">
+                <form id="id_signup_form" name="signup_form" role="form">
                     <div id="id_email_absent" class="alert alert-danger" style="display:none;">
                         Please enter an email address
                     </div>
@@ -47,6 +47,7 @@
                     <div class="form-group">
                       <button type="button" class="btn btn-info btn-block" onclick="submit_signup();">Sign up</button>
                     </div>
+                    {% csrf_token %}
                 </form>
             </div><!-- end sign up form -->
         </div><!-- end col -->
@@ -58,10 +59,12 @@ function submit_signup()
 {
     $('#id_email_absent').hide();
     $('#id_email_invalid').hide();
+    $('#id_first_name_absent').hide();
     $('#id_password_absent').hide();
 
     email = $('#id_email').val();
     password = $('#id_password').val();
+    first_name = $('#id_first_name_absent').val();
 
     if(email=="" || email==null){
         $('#id_email_absent').show();
@@ -72,10 +75,16 @@ function submit_signup()
         return;
     }
 
+    if(first_name=="" || first_name==null){
+        $('#id_first_name_absent').show();
+    }
+
     if(password=="" || passowrd==null){
         $('#id_password_absent').show();
         return;
     }
+
+    $('#id_signup_form').submit();
 }
 
 function validate_email()
