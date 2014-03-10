@@ -13,7 +13,7 @@
         <div class="col-md-4 col-md-offset-4">
             <!-- login form -->
             <div class="well" style="margin-top: 20%;">
-                <form name="login_form" role="form">
+                <form action='/login/' method='POST' name="login_form" id='id_login_form'>
                     {% if invalid %}
 
                     <div class="alert alert-danger">
@@ -83,6 +83,8 @@ function submit_login()
         $('#id_password_absent').show();
         return;
     }
+
+    $('#id_login_form').submit();
 }
 
 function validate_email()
