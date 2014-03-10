@@ -18,7 +18,6 @@ def logout(request):
 def sign_up(request):
     if request.method == 'POST':
         email_exists = User.objects.filter(email=request.POST['email'].strip()).count()
-
         if not email_exists:
             try:
                 new_user = User.objects.create_user(
