@@ -7,7 +7,7 @@
             <div class="well" style="margin-top: 20%;">
                 <h3 style="text-align:center;">New User?</h3>
                 
-                <form id="id_signup_form" name="signup_form" role="form">
+                <form action="/sign_up" id="id_signup_form" name="signup_form" role="form">
                     <div id="id_email_absent" class="alert alert-danger" style="display:none;">
                         Please enter an email address
                     </div>
@@ -64,7 +64,7 @@ function submit_signup()
 
     email = $('#id_email').val();
     password = $('#id_password').val();
-    first_name = $('#id_first_name_absent').val();
+    first_name = $('#id_first_name').val();
 
     if(email=="" || email==null){
         $('#id_email_absent').show();
