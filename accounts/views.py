@@ -53,4 +53,4 @@ def sign_up(request):
             return render(request,'sign_up.html', {'email_exists':True})
     
     else:
-        return render(request, 'login.html', {})
+        return render(request, 'sign_up.html', {})
