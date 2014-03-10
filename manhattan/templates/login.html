@@ -3,46 +3,89 @@
 <div class="container">
   	<div class="row">
       <div class="col-md-4 col-md-offset-4">
-        
         <img class="img-circle img-responsive center-block" src="//placehold.it/200">
-        
         <br><br>
       </div>
   	</div>
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
           	<div class="well">
-              <form role="form">
-                <div class="form-group">
-                  <label class="control-label">E-Mail</label>
-                  <input class="form-control" id="inputSuccess1" placeholder="hello@example.com" type="text">
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword" class="control-label">Password</label>
-                  <input class="form-control" id="inputSuccess2" placeholder="******" type="password">
-                </div>
-                <div class="form-group">
-                  
-                  <button type="button" class="btn btn-primary btn-block">Login</button>
-                  
-                </div>
-                
-                <div class="row">
-                  <div class="col-xs-6 col-md-8">
-                    <div class="checkbox">
-                      <label>
-                        <input checked="checked" type="checkbox"> Remember me
-                      </label>
+
+
+                <form name="login_form" role="form">
+                    <div id="id_email_absent" class="alert alert-danger" style="display:none;">
+                        Please enter an email address
                     </div>
-                  </div>
-                  <div class="col-xs-6 col-md-4">
-                    <button type="button" class="btn btn-link  pull-right small">Help</button>
-                  </div>
-                </div>
-              </form>
+
+                    <div id="id_email_invalid" class="alert alert-danger" style="display:none;">
+                        Please enter a valid email address
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label">E-Mail</label>
+                      <input class="form-control" name="email" id="id_email" placeholder="hello@example.com" type="text">
+                    </div>
+
+                    <div id="id_password_absent" class="alert alert-danger" style="display:none;">
+                        Please enter an email address
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputPassword" class="control-label">Password</label>
+                      <input class="form-control" name="password" id="id_password" placeholder="******" type="password">
+                    </div>
+
+                    <div class="form-group">
+                      <button type="button" class="btn btn-primary btn-block" onclick="submit_login">Login</button>
+                    </div>
+                
+                </form>
           </div>
       	</div>
     </div>
 </div>
+
+<script>
+function submit_login()
+{
+    alert("login clicked");
+
+    $('#id_email_absent').hide();
+    $('#id_email_invalid').hide();
+    $('#id_password_absent').hide();
+
+    email = $('#id_email').val;
+    password = $('#id_password').val;
+
+    if(email=="" || email==null){
+        $('#id_email_absent').show();
+        return;
+    }
+    
+    if (!validiate_email()){
+        return;
+    }
+
+    if(password=="" || passowrd==null){
+        $('#id_password_absent').show();
+        return;
+    }
+}
+
+function validate_email()
+{
+    var x=document.forms["login_form"]["email"].value;
+    var atpos=x.indexOf("@");
+    var dotpos=x.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+    {
+        alert("Not a valid e-mail address");
+        $('#id_email_invalid').show();
+        return false;
+    }
+    return true;
+}
+
+</script>
 
 {% endblock %}
