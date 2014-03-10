@@ -57,4 +57,4 @@ def sign_up(request):
 
     
     else:
-        return render(request, 'sign_up.html', {})
+        return render(request, 'login.html', {})
