@@ -10,7 +10,7 @@ from accounts.models import *
 # Create your views here.
 @login_required
 @csrf_protect
-def show_categories(request):
+def main(request):
     return render(request, 'main.html', {})    
     
 
