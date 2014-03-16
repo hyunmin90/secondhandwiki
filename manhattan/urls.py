@@ -12,5 +12,5 @@ urlpatterns = patterns('',
     url(r'^login/$', 'accounts.views.login'),
     url(r'^logout/$', 'accounts.views.logout'),
     url(r'^sign_up/$', 'accounts.views.sign_up'),
-    url(r'^main/$', TemplateView.as_view(template_name='main.html')),
+    url(r'^main/$', 'products.views.main'),
 )

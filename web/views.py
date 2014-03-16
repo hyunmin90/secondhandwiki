@@ -6,6 +6,6 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 def landing(request):
     if request.user.is_authenticated():
-        return render(request, 'main.html')
+        return HttpResponseRedirect('/main') 
     else:
         return HttpResponseRedirect('/login')

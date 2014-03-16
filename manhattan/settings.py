@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'accounts',
     'categories',
     'web',
+    'products',
 )
 
 MIDDLEWARE_CLASSES = (
