@@ -12,5 +12,13 @@ from accounts.models import *
 @csrf_protect
 def main(request):
     return render(request, 'main.html', {})    
+
+@login_required
+@csrf_protect
+def new_product(request):
+    if request.method == 'POST':
+        product_name = request.POST['product_name']
+
+    
     
 
