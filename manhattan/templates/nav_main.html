@@ -74,9 +74,27 @@
             </div><!--/.nav-collapse -->
         </div>
     </div>
-
-    {% block content %}
-    {% endblock %}
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="well well-lg">
+                    <ul class="nav"> 
+                        <li>header1</li>
+                        <li>header2</li>
+                        <li>header3</li>
+                        <li>header4</li>
+                        <li>header5</li>
+                    </ul> <!-- end nav nav-list -->
+                </div>
+            </div> <!-- end col-md-2 -->    
+            
+            <div class="col-md-10">
+                {% block content %}
+                {% endblock %} 
+            </div> <!-- end col-md-10 -->
+        </div> <!-- end row -->
+    </div> <!-- /container -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

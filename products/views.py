@@ -18,9 +18,8 @@ def main(request):
 def new_product(request):
     if request.method == 'POST':
         product_name = request.POST['product_name']
-
     else:
-        render(request, 'new_product.html', {})
+        return render(request, 'new_product.html', {})
 
     
     
