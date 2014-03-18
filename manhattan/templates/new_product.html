@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form role="form" method="POST" id="new_product_form" onsubmit="return checkform(this);">
+<form role="form" action="/new_product" method="POST" id="new_product_form" onsubmit="return checkform(this);">
 
     <div id="id_category_error" class="alert alert-danger" style="display:none;">
         Please select a category.
@@ -52,7 +52,7 @@ function checkform ( form )
     $('#id_name_error').hide();
     $('#id_description_error').hide();
 
-    if (form.category.value == "") {
+    if (form.category.value) {
         $('#id_category_error').show()
     }
     if (form.product_name.value == "") {

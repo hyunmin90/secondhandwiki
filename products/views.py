@@ -26,6 +26,7 @@ def new_product(request):
         #ADD CONSTRAINT FOREIGN KEY feature_ID REFERENCES Features;
         #' , [product_name], [description], [)
 
+        return render(request, 'new_product.html', {})
 
     else:
         return render(request, 'new_product.html', {})
