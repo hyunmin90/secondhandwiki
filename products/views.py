@@ -18,6 +18,15 @@ def main(request):
 def new_product(request):
     if request.method == 'POST':
         product_name = request.POST['product_name']
+        description = request.POST['description']
+        Productobjects.objects.raw('
+        ALTER TABLE Products
+        ADD ( Product_name %s char(50) NOT NULL,
+        Descriptor %s char(1000))
+        ADD CONSTRAINT FOREIGN KEY feature_ID REFERENCES Features;
+        ' , [product_name], [description], [)
+
+
     else:
         return render(request, 'new_product.html', {})
 

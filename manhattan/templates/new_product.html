@@ -2,6 +2,55 @@
 
 {% block content %}
 
-NEW PRODUCT PAGE
+<form role="form" onsubmit="return checkform(this);">
+    <select class="form-control" name="category">
+        <option>Camera</option>
+        <option>Laptop</option>
+        <option>Headphone</option>
+        <option>Smartphone</option>
+        <option>Tablet</option>
+    </select>
+
+	<div class="form-group">
+        <label>Name of Product</label>
+        <input name="product_name" class="form-control" id="DiscriptionofProduct" placeholder="Name of Product">
+    </div>
+
+    <div class="form-group">
+        <label>Image</label>
+        <input type="file" id="Device_photo">
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <textarea name="description" class="form-control" rows="3" style="
+        height: 300px;
+        "></textarea>
+    </div>
+	
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<script language="JavaScript" type="text/javascript">
+function checkform ( form )
+{
+  if (form.category.value == "") {
+    alert( "Please enter your Detail Regarding your product wanting to be reviewed" );
+    form.category.focus();
+    return false ;
+  }
+  if (form.product_name.value == "") {
+    alert( "Please enter your Detail Regarding your product Wanting to be reviewed" );
+    form.product_name.focus();
+    return false ;
+  }
+  if (form.description.value == "") {
+    alert( "Please enter your Detail Regarding your product Wanting to be reviewed" );
+    form.description.focus();
+    return false ;
+  }
+  return true ;
+}
+</script>
 
 {% endblock %}
