@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if exists %}
-    <div class="well" id="product_exists">
+    <div class="alert alert-danger" id="product_exists">
         <a href=/products/view_product/{{ product_slug }}>{{ product_name }}</a> already exists, please add your inputs to the product page.
     </div>
 
