@@ -36,7 +36,7 @@ def new_product(request):
             the_category = category_list[0]
 
             # check whether product already exists
-            cursor.execute("SELECT * FROM products_products WHERE slug=%s", [slug])
+            cursor.execute("SELECT * FROM products_products WHERE product_name=%s OR slug=%s", [product_name, slug])
             product_list = cursor.fetchall()
 
             if len(product_list)>0: # product exists
@@ -49,7 +49,7 @@ def new_product(request):
             cursor.execute("INSERT INTO products_categories(category_name) VALUES(%s)", [category])
 
             # check whether product already exists
-            cursor.execute("SELECT * FROM products_products WHERE slug=%s", [slug])
+            cursor.execute("SELECT * FROM products_products WHERE product_name=%s or slug=%s", [product_name, slug])
             product_list = cursor.fetchall()
 
             if len(product_list)>0: # product exists
