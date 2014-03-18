@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.db import connection
 
 from products.models import Products, Features, Comments, Categories 
 
@@ -27,18 +28,26 @@ def new_product(request):
         slug = slugify(product_name)
 
         # Check if category already exists
-        category_list = Categories.objects.raw('SELECT * FROM products_categories WHERE category_name=%s', [category])
+        cursor = connection.cursor()
+
+        #category_list = Categories.objects.raw('SELECT * FROM products_categories WHERE category_name=%s', [category])
+        cursor.execute('SELECT * FROM products_categories WHERE category_name=%s', [category])
+        category_list = cursor.fetchone()
         category_list = list(category_list)
         if len(category_list)>0: # Category exists
             the_category = category_list[0]
-            Products.objects.raw('INSERT INTO products_products(product_name, description,category,slug) VALUES(%s, %s, %s, %s)' , [product_name, description, the_category.id, slug])
+            #Products.objects.raw('INSERT INTO products_products(product_name, description,category,slug) VALUES(%s, %s, %s, %s)' , [product_name, description, the_category.id, slug])
+            cursor.execute('INSERT INTO products_products(product_name, description,category,slug) VALUES(%s, %s, %s, %s)' , [product_name, description, the_category.id, slug])
+
         else:   # does not exist
             # add new category
-            Categories.objects.raw('INSERT INTO products_categories(category_name) VALUES(%s)', [category])
+            #Categories.objects.raw('INSERT INTO products_categories(category_name) VALUES(%s)', [category])
+            cursor.execute('INSERT INTO products_categories(category_name) VALUES(%s)', [category])
 
             category_id = len(category_list)+1
         
-            Products.objects.raw('INSERT INTO products_products(product_name, description,category,slug) VALUES(%s, %s, %s, %s)' , [product_name, description, category_id, slug])
+            #Products.objects.raw('INSERT INTO products_products(product_name, description, category, slug) VALUES(%s, %s, %s, %s)' , [product_name, description, category_id, slug])
+            cursor.execute('INSERT INTO products_products(product_name, description, category, slug) VALUES(%s, %s, %s, %s)' , [product_name, description, category_id, slug])
 
         return HttpResponseRedirect('/products/view_product/'+slug)
     else:
@@ -48,9 +57,10 @@ def new_product(request):
 @login_required
 def view_product(request,slug):
     product = Products.objects.raw('SELECT * FROM products_products WHERE slug=%s', [slug])
-    product = list(product)[0]
+    product = list(product)
+    the_product = product[0]
 
-    return render(request, 'view_produt.html', {'product':product})
+    return render(request, 'view_product.html', {'product':the_product})
     
 def slugify(text):
     # convert spaces to dashes
