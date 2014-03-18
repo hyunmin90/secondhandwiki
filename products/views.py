@@ -110,6 +110,8 @@ def search_product(request):
         productlist_with_first_5_results = productlist_without_duplicates[:5]
 
         return render(request, 'search_results.html', {'search_results': productlist_with_first_5_results })
+    else:
+        return HttpResponseRedirect('/')
     
 def slugify(text):
     # convert spaces to dashes
