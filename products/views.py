@@ -33,7 +33,7 @@ def new_product(request):
         #category_list = Categories.objects.raw('SELECT * FROM products_categories WHERE category_name=%s', [category])
         cursor.execute("SELECT * FROM products_categories WHERE category_name=%s", [category])
         category_list = cursor.fetchone()
-        if len(category_list)>0: # Category exists
+        if category_list: # Category exists
             the_category = category_list[0]
             #Products.objects.raw('INSERT INTO products_products(product_name, description,category,slug) VALUES(%s, %s, %s, %s)' , [product_name, description, the_category.id, slug])
             cursor.execute("INSERT INTO products_products(product_name, description,category,slug) VALUES(%s, %s, %s, %s)" , [product_name, description, the_category.id, slug])
