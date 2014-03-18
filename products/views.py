@@ -51,7 +51,7 @@ def new_product(request):
 @login_required
 def view_product(request,slug):
     product = Products.objects.raw('SELECT * FROM products_products WHERE slug=%s', [slug])
-    product = product[0]
+    product = list(product)[0]
 
     return render(request, 'view_produt.html', {'product':product})
     
