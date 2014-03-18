@@ -41,13 +41,13 @@
                 </ul>
                 
                 <!-- search -->
-                <form id="search_form" class="navbar-form navbar-left" action="/search" role="search" type="POST">
+                <form id="search_form" class="navbar-form navbar-left" action="/search" method="POST">
                     <div class="form-group">
                         <input name="search_query" type="text" class="form-control" placeholder="Search">
                     </div> 
-                    <input type="button" onclick="$('#search_form').submit();">
+                    <button type="submit">
                         <span class="glyphicon glyphicon-search" style="position:relative; left:-30px;"></span>
-                    </input>
+                    </button>
                     {% csrf_token %}
                 </form>
 

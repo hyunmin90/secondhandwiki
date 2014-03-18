@@ -8,7 +8,6 @@ from django.db import connection
 
 from products.models import Products, Features, Comments, Categories 
 
-
 import re
 
 # Create your views here.
