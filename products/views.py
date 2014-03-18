@@ -41,10 +41,18 @@ def new_product(request):
             # add new category
             cursor.execute("INSERT INTO products_categories(category_name) VALUES(%s)", [category])
 
+            # check whether product already exists
+            cursor.execute("SELECT * FROM products_products WHERE slug=%s", [slug])
+            product_list = cursor.fetchall()
 
+            if len(product_list)>0: # product exists
+                return render(request, 'new_product.html', {'exists':True, 'product_name':product_name, 'product_slug':slug})
+
+            # get category
             cursor.execute("SELECT * FROM products_categories WHERE category_name=%s", [category])
             category_list = cursor.fetchall()
-        
+
+            # add new product
             cursor.execute("INSERT INTO products_products(product_name, description, category_id, slug) VALUES(%s, %s, %s, %s)" , [product_name, description, len(category_list)+1, slug])
 
         return HttpResponseRedirect('/products/view_product/'+slug)

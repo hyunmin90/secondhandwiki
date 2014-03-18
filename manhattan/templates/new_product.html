@@ -2,6 +2,13 @@
 
 {% block content %}
 
+{% if exists %}
+    <div class="well" id="product_exists">
+        <a href=/products/view_product/{{ product_slug }}>{{ product_name }}</a> already exists, please add your inputs to the product page.
+    </div>
+
+{% endif %}
+
 <form role="form" action="/products/new_product/" method="POST" id="new_product_form">
 
     <div id="id_category_error" class="alert alert-danger" style="display:none;">
