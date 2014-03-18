@@ -19,7 +19,7 @@ class Features(models.Model):
     product = models.ForeignKey(Products)
 
 class Comments(models.Model):
-    author = models.ForeignKey(accounts.Profile)
+    author = models.ForeignKey(Profile)
     product = models.ForeignKey(Products)
     body = models.CharField(max_length=1000)
 
