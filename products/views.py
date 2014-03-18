@@ -34,14 +34,14 @@ def new_product(request):
         category_list = list(category_list)
         if len(category_list)>0: # Category exists
             the_category = category_list[0]
-            Products.objects.raw('INSERT INTO products_products(product_name, description,category,slug) VALUES(%s, %s, %s, %s)' , [product_name], [description], [the_category.id], [slug])
+            Products.objects.raw('INSERT INTO products_products(product_name, description,category,slug) VALUES(%s, %s, %s, %s)' , [product_name, description, the_category.id, slug])
         else:   # does not exist
             # add new category
             Categories.objects.raw('INSERT INTO products_categories(category_name) VALUES(%s)', [category])
 
             category_id = len(category_list)+1
         
-            Products.objects.raw('INSERT INTO products_products(product_name, description,category) VALUES(%s, %s, %s, %s)' , [product_name], [description], [category_id], [slug])
+            Products.objects.raw('INSERT INTO products_products(product_name, description,category) VALUES(%s, %s, %s, %s)' , [product_name, description, category_id, slug])
 
         return HttpResponseRedirect('/products/view_product/'+slug)
     else:
