@@ -79,7 +79,7 @@ def view_product(request,slug):
 @login_required
 def camera_page(request):
     camera_category = Categories.objects.raw("SELECT * FROM products_categories WHERE category_name='camera'")[0]
-    product_list = Products.objects.raw("SELECT * FROM products_products where category_id=%s", [camera_category_id.id])
+    product_list = Products.objects.raw("SELECT * FROM products_products where category_id=%s", [camera_category.id])
 
     return render(request, 'category_page.html', {'product_list':product_list, 'category':camera_category})
     
