@@ -1,0 +1,15 @@
+{% extends "nav_main.html" %}
+
+{% block content %}
+<div class="well">
+    <h2>Search Results</h2>
+</div>
+
+<ul class="list-group">
+{% for product in search_results %}
+    <li class="list-group-item">
+        <a href="/products/view_product/{{ product.slug }}">{{ product.product_name }}</a>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -13,7 +13,10 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'accounts.views.logout'),
     url(r'^sign_up/$', 'accounts.views.sign_up'),
     url(r'^main/$', 'products.views.main'),
+    
+    # search function
+    url(r'^search/$', 'products.views.search_product'),
 
-    #products
+    # products
     url(r'^products/', include('products.urls')),
 )

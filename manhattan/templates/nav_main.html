@@ -41,14 +41,15 @@
                 </ul>
                 
                 <!-- search -->
-                <form class="navbar-form navbar-left" role="search">
+                <form class="navbar-form navbar-left" action="/search" role="search" type="POST">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input name="search_query" type="text" class="form-control" placeholder="Search">
                     </div> 
-                    <a href="/search" style="position:relative; left:-30px;">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </a>
+                    <button type="submit">
+                        <span class="glyphicon glyphicon-search" style="position:relative; left:-30px;"></span>
+                    </button>
                 </form>
+
 
                 {% if user.is_authenticated %}
                 <ul class="nav navbar-nav navbar-right">
