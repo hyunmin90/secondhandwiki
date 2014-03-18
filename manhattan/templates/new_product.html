@@ -4,11 +4,11 @@
 
 <form role="form" action="/new_product/" method="POST" id="new_product_form">
 
-    <div id="id_category_error" class="alert alert-danger" style="display:none; bottom-margin: 10px;">
+    <div id="id_category_error" class="alert alert-danger" style="display:none;">
         Please select a category.
     </div>
 
-    <select class="form-control" name="category" id="id_category">
+    <select class="form-control" name="category" id="id_category" style="bottom-margin: 10px;">
         <option selected>Please select a category</option>
         <option>Camera</option>
         <option>Laptop</option>
@@ -42,7 +42,7 @@
         "></textarea>
     </div>
 	
-    <input type="button" class="btn btn-default" onclick="check_form();">Submit</input>
+    <input type="button" value="submit" class="btn btn-default" onclick="check_form();"/>
     {% csrf_token %}
 </form>
 
