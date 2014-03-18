@@ -2,7 +2,12 @@
 
 {% block content %}
 
-<form role="form" onsubmit="return checkform(this);">
+<form role="form" method="POST" id="new_product_form" onsubmit="return checkform(this);">
+
+    <div id="id_category_error" class="alert alert-danger" style="display:none;">
+        Please select a category.
+    </div>
+
     <select class="form-control" name="category">
         <option>Camera</option>
         <option>Laptop</option>
@@ -10,6 +15,10 @@
         <option>Smartphone</option>
         <option>Tablet</option>
     </select>
+
+    <div id="id_name_error" class="alert alert-danger" style="display:none;">
+        Please enter the name of the product.
+    </div>
 
 	<div class="form-group">
         <label>Name of Product</label>
@@ -19,6 +28,10 @@
     <div class="form-group">
         <label>Image</label>
         <input type="file" id="Device_photo">
+    </div>
+
+    <div id="id_description_error" class="alert alert-danger" style="display:none;">
+        Please provide a brief description of the product.
     </div>
 
     <div class="form-group">
@@ -34,22 +47,22 @@
 <script language="JavaScript" type="text/javascript">
 function checkform ( form )
 {
-  if (form.category.value == "") {
-    alert( "Please enter your Detail Regarding your product wanting to be reviewed" );
-    form.category.focus();
-    return false ;
-  }
-  if (form.product_name.value == "") {
-    alert( "Please enter your Detail Regarding your product Wanting to be reviewed" );
-    form.product_name.focus();
-    return false ;
-  }
-  if (form.description.value == "") {
-    alert( "Please enter your Detail Regarding your product Wanting to be reviewed" );
-    form.description.focus();
-    return false ;
-  }
-  return true ;
+    $('#id_category_error').hide();
+    $('#id_name_error').hide();
+    $('#id_description_error').hide();
+
+    if (form.category.value == "") {
+        $('#id_category_error').show()
+    }
+    if (form.product_name.value == "") {
+        $('#id_name_error').show()
+    }
+
+    if (form.description.value == "") {
+        $('#id_description_error').show()
+    }
+
+    return true;
 }
 </script>
 
