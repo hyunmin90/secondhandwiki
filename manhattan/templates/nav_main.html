@@ -41,13 +41,13 @@
                 </ul>
                 
                 <!-- search -->
-                <form class="navbar-form navbar-left" action="/search" role="search" type="POST">
+                <form id="search_form" class="navbar-form navbar-left" action="/search" role="search" type="POST">
                     <div class="form-group">
                         <input name="search_query" type="text" class="form-control" placeholder="Search">
                     </div> 
-                    <button type="submit">
+                    <input onclick="$('#search_form').submit();">
                         <span class="glyphicon glyphicon-search" style="position:relative; left:-30px;"></span>
-                    </button>
+                    </input>
                 </form>
 
 
