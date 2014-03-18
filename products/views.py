@@ -100,7 +100,7 @@ def search_product(request):
         #for each word in the search query
         for q in queryset :
             #i am not too sure if i can mix SQL and django.object.raw syntax, LIKE is regex for SQL
-            products = Products.objects.raw("SELECT * FROM products_products WHERE slug LIKE '%% %s %%'", [q])
+            products = Products.objects.raw("SELECT * FROM products_products WHERE slug LIKE '%%%s%%'", [q])
             prod_to_list = list(products)
             product_list = product_list + prod_to_list
         
