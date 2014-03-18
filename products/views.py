@@ -93,7 +93,7 @@ def delete_product(request, slug):
 
 @csrf_protect
 def search_product(request):
-    if request.method=="POST":
+    if request.method=='POST':
         search_query = request.POST['search_query']
         queryset = searchquery.split()
         #default list
@@ -109,8 +109,6 @@ def search_product(request):
         productlist_without_duplicates = list(set(product_list))
         productlist_with_first_5_results = productlist_without_duplicates[:5]
 
-        #returns a new html called search_results.html
-        #passes in the parameter, 
         return render(request, 'search_results.html', {'search_results': productlist_with_first_5_results })
     
 def slugify(text):
