@@ -94,7 +94,7 @@ def delete_product(request, slug):
 def search_product(request):
     if request.method=='POST':
         search_query = request.POST['search_query']
-        queryset = searchquery.split()
+        queryset = search_query.split()
         #default list
         product_list = []
         #for each word in the search query
