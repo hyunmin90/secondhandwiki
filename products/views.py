@@ -35,17 +35,17 @@ def new_product(request):
         if category_list: # Category exists
             the_category = category_list[0]
 
-            cursor.execute("INSERT INTO products_products(product_name, description, category, slug) VALUES(%s, %s, %s, %s)" , [product_name, description, the_category[0], slug])
+            cursor.execute("INSERT INTO products_products(`product_name`, `description`, `category_id`, `slug`) VALUES(%s, %s, %s, %s)" , [product_name, description, the_category[0], slug])
 
         else:   # does not exist
             # add new category
-            cursor.execute("INSERT INTO products_categories(category_name) VALUES(%s)", [category])
+            cursor.execute("INSERT INTO products_categories(`category_name`) VALUES(%s)", [category])
 
 
             cursor.execute("SELECT * FROM products_categories WHERE category_name=%s", [category])
             category_list = cursor.fetchall()
         
-            cursor.execute("INSERT INTO products_products(product_name, description, category, slug) VALUES(%s, %s, %s, %s)" , [product_name, description, len(category_list)+1, slug])
+            cursor.execute("INSERT INTO products_products(`product_name`, `description`, `category`, `slug`) VALUES(%s, %s, %s, %s)" , [product_name, description, len(category_list)+1, slug])
 
         return HttpResponseRedirect('/products/view_product/'+slug)
     else:
