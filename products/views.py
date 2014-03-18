@@ -74,6 +74,14 @@ def view_product(request,slug):
     the_product = product[0]
 
     return render(request, 'view_product.html', {'product':the_product})
+
+
+@login_required
+def camera_page(request):
+    camera_category_id = Categories.objects.raw("SELECT * FROM products_categories WHERE category_name='camera'")[0].id
+    product_list = Products.objects.raw("SELECT * FROM products_products where category_id=%s", [camera_category_id])
+
+    return render(request, 'category_page.html', {'product_list':product_list})
     
 def slugify(text):
     # convert spaces to dashes

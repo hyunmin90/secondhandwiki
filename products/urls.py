@@ -5,4 +5,7 @@ from django.views.generic import TemplateView
 urlpatterns = patterns('',
     url(r'^new_product/$', 'products.views.new_product'),
     url(r'^view_product/(?P<slug>[a-zA-Z0-9\-\+]+)$', 'products.views.view_product'),
+
+    # categories
+    url(r'^camera/$', 'products.views.camera_page'),
 )
