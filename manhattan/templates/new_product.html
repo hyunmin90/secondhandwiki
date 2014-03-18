@@ -9,6 +9,7 @@
     </div>
 
     <select class="form-control" name="category" id="id_category">
+        <option selected>Please select a category</option>
         <option>Camera</option>
         <option>Laptop</option>
         <option>Headphone</option>
@@ -52,7 +53,7 @@ function checkform()
     $('#id_name_error').hide();
     $('#id_description_error').hide();
 
-    if ($('#id_category').val()) {
+    if ($('#id_category').val() == "Please select a category") {
         $('#id_category_error').show();
         return;
     }
