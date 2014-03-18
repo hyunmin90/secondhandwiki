@@ -15,5 +15,5 @@ urlpatterns = patterns('',
     url(r'^main/$', 'products.views.main'),
 
     #products
-    url(r'^new_product/$', 'products.views.new_product'),
+    url(r'^new_product/$', include('products.urls')),
 )
