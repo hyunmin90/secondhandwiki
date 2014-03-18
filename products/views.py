@@ -90,8 +90,27 @@ def delete_product(request, slug):
 
     # delete the product itself
     cursor.execute("DELETE FROM products_products WHERE slug = %s", [slug])
-    
 
+@login_required
+@csrf_protect
+def search_product(request,searchquery):
+    queryset = searchquery.split()
+    #default list
+    product_list = []
+    #for each word in the search query
+    for q in queryset :
+        #i am not too sure if i can mix SQL and django.object.raw syntax, LIKE is regex for SQL
+        products = Products.objects.raw("SELECT * FROM products_products WHERE slug LIKE '%% %s %%'", [q])
+        prod_to_list = list(products)
+        product_list = product_list + prod_to_list
+    
+    #a list of all products that match the search results
+    productlist_without_duplicates = list(set(product_list))
+    productlist_with_first_5_results = productlist_without_duplicates[:5]
+
+    #returns a new html called search_results.html
+    #passes in the parameter, 
+    return render(request, 'search_results.html', {'search_results': productlist_with_first_5_results })
     
 def slugify(text):
     # convert spaces to dashes
