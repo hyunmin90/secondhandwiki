@@ -42,12 +42,12 @@
         "></textarea>
     </div>
 	
-    <button class="btn btn-default" onclick="checkform();">Submit</button>
+    <input type="btton" class="btn btn-default" onclick="check_form();">Submit</button>
     {% csrf_token %}
 </form>
 
 <script language="JavaScript" type="text/javascript">
-function checkform()
+function check_form()
 {
     $('#id_category_error').hide();
     $('#id_name_error').hide();
