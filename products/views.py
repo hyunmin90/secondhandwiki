@@ -35,7 +35,7 @@ def new_product(request):
         if category_list: # Category exists
             the_category = category_list[0]
 
-            cursor.execute("INSERT INTO products_products(product_name, description,category,slug) VALUES(%s, %s, %s, %s)" , [product_name, description, the_category[0], slug])
+            cursor.execute("INSERT INTO products_products(product_name, description, category, slug) VALUES(%s, %s, %s, %s)" , [product_name, description, the_category[0], slug])
 
         else:   # does not exist
             # add new category
