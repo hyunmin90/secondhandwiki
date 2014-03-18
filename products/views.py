@@ -69,27 +69,36 @@ def new_product(request):
 
 @login_required
 def view_product(request,slug):
-    product = Products.objects.raw('SELECT * FROM products_products WHERE slug=%s', [slug])
+    product = Products.objects.raw('SELECT * FROM products_products WHERE slug = %s', [slug])
     product = list(product)
     the_product = product[0]
-
     return render(request, 'view_product.html', {'product':the_product})
-
 
 @login_required
 def camera_page(request):
-    camera_category = Categories.objects.raw("SELECT * FROM products_categories WHERE category_name='camera'")[0]
-    product_list = Products.objects.raw("SELECT * FROM products_products where category_id=%s", [camera_category.id])
-
+    camera_category = Categories.objects.raw("SELECT * FROM products_categories WHERE category_name = 'camera'")[0]
+    product_list = Products.objects.raw("SELECT * FROM products_products where category_id = %s", [camera_category.id])
     return render(request, 'category_page.html', {'product_list':product_list, 'category':camera_category})
+
+@login_required
+@csrf_protect
+def delete_product(request, slug):
+    cursor = connection.cursor()
+    
+    # delete features associated with product
+    # delete comments associated with product 
+
+    # delete the product itself
+    cursor.execute("DELETE FROM products_products WHERE slug = %s", [slug])
+    
+
     
 def slugify(text):
     # convert spaces to dashes
     text = re.sub(r'\s+', '-', text.strip())
-    #Convert underscores to dashes
+    # convert underscores to dashes
     text = re.sub(r'\_', '-', text.strip())
     # convert anything not a letter or number or - or _ or to empty string
     text = re.sub(r'[^a-zA-Z0-9\-\_]', '', text)
-
     # convert to lower case. That is all.
     return text.lower()
