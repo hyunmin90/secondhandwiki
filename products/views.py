@@ -24,9 +24,6 @@ def new_product(request):
         product_name = request.POST['product_name']
         description = request.POST['description']
 
-        category = category.strip()
-        product_name = product_name.strip()
-        description = description.strip()
         slug = slugify(product_name)
 
         # Check if category already exists
