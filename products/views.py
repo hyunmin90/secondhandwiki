@@ -38,13 +38,10 @@ def new_product(request):
         else:   # does not exist
             # add new category
             Categories.objects.raw('INSERT INTO products_categories(category_name) VALUES(%s)', [category])
-        
-            # query to find the category again
-            category_list = Categories.objects.raw('SELECT * FROM products_categories WHERE category_name=%s', [category])
-            category_list = list(category_list)
-            the_category = category_list[0]
 
-            Products.objects.raw('INSERT INTO products_products(product_name, description,category) VALUES(%s, %s, %s, %s)' , [product_name], [description], [the_category.id], [slug])
+            category_id = len(category_list)+1
+        
+            Products.objects.raw('INSERT INTO products_products(product_name, description,category) VALUES(%s, %s, %s, %s)' , [product_name], [description], [category_id], [slug])
 
         return HttpResponseRedirect('/products/view_product/'+slug)
     else:
