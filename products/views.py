@@ -42,7 +42,7 @@ def new_product(request):
 
         return HttpResponseRedirect('/products/view_product/'+slug)
     else:
-        return render(request, 'new_product.html', {})
+        return render(request, 'view_product.html', {})
 
 
 @login_required
