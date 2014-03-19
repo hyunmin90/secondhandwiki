@@ -142,6 +142,7 @@ def delete_comment(request):
         # delete comment
         cursor.execute("DELETE FROM products_comments WHERE id = %s" , [comment_id])
         data = {}
+        data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
     else:
         return HttpResponseRedirect("/")    

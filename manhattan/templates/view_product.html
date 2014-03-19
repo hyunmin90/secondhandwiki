@@ -70,7 +70,7 @@
         <li class="list-group-item" id="comment_{{ comment.id }}">
             <b>{{ comment.author.first_name }}: </b>
             {{ comment.body }}
-            <span class="glyphicon glyphicon-remove" onclick="delete_comment({{ comment.id }});"></span>
+            <span class="glyphicon glyphicon-remove" style="float:right;" onclick="delete_comment({{ comment.id }});"></span>
         </li>
     {% endfor %}
     </ul>
@@ -198,6 +198,7 @@ function delete_comment(id){
         url: "/products/delete_comment/",
         data: {"comment_id": id},
         success: function(data) {
+            alert('delete success');
             $('#comment_'+toString(id)).remove();
         }, 
         error: function(xhr, ajaxOptions, thrownError){
