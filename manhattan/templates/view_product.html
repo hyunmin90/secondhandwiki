@@ -147,10 +147,11 @@ function submit_comment(){
         return;
     }
     alert($('#id_comment_body').val());
+    var comment_body = $('#id_comment_body').val()
     $.ajax({
         type: "POST",
         data: {
-            comment_body:$('#id_comment_body').val(),
+            comment_body: comment_body,
         },
         url: "/products/new_comment/"+{{ product.slug }}+"/",
         success: function(data, msg) {
