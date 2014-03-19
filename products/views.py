@@ -85,7 +85,9 @@ def view_product(request,slug):
     comments = Comments.objects.raw('SELECT * FROM products_comments WHERE product_id = %s', [the_product.id])
     comments = list(comments)
 
-    return render(request, 'view_product.html', {'product':the_product, 'comments':comments,})
+    comments_sorted = sorted(comments, key=lambda x: x.id)
+
+    return render(request, 'view_product.html', {'product':the_product, 'comments':comments_sirted,})
 
 
 @login_required
