@@ -155,8 +155,9 @@ function submit_comment(){
             alert('success');
             $('#comment_list').append("<li class='list-group-item'>"+$('#id_comment_body').val()+"</li>");
         }, 
-        error: function(){
-            alert('error');
+        error: function(xhr, ajaxOptions, thrownError){
+            alert(xhr.status);
+            alert(thrownError);
         }
     });
     //$('#add_comment_form').submit();
