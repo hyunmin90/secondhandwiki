@@ -150,7 +150,7 @@ function submit_comment(){
     alert("before ajax");
     $.ajax({
         type: "POST",
-        data: {comment_body: comment_body},
+        data: {"comment_body": comment_body},
         url: "/",
         success: function(data, msg) {
             alert('success');
