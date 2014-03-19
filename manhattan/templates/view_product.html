@@ -198,7 +198,7 @@ function delete_comment(id){
         url: "/products/delete_comment/",
         data: {"comment_id": id},
         success: function(data) {
-            $('#comment_'+id).remove();
+            $('#comment_'+toString(id)).remove();
         }, 
         error: function(xhr, ajaxOptions, thrownError){
             alert(xhr.status);

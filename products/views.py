@@ -104,7 +104,7 @@ def camera_page(request):
     try:
         camera_category = Categories.objects.raw("SELECT * FROM products_categories WHERE category_name = 'camera'")[0]
         product_list = Products.objects.raw("SELECT * FROM products_products where category_id = %s", [camera_category.id])
-        return render(request, 'category_page.html', {'product_list':product_list, 'category':camera_category})
+        return render(request, 'category_page.html', {'product_list':product_list, 'category':"Camera"})
     except:
         return render(request, 'category_page.html', {'category':"Camera"})
 
@@ -139,7 +139,6 @@ def delete_comment(request):
         comment_id = request.POST['comment_id']
 
         cursor = connection.cursor()
-        
         # delete comment
         cursor.execute("DELETE FROM products_comments WHERE id = %s" , [comment_id])
         data = {}
