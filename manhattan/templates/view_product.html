@@ -142,7 +142,7 @@
 function submit_comment(){
     $('#id_comment_error').hide();
 
-    if ($('#id_comment').val() == "") {
+    if ($('#id_comment_body').val() == "") {
         $('#id_comment_error').show();
         return;
     }
