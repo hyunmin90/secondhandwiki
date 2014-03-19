@@ -69,28 +69,6 @@ def new_product(request):
         return render(request, 'new_product.html', {})
 
 
-@login_required
-@csrf_protect
-def new_comment(request, product_slug):
-    if request.method=="POST":
-        comment_body = request.POST['comment_body']
-        
-        # get the product
-        cursor = connection.cursor()
-        cursor.execute("SELECT id FROM products_products WHERE slug=%s", [product_slug])
-        the_product= cursor.fetchone()
-        product_id = the_product[0] 
-        
-        # add new comment 
-        cursor.execute("INSERT INTO products_comments(product_id, body, author_id) VALUES(%s, %s, %s)" , [product_id, comment_body, request.user.id])
-
-        data = {'first_name': request.user.first_name}
-        data = simplejson.dumps(data)
-        return HttpResponse(data, mimetype='application/json')
-    
-    else:
-        return HttpResponseRedirect("/")
-
 #@login_required
 #@csrf_protect
 #def new_description(request):
@@ -109,14 +87,6 @@ def view_product(request,slug):
 
     return render(request, 'view_product.html', {'product':the_product, 'comments':comments,})
 
-@login_required
-def camera_page(request):
-    try:
-        camera_category = Categories.objects.raw("SELECT * FROM products_categories WHERE category_name = 'camera'")[0]
-        product_list = Products.objects.raw("SELECT * FROM products_products where category_id = %s", [camera_category.id])
-        return render(request, 'category_page.html', {'product_list':product_list, 'category':camera_category})
-    except:
-        return render(request, 'category_page.html', {'category':"Camera"})
 
 @login_required
 @csrf_protect
@@ -128,6 +98,48 @@ def delete_product(request, slug):
 
     # delete the product itself
     cursor.execute("DELETE FROM products_products WHERE slug = %s", [slug])
+
+@login_required
+def camera_page(request):
+    try:
+        camera_category = Categories.objects.raw("SELECT * FROM products_categories WHERE category_name = 'camera'")[0]
+        product_list = Products.objects.raw("SELECT * FROM products_products where category_id = %s", [camera_category.id])
+        return render(request, 'category_page.html', {'product_list':product_list, 'category':camera_category})
+    except:
+        return render(request, 'category_page.html', {'category':"Camera"})
+
+
+@login_required
+@csrf_protect
+def new_comment(request):
+    if request.method=="POST":
+        comment_body = request.POST['comment_body']
+        product_id = request.POST['product_id']
+        
+        # add new comment 
+        cursor.execute("INSERT INTO products_comments(products_id, body, author_id) VALUES(%s, %s, %s)" , [product_id, comment_body, request.user.id])
+
+        data = {'first_name': request.user.first_name}
+        data = simplejson.dumps(data)
+        return HttpResponse(data, mimetype='application/json')
+    
+    else:
+        return HttpResponseRedirect("/")
+
+@login_required
+@csrf_protect
+def delete_comment(request):
+    if request.method=="POST":
+        comment_id = request.POST['comment_id']
+
+        cursor = connection.cursor()
+        
+        # delete comment
+        cursor.execute("DELETE FROM products_commentsi WHERE comments_id = %s" , [comment_id])
+        data = {}
+        return HttpResponse(data, mimetype='application/json')
+    else:
+        return HttpResponseRedirect("/")    
 
 @csrf_protect
 def search_product(request):
