@@ -133,7 +133,7 @@ def new_comment(request):
         if request.user == comment.author:
             is_author = True
 
-        data = {'first_name': request.user.first_name, 'comment_id': comment_id, 'author':is_author}
+        data = {'first_name': request.user.first_name, 'comment_id': comment_id, 'is_author':is_author}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
     
