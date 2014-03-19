@@ -6,8 +6,16 @@
 
     {{ product.description }}
 
+<div class="carousel slide" data-ride="carousel" id="quote-carousel">
+        <!-- Bottom Carousel Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#quote-carousel" data-slide-to="0" class=""></li>
+          <li data-target="#quote-carousel" data-slide-to="1" class=""></li>
+          <li data-target="#quote-carousel" data-slide-to="2" class="active"></li>
+        </ol>
+
 <!-- Review -->
-        <div class="carousel-inner">
+<div class="carousel-inner">
         
           <!-- Comment 1 -->
           <div class="item" name="description1">
@@ -65,6 +73,8 @@
             </blockquote>
           </div>
         </div>
+
+</div>
 
 <!-- Add comment form -->
 <form class="form-horizontal" id="add_comment_form" name="add_comment" method="POST" action="/products/add_comment/">
