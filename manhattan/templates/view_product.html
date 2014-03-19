@@ -16,7 +16,7 @@
 
     <div class="carousel-inner">
         <!-- Comment 1 -->
-        <div class="item" name="description1">
+        <div class="item active" name="description1">
             <blockquote>
                 <p>
                 Check the shutter count.
@@ -62,8 +62,22 @@
     </a>
 </div>
 
+<!-- display comment section -->
+<div class="well well-sm">
+    <h4>Comments:</h4>
+</div>
+
+<ul class="list-group" id="comment_list">
+{% for comment in comments %}
+    <li class="list-group-item">
+        {{ comment.body }}
+    </li>
+{% endfor %}
+</ul>
+
+
 <!-- Add comment form -->
-<form class="form-horizontal" id="add_comment_form" name="add_comment" method="POST" action="/products/add_comment/">
+<form class="form-horizontal" id="add_comment_form" name="add_comment">
     <fieldset style="padding-left: 40px;">
         <!-- Add comment -->
         <legend>Add comment</legend>
@@ -73,9 +87,8 @@
         </div>
         <!-- Comment -->
         <div class="control-group" name="comment">
-            <label class="control-label" for="comment" style="padding-left: 60px;">Add comment</label>
             <div class="controls" style="padding-left: 60px;">                     
-                <textarea id="id_comment" name="add_comment" width="200px" style="width: 400px;" placeholder="add comment"></textarea>
+                <textarea id="id_comment_body" name="comment_body" width="200px" style="width: 400px;" placeholder="Write a comment"></textarea>
             </div>
         </div>
 
@@ -86,22 +99,21 @@
             </div>
         </div>
     </fieldset>
-    {% csrf_token %}
 </form>				
 		 
 <!--Add feature form--> 
-<form class="form-horizontal" id="add_feature_form" name="add_feauture" method="POST" action="/products/add_description/">
+<form class="form-horizontal" id="add_feature_form" name="add_feauture">
     <fieldset style="padding-left: 40px;">
-        <legend>Add description</legend>
+        <legend>Add a new problem of a feature</legend>
 
         <div id="id_feature_name_error" class="alert alert-danger" style="display:none;">
             Please enter the name of the feature.
         </div>
         <!-- Text input-->
-        <div class="control-group">
-            <label name="feauture_name" class="control-label" style="padding-left: 60px;">Add Feature</label>
+        <div class="control-group" style="bottom-margin:10px;">
+            <label name="feauture_name" class="control-label" style="padding-left: 60px;">Feature name</label>
             <div class="controls" style="padding-left: 60px;">
-                <input id="id_feature_name" name="feature_name" type="text" placeholder="feauture name" class="input-large" width="60px" style="width: 400px;">
+                <input id="id_feature_name" name="feature_name" type="text" placeholder="Feauture name" class="input-large" width="60px" style="width: 400px;">
             </div>
         </div>
 
@@ -110,9 +122,9 @@
         </div>
         <!-- Textarea -->
         <div class="control-group">
-            <label class="control-label" style="padding-left: 60px;">Add Description</label>
+            <label class="control-label" style="padding-left: 60px;">Description</label>
             <div class="controls" style="padding-left: 60px;">                     
-                <textarea id="id_feature_description" name="feature_description" width="200px" style="width: 400px;" placeholde="description"></textarea>
+                <textarea id="id_feature_description" name="feature_description" width="200px" style="width: 400px;" placeholde="Description"></textarea>
             </div>
         </div>
 
@@ -123,7 +135,6 @@
             </div>
         </div>
     </fieldset>
-    {% csrf_token %}
 </form>
 
 
@@ -135,8 +146,18 @@ function submit_comment(){
         $('#id_comment_error').show();
         return;
     }
+    $.ajax({
+        type: "POST",
+        data: {
+            "comment_body":$('#id_comment_body').val(),
+        },
+        url: "/products/new_comment/{{ product.slug }}",
+        success: function(data, msg) {
+            $('#comment_list').append("<li class='list-group-item'>"+$('#id_comment_body').val()+"</li>");
+        }        
 
-    $('#add_comment_form').submit();
+    });
+    //$('#add_comment_form').submit();
 }
 
 function submit_description(){
@@ -147,18 +168,28 @@ function submit_description(){
         $('#id_feature_name_error').show();
         return;
     }
-
-
     if ($('#id_feature_description').val() == "") {
         $('#id_feature_description_error').show();
         return;
     }
-
     $('#add_feature_form').submit();
-    
 }
 
 </script>
 
-
+        $.ajax({
+            type: "POST",
+            data: {
+                "action": 'del',
+                "alternative_id": id,
+                "csrfmiddlewaretoken":document.getElementsByName("csrfmiddlewaretoken")[0].value,
+            },
+            url: "/decision/update_alternatives/{{ decision.slug }}",
+            success: function(data, msg) {
+                toggle_alternative(id);
+                $('#alternative_'+id).css("background-color", "#F2DEDE");
+                setTimeout(function() {
+                    $('#alternative_'+id).remove();
+                }, 500);
+            }        });
 {% endblock %}

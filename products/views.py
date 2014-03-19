@@ -6,11 +6,13 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.db import connection
 
+from accounts.models import Profile
 from products.models import Products, Features, Comments, Categories 
 
 import re
+from django.utils import simplejson
 
-# Create your views here.
+
 @login_required
 @csrf_protect
 def main(request):
@@ -67,6 +69,33 @@ def new_product(request):
 
 
 @login_required
+@csrf_protect
+def new_comment(request, product_slug):
+    if request.method=="POST":
+        comment_body = request.POST['comment_body']
+        
+        # get the product
+        cursor = connection.cursor()
+        cursor.execute("SELECT id FROM products_products WHERE slug=%s", [product_slug])
+        the_product= cursor.fetchone()
+        product_id = the_product[0] 
+        
+        # add new comment 
+        cursor.execute("INSERT INTO products_comments(product_id, body, author_id) VALUES(%s, %s, %s)" , [product_id, comment_body, request.user.id])
+
+        data = {'first_name': request.user.first_name}
+        data = simplejson.dumps(data)
+        return HttpResponse(data, mimetype='application/json')
+    
+    else:
+        return HttpResponseRedirect("/")
+
+#@login_required
+#@csrf_protect
+#def new_description(request):
+
+
+@login_required
 def view_product(request,slug):
     product = Products.objects.raw('SELECT * FROM products_products WHERE slug = %s', [slug])
     product = list(product)
@@ -111,7 +140,7 @@ def search_product(request):
         return render(request, 'search_results.html', {'search_results': productlist_with_first_5_results })
     else:
         return HttpResponseRedirect('/')
-    
+   
 def slugify(text):
     # convert spaces to dashes
     text = re.sub(r'\s+', '-', text.strip())
