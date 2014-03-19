@@ -151,10 +151,13 @@ function submit_comment(){
         type: "POST",
         url: "/products/new_comment/{{ product.slug }}/",
         data: {"comment_body": comment_body},
-        success: function() {
+        success: function(data) {
             alert('success');
             $('#comment_list').append("<li class='list-group-item'>"+$('#id_comment_body').val()+"</li>");
         }        
+        error: function(){
+            alert('error');
+        }
     });
     //$('#add_comment_form').submit();
 }
