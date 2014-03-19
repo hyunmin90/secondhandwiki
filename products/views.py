@@ -59,9 +59,10 @@ def new_product(request):
             # get category
             cursor.execute("SELECT * FROM products_categories WHERE category_name=%s", [category])
             category_list = cursor.fetchall()
+            the_category = category_list[0]
 
             # add new product
-            cursor.execute("INSERT INTO products_products(product_name, description, category_id, slug) VALUES(%s, %s, %s, %s)" , [product_name, description, len(category_list)+1, slug])
+            cursor.execute("INSERT INTO products_products(product_name, description, category_id, slug) VALUES(%s, %s, %s, %s)" , [product_name, description, the_category[0], slug])
 
         return HttpResponseRedirect('/products/view_product/'+slug)
     else:
@@ -109,7 +110,7 @@ def camera_page(request):
         product_list = Products.objects.raw("SELECT * FROM products_products where category_id = %s", [camera_category.id])
         return render(request, 'category_page.html', {'product_list':product_list, 'category':camera_category})
     except:
-        return render(request, 'category_page.html', {})
+        return render(request, 'category_page.html', {'category':"Camera"})
 
 @login_required
 @csrf_protect
