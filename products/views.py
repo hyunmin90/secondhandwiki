@@ -125,9 +125,15 @@ def new_comment(request):
         # get the newly added comment
         comments = Comments.objects.raw("SELECT * FROM products_comments") 
         comments = list(comments)
-        comment_id = comments[len(comments)-1].id
+        comment = comments[len(comments)-1]
+        comment_id = comment.id
 
-        data = {'first_name': request.user.first_name, 'comment_id': comment_id,}
+        # check if person commenting is the author
+        is_author = False
+        if request.user == comment.author_id:
+            is_author = True
+
+        data = {'first_name': request.user.first_name, 'comment_id': comment_id, 'author':is_author}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
     
