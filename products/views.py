@@ -70,7 +70,6 @@ def new_product(request):
 
 
 @login_required
-@csrf_protect
 def new_comment(request, product_slug):
     if request.method=="POST":
         comment_body = request.POST['comment_body']
