@@ -115,6 +115,7 @@ def new_comment(request):
     if request.method=="POST":
         comment_body = request.POST['comment_body']
         product_id = request.POST['product_id']
+        cursor = connection.cursor()
         
         # add new comment 
         cursor.execute("INSERT INTO products_comments(product_id, body, author_id) VALUES(%s, %s, %s)" , [product_id, comment_body, request.user.id])
@@ -135,7 +136,7 @@ def delete_comment(request):
         cursor = connection.cursor()
         
         # delete comment
-        cursor.execute("DELETE FROM products_comments WHERE comments_id = %s" , [comment_id])
+        cursor.execute("DELETE FROM products_comments WHERE id = %s" , [comment_id])
         data = {}
         return HttpResponse(data, mimetype='application/json')
     else:
