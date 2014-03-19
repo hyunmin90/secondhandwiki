@@ -87,7 +87,7 @@ def view_product(request,slug):
 
     comments_sorted = sorted(comments, key=lambda x: x.id)
 
-    return render(request, 'view_product.html', {'product':the_product, 'comments':comments_sirted,})
+    return render(request, 'view_product.html', {'product':the_product, 'comments':comments_sorted,})
 
 
 @login_required
