@@ -71,6 +71,7 @@ def new_product(request):
 
 @login_required
 def new_comment(request, product_slug):
+    return HttpResponseRedirect("/")
     if request.method=="POST":
         comment_body = request.POST['comment_body']
         
@@ -85,7 +86,6 @@ def new_comment(request, product_slug):
 
         data = {'first_name': request.user.first_name}
         data = simplejson.dumps(data)
-        return HttpResponseRedirect("/")
         return HttpResponse(data, mimetype='application/json')
     
     else:

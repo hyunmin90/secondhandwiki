@@ -75,7 +75,6 @@
 {% endfor %}
 </ul>
 
-
 <!-- Add comment form -->
 <form class="form-horizontal" id="add_comment_form" name="add_comment">
     <fieldset style="padding-left: 40px;">
@@ -152,11 +151,10 @@ function submit_comment(){
         type: "POST",
         url: "/products/new_comment/{{ product.slug }}/",
         data: {"comment_body": comment_body},
-        success: function(data, msg) {
+        success: function() {
             alert('success');
             $('#comment_list').append("<li class='list-group-item'>"+$('#id_comment_body').val()+"</li>");
         }        
-
     });
     //$('#add_comment_form').submit();
 }
