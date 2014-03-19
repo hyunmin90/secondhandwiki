@@ -72,7 +72,6 @@ def new_product(request):
 @login_required
 @csrf_protect
 def new_comment(request, product_slug):
-    return HttpResponseRedirect("/")
     if request.method=="POST":
         comment_body = request.POST['comment_body']
         
@@ -99,10 +98,16 @@ def new_comment(request, product_slug):
 
 @login_required
 def view_product(request,slug):
+    # get product
     product = Products.objects.raw('SELECT * FROM products_products WHERE slug = %s', [slug])
     product = list(product)
     the_product = product[0]
-    return render(request, 'view_product.html', {'product':the_product})
+
+    # get comments
+    comments = Comments.objects.raw('SELECT * FROM products_comments WHERE product_id = %s', [the_product.id])
+    comments = list(comments)
+
+    return render(request, 'view_product.html', {'product':the_product, 'comments':comments,})
 
 @login_required
 def camera_page(request):

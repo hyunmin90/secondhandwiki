@@ -186,7 +186,7 @@ function submit_comment(){
         data: {"comment_body": comment_body},
         success: function(data) {
             alert('success');
-            $('#comment_list').append("<li class='list-group-item'>"+$('#id_comment_body').val()+"</li>");
+            $('#comment_list').append("<li class='list-group-item'>"+$('#id_comment_body').val()+"<i>"+data['first_name']+"</i>"+"</li>");
         }, 
         error: function(xhr, ajaxOptions, thrownError){
             alert(xhr.status);
