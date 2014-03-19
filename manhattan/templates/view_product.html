@@ -154,7 +154,7 @@ function submit_comment(){
         success: function(data) {
             alert('success');
             $('#comment_list').append("<li class='list-group-item'>"+$('#id_comment_body').val()+"</li>");
-        }        
+        }, 
         error: function(){
             alert('error');
         }
