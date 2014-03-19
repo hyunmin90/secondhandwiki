@@ -70,6 +70,9 @@
         <li class="list-group-item" id="comment_{{ comment.id }}">
             <b>{{ comment.author.first_name }}: </b>
             {{ comment.body }}
+            {% if comment.author == request.user %}
+                <span style="float:right; color:blue;" onclick="edit_comment({{ comment.id }});">Edit</span>
+            {% endif %}
             <span class="glyphicon glyphicon-remove" style="float:right;" onclick="delete_comment({{ comment.id }});"></span>
         </li>
     {% endfor %}
@@ -182,8 +185,17 @@ function submit_comment(){
         url: "/products/new_comment/",
         data: {"comment_body": comment_body, "product_id": {{ product.id }}},
         success: function(data) {
-            $('id_comment_body').val() = ""
-            $('#comment_list').append("<li class='list-group-item'><b>"+data['first_name']+"</b>: "+$('#id_comment_body').val()+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span></li>");
+            if (data['author']){
+                $('id_comment_body').val() = ""
+                $('#comment_list').append("<li class='list-group-item'><b>"+data['first_name']+"</b>: "+$('#id_comment_body').val()+
+                "<span style='float:right; color:blue;' onclick='edit_comment("+ data['comment_id']+");'>Edit</span>"+
+                "<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span></li>");
+            }
+            else{
+                $('id_comment_body').val() = ""
+                $('#comment_list').append("<li class='list-group-item'><b>"+data['first_name']+"</b>: "+$('#id_comment_body').val()+
+                "<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span></li>");
+            }
         }, 
         error: function(xhr, ajaxOptions, thrownError){
             alert(xhr.status);
@@ -199,7 +211,6 @@ function delete_comment(id){
         url: "/products/delete_comment/",
         data: {"comment_id": id},
         success: function(data) {
-            alert('delete success');
             $('#comment_'+id.toString()).remove();
         }, 
         error: function(xhr, ajaxOptions, thrownError){
