@@ -146,6 +146,7 @@ function submit_comment(){
         $('#id_comment_error').show();
         return;
     }
+    alert('before ajax');
     $.ajax({
         type: "POST",
         data: {
@@ -177,19 +178,5 @@ function submit_description(){
 
 </script>
 
-        $.ajax({
-            type: "POST",
-            data: {
-                "action": 'del',
-                "alternative_id": id,
-                "csrfmiddlewaretoken":document.getElementsByName("csrfmiddlewaretoken")[0].value,
-            },
-            url: "/decision/update_alternatives/{{ decision.slug }}",
-            success: function(data, msg) {
-                toggle_alternative(id);
-                $('#alternative_'+id).css("background-color", "#F2DEDE");
-                setTimeout(function() {
-                    $('#alternative_'+id).remove();
-                }, 500);
-            }        });
+
 {% endblock %}
