@@ -140,7 +140,7 @@ def delete_comment(request):
 
         cursor = connection.cursor()
         # delete comment
-        cursor.execute("DELETE FROM products_comments WHERE id = %s" , [comment_id])
+        cursor.execute("DELETE FROM products_comments WHERE id = 1" )
         data = {}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
