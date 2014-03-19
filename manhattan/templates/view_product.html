@@ -5,4 +5,164 @@
     {{ product.product_name }}
 
     {{ product.description }}
+
+<!-- Review -->
+        <div class="carousel-inner">
+        
+          <!-- Comment 1 -->
+          <div class="item" name="description1">
+            <blockquote>
+     <div class="row">
+                <div class="col-sm-3 text-center">
+                  <img class="img-circle" src="./The Manhattan Project_files/sc101_conclusion_600x450.jpg" style="width: 100px;height:100px;">
+                </div>
+                <div class="col-sm-9">
+                  <p>Check the shutter count
+					All dSLRs have a finite number of shutter cycles (actuations) that the camera can take 
+					before the entire mechanism needs replacing.
+					Manufacturers provide actuation ratings; a simple search on the Web will tell you the number 
+					of cycles that the camera has been tested to. Ask the seller what the shutter count is, or if you have
+					a chance to play with the camera before purchasing. There are a number of ways you can check for yourself.
+					</p>
+                  <small>Reviewer 1</small>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+          <!--Comment 2  -->
+          <div class="item" name="description2">
+            <blockquote>
+              <div class="row">
+                <div class="col-sm-3 text-center">
+                  <img class="img-circle" src="./The Manhattan Project_files/dslr_sensor_600x450.jpg" style="width: 100px;height:100px;">
+                </div>
+                <div class="col-sm-9">
+                  <p>Depending on who or where you buy your secondhand dSLR from, you may not get a lens included in the price. 
+				  This is not so much a problem if you already have an arsenal of compatible lenses. 
+				  With entry-level dSLRs, you may find that most sellers include the kit lens with the camera body. 
+				  Inspect the front and rear element for visible issues like scratching. 
+				  If the lens has a manual aperture ring, make sure the movement is smooth and the blades fold as expected.</p>
+                  <small>Reviewer 2</small>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+          <!-- Comment 3 -->
+          <div class="item active" name="description3">
+            <blockquote>
+              <div class="row">
+                <div class="col-sm-3 text-center">
+                  <img class="img-circle" src="./The Manhattan Project_files/lens_front_600x450.jpg" style="width: 100px;height:100px;">
+                </div>
+                <div class="col-sm-9">
+                  <p>The camera's LCD screen is the main way you will be interacting with your images on the camera.
+				  Make sure to inspect the LCD panel closely. The main things to look out for are dead pixels, 
+				  which can be most clearly viewed when there's an image of just one color on the display,
+				  and any cracks in the plastic coating.</p>
+                  <small>Reviewer 3</small>
+                </div>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+
+<!-- Add comment form -->
+<form class="form-horizontal" id="add_comment_form" name="add_comment" method="POST" action="/products/add_comment/">
+    <fieldset style="padding-left: 40px;">
+        <!-- Add comment -->
+        <legend>Add comment</legend>
+
+        <div id="id_comment_error" class="alert alert-danger" style="display:none;">
+            Please enter a comment.
+        </div>
+        <!-- Comment -->
+        <div class="control-group" name="comment">
+            <label class="control-label" for="comment" style="padding-left: 60px;">Add comment</label>
+            <div class="controls" style="padding-left: 60px;">                     
+                <textarea id="id_comment" name="add_comment" width="200px" style="width: 400px;" placeholder="add comment"></textarea>
+            </div>
+        </div>
+
+        <!-- Comment Submit Button -->
+        <div class="control-group">
+            <div class="controls" style="padding-left: 60px;">
+                <input type="button" value="submit" class="btn btn-default" onclick="submit_comment();"/>
+            </div>
+        </div>
+    </fieldset>
+    {% csrf_token %}
+</form>				
+		 
+<!--Add feature form--> 
+<form class="form-horizontal" id="add_feature_form" name="add_feauture" method="POST" action="/products/add_description/">
+    <fieldset style="padding-left: 40px;">
+        <legend>Add description</legend>
+
+        <div id="id_feature_name_error" class="alert alert-danger" style="display:none;">
+            Please enter the name of the feature.
+        </div>
+        <!-- Text input-->
+        <div class="control-group">
+            <label name="feauture_name" class="control-label" style="padding-left: 60px;">Add Feature</label>
+            <div class="controls" style="padding-left: 60px;">
+                <input id="id_feature_name" name="feature_name" type="text" placeholder="feauture name" class="input-large" width="60px" style="width: 400px;">
+            </div>
+        </div>
+
+        <div id="id_feature_description_error" class="alert alert-danger" style="display:none;">
+            Please enter a brief descriptin of the feature. 
+        </div>
+        <!-- Textarea -->
+        <div class="control-group">
+            <label class="control-label" style="padding-left: 60px;">Add Description</label>
+            <div class="controls" style="padding-left: 60px;">                     
+                <textarea id="id_feature_description" name="feature_description" width="200px" style="width: 400px;" placeholde="description"></textarea>
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+            <div class="controls" style="padding-left: 60px;">
+                <input type="button" value="submit" class="btn btn-default" onclick="submit_description();"/>
+            </div>
+        </div>
+    </fieldset>
+    {% csrf_token %}
+</form>
+
+
+<script>
+function submit_comment(){
+    $('#id_comment_error').hide();
+
+    if ($('#id_comment').val() == "") {
+        $('#id_comment_error').show();
+        return;
+    }
+
+    $('#add_comment_form').submit();
+}
+
+function submit_description(){
+    $('#id_feature_name_error').hide();
+    $('#id_feature_description_error').hide();
+
+    if ($('#id_feature_name').val() == "") {
+        $('#id_feature_name_error').show();
+        return;
+    }
+
+
+    if ($('#id_feature_description').val() == "") {
+        $('#id_feature_description_error').show();
+        return;
+    }
+
+    $('#add_feature_form').submit();
+    
+}
+
+</script>
+
+
 {% endblock %}
