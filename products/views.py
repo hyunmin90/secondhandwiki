@@ -121,9 +121,9 @@ def new_comment(request):
         cursor.execute("INSERT INTO products_comments(product_id, body, author_id) VALUES(%s, %s, %s)" , [product_id, comment_body, request.user.id])
     
         # get the newly added comment
-        comment = cursor.fetchall()
-        comment = comment[0]
-        comment_id = comment[0]
+        comments = Comments.objects.raw("SELECT * FROM products_comments") 
+        comments = list(comments)
+        comment_id = comments[len(comments)-1].id
 
         data = {'first_name': request.user.first_name, 'comment_id': comment_id,}
         data = simplejson.dumps(data)
