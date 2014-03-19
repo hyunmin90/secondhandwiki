@@ -85,6 +85,7 @@ def new_comment(request, product_slug):
 
         data = {'first_name': request.user.first_name}
         data = simplejson.dumps(data)
+        return HttpResponseRedirect("/")
         return HttpResponse(data, mimetype='application/json')
     
     else:
