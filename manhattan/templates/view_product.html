@@ -70,7 +70,7 @@
         <li class="list-group-item" id="comment_{{ comment.id }}">
             <b>{{ comment.author.first_name }}: </b>
             {{ comment.body }}
-            <span class="glyphicon glyphicon-search" onclick="delete_comment({{ comment.id }});"></span>
+            <span class="glyphicon glyphicon-remove" onclick="delete_comment({{ comment.id }});"></span>
         </li>
     {% endfor %}
     </ul>
