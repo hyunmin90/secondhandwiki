@@ -146,7 +146,8 @@ function submit_comment(){
         $('#id_comment_error').show();
         return;
     }
-    var comment_body = $('#id_comment_body').val()
+    var comment_body = $('#id_comment_body').val();
+    alert("before ajax");
     $.ajax({
         type: "POST",
         data: {
