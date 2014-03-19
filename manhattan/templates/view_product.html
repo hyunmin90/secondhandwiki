@@ -182,14 +182,11 @@ function submit_comment(){
         success: function(data) {
             if (data['is_author']==True){
                 $('id_comment_body').val() = ""
-                $('#comment_list').append("<li class='list-group-item'><b>"+data['first_name']+"</b>: "+$('#id_comment_body').val()+
-                "<span style='float:right; color:blue;' onclick='edit_comment("+ data['comment_id']+");'>Edit</span>"+
-                "<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span></li>");
+                $('#comment_list').append("<li class='list-group-item'><b>"+data['first_name']+"</b>: "+$('#id_comment_body').val()+"<span style='float:right; color:blue;' onclick='edit_comment("+ data['comment_id']+");'>Edit</span>"+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span></li>");
             }
             else{
                 $('id_comment_body').val() = ""
-                $('#comment_list').append("<li class='list-group-item'><b>"+data['first_name']+"</b>: "+$('#id_comment_body').val()+
-                "<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span></li>");
+                $('#comment_list').append("<li class='list-group-item'><b>"+data['first_name']+"</b>: "+$('#id_comment_body').val()+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span></li>");
             }
         }, 
         error: function(xhr, ajaxOptions, thrownError){
