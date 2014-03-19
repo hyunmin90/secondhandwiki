@@ -119,8 +119,13 @@ def new_comment(request):
         
         # add new comment 
         cursor.execute("INSERT INTO products_comments(product_id, body, author_id) VALUES(%s, %s, %s)" , [product_id, comment_body, request.user.id])
+    
+        # get the newly added comment
+        comment = cursor.fetchall()
+        comment = comment[0]
+        comment_id = comment[0]
 
-        data = {'first_name': request.user.first_name}
+        data = {'first_name': request.user.first_name, 'comment_id': comment_id,}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
     
