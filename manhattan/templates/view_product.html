@@ -70,6 +70,7 @@
 <ul class="list-group" id="comment_list">
 {% for comment in comments %}
     <li class="list-group-item">
+        <b>{{ comment.author.first_name }}: </b>
         {{ comment.body }}
     </li>
 {% endfor %}
@@ -179,14 +180,12 @@ function submit_comment(){
         return;
     }
     var comment_body = $('#id_comment_body').val();
-    alert("before ajax");
     $.ajax({
         type: "POST",
         url: "/products/new_comment/{{ product.slug }}/",
         data: {"comment_body": comment_body},
         success: function(data) {
-            alert('success');
-            $('#comment_list').append("<li class='list-group-item'>"+$('#id_comment_body').val()+"<i>"+data['first_name']+"</i>"+"</li>");
+            $('#comment_list').append("<li class='list-group-item'><b>"+data['first_name']+"</b>: "+$('#id_comment_body').val()+"</li>");
         }, 
         error: function(xhr, ajaxOptions, thrownError){
             alert(xhr.status);
