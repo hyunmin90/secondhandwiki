@@ -130,7 +130,7 @@ def new_comment(request):
 
         # check if person commenting is the author
         is_author = False
-        if request.user == comment.author_id:
+        if request.user == comment.author:
             is_author = True
 
         data = {'first_name': request.user.first_name, 'comment_id': comment_id, 'author':is_author}
