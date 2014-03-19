@@ -199,7 +199,7 @@ function delete_comment(id){
         data: {"comment_id": id},
         success: function(data) {
             alert('delete success');
-            $('#comment_'+toString(id)).remove();
+            $('#comment_'+id.toString()).remove();
         }, 
         error: function(xhr, ajaxOptions, thrownError){
             alert(xhr.status);
