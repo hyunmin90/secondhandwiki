@@ -70,6 +70,7 @@ def new_product(request):
 
 
 @login_required
+@csrf_protect
 def new_comment(request, product_slug):
     return HttpResponseRedirect("/")
     if request.method=="POST":
