@@ -151,7 +151,7 @@ function submit_comment(){
     $.ajax({
         type: "POST",
         data: {comment_body: comment_body},
-        url: "/products/new_comment/"+{{ product.slug }}+"/",
+        url: "/products/new_comment/{{ product.slug }}/",
         success: function(data, msg) {
             alert('success');
             $('#comment_list').append("<li class='list-group-item'>"+$('#id_comment_body').val()+"</li>");
