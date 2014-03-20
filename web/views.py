@@ -9,3 +9,6 @@ def landing(request):
         return HttpResponseRedirect('/main') 
     else:
         return HttpResponseRedirect('/login')
+
+def test_page(request):
+    return render(request, 'test_page.html', {})
