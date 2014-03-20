@@ -207,11 +207,15 @@ function delete_comment(id){
 }
 
 function edit_comment(id){
+    $('#comment_'+id.toString()).append("<textarea id="id_comment_body" name="comment_body" width="200px" style="width: 400px;" placeholder="Write a comment"></textarea>");
+
+
     $.ajax({
         type: "POST",
         url: "/products/edit_comment/",
         data: {"comment_id": id},
         success: function(data) {
+            alert('delete success before remove');
             $('#comment_'+id.toString()).remove();
             alert('delete success');
         }, 
