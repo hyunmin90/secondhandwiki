@@ -126,7 +126,7 @@ def new_comment(request):
         comments = Comments.objects.raw("SELECT * FROM products_comments WHERE product_id = %s AND body = %s AND author_id = %s", [product_id, comment_body, request.user.id]) 
         #comments = list(comments)
         #new_comment = comments[len(comments)-1]
-        new_comment = comments[0]
+        new_comment = list(comments)[0]
         comment_id = new_comment.id
 
 
