@@ -168,7 +168,6 @@ $.ajaxSetup({
 });
 
 function submit_comment(){
-    alert('submit clicked');
     $('#id_comment_error').hide();
 
     if ($('#id_comment_body').val() == "") {
@@ -181,9 +180,7 @@ function submit_comment(){
         url: "/products/new_comment/",
         data: {"comment_body": comment_body, "product_id": {{ product.id }}},
         success: function(data) {
-            alert('submit succes');
             $('#id_comment_body').val('');
-
             $('#comment_list').append("<li class='list-group-item' id='comment_"+ data['comment_id'] +"'><b>"+data['first_name']+"</b>: "+comment_body+"<span style='float:right; color:blue;' onclick='edit_comment("+ data['comment_id']+");'>Edit</span>"+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span></li>");
         }, 
         error: function(xhr, ajaxOptions, thrownError){
@@ -210,7 +207,7 @@ function delete_comment(id){
 }
 
 function edit_comment(id){
-    $('#comment_'+id.toString()).append("<textarea id='id_comment_body' name='comment_body'></textarea>");
+    $('#comment_'+id.toString()).append("<textarea id='id_edit_comment' name='edit_comment'></textarea>");
 
 
     $.ajax({
@@ -218,9 +215,7 @@ function edit_comment(id){
         url: "/products/edit_comment/",
         data: {"comment_id": id},
         success: function(data) {
-            alert('delete success before remove');
             $('#comment_'+id.toString()).remove();
-            alert('delete success');
         }, 
         error: function(xhr, ajaxOptions, thrownError){
             alert(xhr.status);
