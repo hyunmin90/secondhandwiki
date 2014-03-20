@@ -128,7 +128,7 @@ def new_comment(request):
         for comment in comments:
             if comment.id>next_id:
                 next_id = comment.id
-
+        next_id = next_id + 1
 
         # add new comment 
         cursor.execute("INSERT INTO products_comments(product_id, body, author_id) VALUES(%s, %s, %s)" , [product_id, comment_body, request.user.id])
