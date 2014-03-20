@@ -188,6 +188,7 @@ function submit_comment(){
         success: function(data) {
             $("#id_comment_body").val("");
             alert(data["len"]);
+            alert(data["body"]);
             alert(data["html_string"]);
             $("#comment_list").append(data["html_string"]);
         }, 
