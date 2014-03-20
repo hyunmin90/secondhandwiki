@@ -118,22 +118,27 @@ def new_comment(request):
         comment_body = request.POST['comment_body']
         product_id = request.POST['product_id']
         cursor = connection.cursor()
-        
+
+        # get existing comments
+
+        comments = Comments.objects.raw("SELECT * FROM products_comments") 
+        comments = list(comments)
+        next_id = -1
+
+        for comment in comments:
+            if comment.id>next_id:
+                next_id = comment.id
+
+
         # add new comment 
         cursor.execute("INSERT INTO products_comments(product_id, body, author_id) VALUES(%s, %s, %s)" , [product_id, comment_body, request.user.id])
     
         # get the newly added comment
-        comments = Comments.objects.raw("SELECT * FROM products_comments WHERE product_id = %s AND author_id = %s AND body = %s", [product_id, request.user.id, comment_body]) 
-        comments = list(comments)
+        #comments = Comments.objects.raw("SELECT * FROM products_comments WHERE product_id = %s AND author_id = %s AND body = %s", [product_id, request.user.id, comment_body]) 
+        #comments = list(comments)
          
-        comment_id = -1
-        if len(comments) == 1: 
-            comment_id = comments[0].id
-        else:
-            # should never come here
-            return HttpResponseRedirect('/')
 
-        data = {'first_name': request.user.first_name, 'comment_id': comment_id,}
+        data = {'first_name': request.user.first_name, 'comment_id': next_id,}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
     
