@@ -119,21 +119,19 @@ def new_comment(request):
         product_id = request.POST['product_id']
         cursor = connection.cursor()
 
-        # get existing comments
-
-        comments = Comments.objects.raw("SELECT * FROM products_comments") 
-        comments = list(comments)
-        next_id = 1 
-
-        for comment in comments:
-            if comment.id>next_id:
-                next_id = comment.id
-        next_id = next_id + 1
-
+        
         # add new comment 
         cursor.execute("INSERT INTO products_comments(product_id, body, author_id) VALUES(%s, %s, %s)" , [product_id, comment_body, request.user.id])
 
-        data = {'first_name': request.user.first_name, 'comment_id': next_id,}
+
+        
+        # get comments
+        comments = Comments.objects.raw("SELECT * FROM products_comments") 
+        comments = list(comments)
+        new_comment = comments[len(comments)-1]
+        comment_id = new_comment.id
+
+        data = {'first_name': request.user.first_name, 'comment_id': comment_id,}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
     
@@ -162,11 +160,10 @@ def edit_comment(request):
     if request.method=="POST":
         comment_id = request.POST['comment_id']
         comment_body = request.POST['comment_body']
-        
         comment = Comments.objects.get(id=comment_id)
         comment.body = comment_body
         comment.save()
-
+        
         data = {}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
