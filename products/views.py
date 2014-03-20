@@ -122,10 +122,11 @@ def new_comment(request):
         # add new comment 
         cursor.execute("INSERT INTO products_comments(product_id, body, author_id) VALUES(%s, %s, %s)" , [product_id, comment_body, request.user.id])
         
-        # get comments
-        comments = Comments.objects.raw("SELECT * FROM products_comments") 
-        comments = list(comments)
-        new_comment = comments[len(comments)-1]
+        # get the newly added comment
+        comments = Comments.objects.raw("SELECT * FROM products_comments WHERE product_id = %s AND body = %s AND author_id = %s", [product_id, comment_body, request.user.id]) 
+        #comments = list(comments)
+        #new_comment = comments[len(comments)-1]
+        new_comment = comments[0]
         comment_id = new_comment.id
 
 
