@@ -161,7 +161,7 @@ def edit_comment(request):
         comment.body = comment_body
         comment.save()
         
-        data = {}
+        data = {"first_name":request.user.first_name}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
 

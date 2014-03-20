@@ -222,7 +222,7 @@ function edit_comment(id){
         success: function(data) {
             $('#comment_'+id.toString()).html(
             
-            "<b>"+data['first_name']+"</b>: "+edited_comment+"<span style='float:right; color:blue;' onclick='$('#id_comment_edit_"+ data['comment_id'] + ").show(); $('#id_comment_edit_button_"+data['comment_id']+".show();'>Edit</span>"+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span><textarea id='id_comment_edit_"+data['comment_id']+"' style='display:none;'></textarea><button id='id_comment_edit_button_"+data['comment_id']+"' style='display:none;' onclick='edit_comment("+data['comment_id']+");'>submit edit</button>"
+            "<b>"+data['first_name']+"</b>: "+edited_comment+"<span style='float:right; color:blue;' onclick='$('#id_comment_edit_"+ data['comment_id'] + ").show(); $('#id_comment_edit_button_"+data['comment_id']+").show();'>Edit</span>"+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span><textarea id='id_comment_edit_"+data['comment_id']+"' style='display:none;'></textarea><button id='id_comment_edit_button_"+data['comment_id']+"' style='display:none;' onclick='edit_comment("+data['comment_id']+");'>submit edit</button>"
             
             
             
