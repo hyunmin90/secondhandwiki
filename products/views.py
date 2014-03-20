@@ -128,12 +128,7 @@ def new_comment(request):
         comment = comments[len(comments)-1]
         comment_id = comment.id
 
-        # check if person commenting is the author
-        is_author = False
-        if request.user == comment.author:
-            is_author = True
-
-        data = {'first_name': request.user.first_name, 'comment_id': comment_id, 'is_author':is_author}
+        data = {'first_name': request.user.first_name, 'comment_id': comment_id,}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
     
