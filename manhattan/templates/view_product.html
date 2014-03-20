@@ -73,7 +73,7 @@
             {% endif %}
 
             <textarea id="id_comment_edit_{{ comment.id }}" style="display:none;"></textarea>
-            <span id="id_comment_edit_button_{{ comment.id }}" style="display:none;" onclick="edit_comment({{ comment.id }});">submit edit</span>
+            <button id="id_comment_edit_button_{{ comment.id }}" style="display:none;" onclick="edit_comment({{ comment.id }});">submit edit</button>
 
         </li>
     {% endfor %}
@@ -187,7 +187,7 @@ function submit_comment(){
         data: {"comment_body": comment_body, "product_id": {{ product.id }}},
         success: function(data) {
             $('#id_comment_body').val('');
-            $('#comment_list').append("<li class='list-group-item' id='comment_"+ data['comment_id'] +"'><b>"+data['first_name']+"</b>: "+comment_body+"<span style='float:right; color:blue;' onclick='$('#id_comment_edit_"+ data['comment_id'] + ").show(); $('#id_comment_edit_button_"+data['comment_id']+".show();'>Edit</span>"+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span><textarea id='id_comment_edit_"+data['comment_id']+"' style='display:none;'></textarea><span id='id_comment_edit_button_"+data['comment_id']+"' style='display:none;' onclick='edit_comment("+data['comment_id']+");'>submit edit</span></li>");
+            $('#comment_list').append("<li class='list-group-item' id='comment_"+ data['comment_id'] +"'><b>"+data['first_name']+"</b>: "+comment_body+"<span style='float:right; color:blue;' onclick='$('#id_comment_edit_"+ data['comment_id'] + ").show(); $('#id_comment_edit_button_"+data['comment_id']+".show();'>Edit</span>"+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span><textarea id='id_comment_edit_"+data['comment_id']+"' style='display:none;'></textarea><button id='id_comment_edit_button_"+data['comment_id']+"' style='display:none;' onclick='edit_comment("+data['comment_id']+");'>submit edit</button></li>");
 
                    }, 
         error: function(xhr, ajaxOptions, thrownError){
