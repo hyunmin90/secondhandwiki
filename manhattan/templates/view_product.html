@@ -183,12 +183,12 @@ function submit_comment(){
             alert('success')
             if (data['is_author']){
                 alert('is_author');
-                $('#id_comment_body').val() = "";
+                $('#id_comment_body').val('');
                 $('#comment_list').append("<li class='list-group-item'><b>"+data['first_name']+"</b>: "+$('#id_comment_body').val()+"<span style='float:right; color:blue;' onclick='edit_comment("+ data['comment_id']+");'>Edit</span>"+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span></li>");
             }
             else{
                 alert('not author');
-                $('#id_comment_body').val() = "";
+                $('#id_comment_body').val('');
                 $('#comment_list').append("<li class='list-group-item'><b>"+data['first_name']+"</b>: "+$('#id_comment_body').val());
             }
         }, 
