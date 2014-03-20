@@ -124,11 +124,8 @@ def new_comment(request):
         
         # get the newly added comment
         comments = Comments.objects.raw("SELECT * FROM products_comments WHERE product_id = %s AND body = %s AND author_id = %s", [product_id, comment_body, request.user.id]) 
-        #comments = list(comments)
-        #new_comment = comments[len(comments)-1]
         new_comment = list(comments)[0]
         comment_id = new_comment.id
-
 
         html = "<li class=\'list-group-item\' id=\'comment_" + str(comment_id) + "\'><b>" + request.user.first_name + ":</b> " + comment_body + "<span style=\'float:right; color:blue;\' onclick=\"$(\'#id_comment_edit_" + str(comment_id) + "\').show(); $(\'#id_comment_edit_button_" + str(comment_id) + "\').show();\">Edit</span><span class=\'glyphicon glyphicon-remove\' style=\'float:right;\' onclick=\"delete_comment(" + str(comment_id) + ");\"></span><textarea id=\'id_comment_edit_" + str(comment_id) + "\' style=\'display:none;\'></textarea><button id=\'id_comment_edit_button_" + str(comment_id) + "\' style=\'display:none;\' onclick=\"edit_comment(" + str(comment_id) + ");\">submit edit</button></li>"
 

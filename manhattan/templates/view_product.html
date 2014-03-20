@@ -187,9 +187,6 @@ function submit_comment(){
         data: {"comment_body": comment_body, "product_id": {{ product.id }}},
         success: function(data) {
             $("#id_comment_body").val("");
-            alert(data["len"]);
-            alert(data["body"]);
-            alert(data["html_string"]);
             $("#comment_list").append(data["html_string"]);
         }, 
         error: function(xhr, ajaxOptions, thrownError){
