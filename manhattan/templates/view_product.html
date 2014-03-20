@@ -221,7 +221,7 @@ function edit_comment(id){
         success: function(data) {
             var first_part = "<b>"+data["first_name"]+"</b>: "+edited_comment;
 
-            $("#comment_"+id.toString()).html(first_part+"<span style='float:right; color:blue;' onclick='$('#id_comment_edit_"+ id.toString() + "').show(); $('#id_comment_edit_button_"+ id.toString()  +"').show();'>Edit</span>"+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+ id.toString() +");'></span><textarea id='id_comment_edit_"+ id.toString() +"' style='display:none;'></textarea><button id='id_comment_edit_button_"+ id.toString()+"' style='display:none;' onclick='edit_comment("+ id.toString() +");'>submit edit</button>");
+            $("#comment_"+id.toString()).html(first_part+"<span style='float:right; color:blue;' onclick=\"$('#id_comment_edit_"+ id.toString() + "').show(); $('#id_comment_edit_button_"+ id.toString()  +"').show();\">Edit</span>"+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick=\"delete_comment("+ id.toString() +");\"></span><textarea id='id_comment_edit_"+ id.toString() +"' style='display:none;'></textarea><button id='id_comment_edit_button_"+ id.toString()+"' style='display:none;' onclick=\"edit_comment("+ id.toString() +");\">submit edit</button>");
         }, 
         error: function(xhr, ajaxOptions, thrownError){
             alert(xhr.status);
