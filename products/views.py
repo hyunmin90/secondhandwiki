@@ -118,12 +118,9 @@ def new_comment(request):
         comment_body = request.POST['comment_body']
         product_id = request.POST['product_id']
         cursor = connection.cursor()
-
         
         # add new comment 
         cursor.execute("INSERT INTO products_comments(product_id, body, author_id) VALUES(%s, %s, %s)" , [product_id, comment_body, request.user.id])
-
-
         
         # get comments
         comments = Comments.objects.raw("SELECT * FROM products_comments") 
@@ -160,9 +157,12 @@ def edit_comment(request):
     if request.method=="POST":
         comment_id = request.POST['comment_id']
         comment_body = request.POST['comment_body']
-        comment = Comments.objects.get(id=comment_id)
-        comment.body = comment_body
-        comment.save()
+        try:
+            comment = Comments.objects.get(id=comment_id)
+            comment.body = comment_body
+            comment.save()
+        except:
+            pass
         
         data = {}
         data = simplejson.dumps(data)
