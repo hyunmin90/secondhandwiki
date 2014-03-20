@@ -128,7 +128,10 @@ def new_comment(request):
         new_comment = comments[len(comments)-1]
         comment_id = new_comment.id
 
-        data = {'first_name': request.user.first_name, 'comment_id': comment_id,}
+
+        html = "<li class='list-group-item' id='comment_"+ comment_id +"'><b>"+data['first_name']+"</b>: "+comment_body+"<span style='float:right; color:blue;' onclick='$('#id_comment_edit_"+ comment_id + "').show(); $('#id_comment_edit_button_"+ comment_id +"').show();'>Edit</span><span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+ comment_id+");'></span><textarea id='id_comment_edit_"+ comment_id +"' style='display:none;'></textarea><button id='id_comment_edit_button_" + comment_id + "' style='display:none;' onclick='edit_comment("+ comment_id +");'>submit edit</button></li>"
+
+        data = {'first_name': request.user.first_name, 'comment_id': comment_id, 'html_string': html}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
     
