@@ -160,6 +160,14 @@ def delete_comment(request):
     else:
         return HttpResponseRedirect("/")    
 
+
+@login_required
+@csrf_protect
+def edit_comment(request):
+    data = {}
+    data = simplejson.dumps(data)
+    return HttpResponse(data, mimetype='application/json')
+
 @csrf_protect
 def search_product(request):
     if request.method=='POST':

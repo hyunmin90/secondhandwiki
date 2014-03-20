@@ -10,7 +10,7 @@ urlpatterns = patterns('',
 
     url(r'^new_comment/$', 'products.views.new_comment'),
     url(r'^delete_comment/$', 'products.views.delete_comment'),
-    
+    url(r'^edit_comment/$', 'products.views.edit_comment'),
     
     url(r'^new_description/(?P<product_slug>[a-zA-Z0-9\-\+]+)/$', 'products.views.new_description'),
 
