@@ -123,10 +123,14 @@ def new_comment(request):
         cursor.execute("INSERT INTO products_comments(product_id, body, author_id) VALUES(%s, %s, %s)" , [product_id, comment_body, request.user.id])
     
         # get the newly added comment
-        comments = Comments.objects.raw("SELECT * FROM products_comments") 
+        comments = Comments.objects.raw("SELECT * FROM products_comments WHERE product_id = %s AND author_id = %s AND body = %s", [product_id, request.user.id, comment_body]) 
         comments = list(comments)
-        comment = comments[len(comments)-1]
-        comment_id = comment.id
+         
+        if len(comments) == 1: 
+            comment_id = comments[0].id
+        else:
+            # should never come here
+            return HttpResponseRedirect('/')
 
         data = {'first_name': request.user.first_name, 'comment_id': comment_id,}
         data = simplejson.dumps(data)
