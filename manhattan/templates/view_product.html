@@ -174,20 +174,20 @@ $.ajaxSetup({
 });
 
 function submit_comment(){
-    $('#id_comment_error').hide();
+    $("#id_comment_error").hide();
 
-    if ($('#id_comment_body').val() == "") {
-        $('#id_comment_error').show();
+    if ($("#id_comment_body").val() == "") {
+        $("#id_comment_error").show();
         return;
     }
-    var comment_body = $('#id_comment_body').val();
+    var comment_body = $("#id_comment_body").val();
     $.ajax({
         type: "POST",
         url: "/products/new_comment/",
         data: {"comment_body": comment_body, "product_id": {{ product.id }}},
         success: function(data) {
-            $('#id_comment_body').val("");
-            $('#comment_list').append(data['html_string']);
+            $("#id_comment_body").val("");
+            $("#comment_list").append(data["html_string"]);
         }, 
         error: function(xhr, ajaxOptions, thrownError){
             alert(xhr.status);
@@ -202,7 +202,7 @@ function delete_comment(id){
         url: "/products/delete_comment/",
         data: {"comment_id": id},
         success: function(data) {
-            $('#comment_'+id.toString()).remove();
+            $("#comment_"+id.toString()).remove();
         }, 
         error: function(xhr, ajaxOptions, thrownError){
             alert(xhr.status);
@@ -211,6 +211,23 @@ function delete_comment(id){
     });   
 }
 
+function edit_comment(id){
+    var edited_comment = $('#id_comment_edit_'+id.toString()).val();
+    $.ajax({
+        type: "POST",
+        url: "/products/edit_comment/",
+        data: {"comment_id": id, "comment_body": edited_comment},
+        success: function(data) {
+            var first_part = "<b>"+data['first_name']+"</b>: "+edited_comment;
+
+            $('#comment_'+id.toString()).html(first_part+"<span style='float:right; color:blue;' onclick='$('#id_comment_edit_"+ id.toString() + "').show(); $('#id_comment_edit_button_"+ id.toString()  +"').show();'>Edit</span>"+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+ id.toString() +");'></span><textarea id='id_comment_edit_"+ id.toString() +"' style='display:none;'></textarea><button id='id_comment_edit_button_"+ id.toString()+"' style='display:none;' onclick='edit_comment("+ id.toString() +");'>submit edit</button>");
+        }, 
+        error: function(xhr, ajaxOptions, thrownError){
+            alert(xhr.status);
+            alert(thrownError);
+        }
+    });   
+}
 
 function submit_description(){
     $('#id_feature_name_error').hide();
