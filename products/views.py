@@ -160,7 +160,7 @@ def edit_comment(request):
 
         cursor = connection.cursor()
         # update comment
-        cursor.execute("UPDATE products_comments SET body = %s WHERE id = %s", [commet_body, comment_id])
+        cursor.execute("UPDATE products_comments SET body = %s WHERE id = %s", [comment_body, comment_id])
 
         #comment = Comments.objects.get(pk=comment_id)
         #comment.body = comment_body
