@@ -163,9 +163,10 @@ def edit_comment(request):
         comment_id = request.POST['comment_id']
         comment_body = request.POST['comment_body']
         
-        comment = Comments.objects.filter(id=comment_id)[0]
+        comment = Comments.objects.get(id=comment_id)
         comment.body = comment_body
         comment.save()
+
         data = {}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
