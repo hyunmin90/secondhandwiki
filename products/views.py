@@ -157,9 +157,14 @@ def edit_comment(request):
     if request.method=="POST":
         comment_id = request.POST['comment_id']
         comment_body = request.POST['comment_body']
-        comment = Comments.objects.get(pk=comment_id)
-        comment.body = comment_body
-        comment.save()
+
+        cursor = connection.cursor()
+        # update comment
+        cursor.execute("UPDATE products_comments SET body = %s WHERE id = %s", [commet_body, comment_id])
+
+        #comment = Comments.objects.get(pk=comment_id)
+        #comment.body = comment_body
+        #comment.save()
         
         data = {"first_name":request.user.first_name}
         data = simplejson.dumps(data)
