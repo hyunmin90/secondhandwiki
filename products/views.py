@@ -159,9 +159,19 @@ def delete_comment(request):
 @login_required
 @csrf_protect
 def edit_comment(request):
-    data = {}
-    data = simplejson.dumps(data)
-    return HttpResponse(data, mimetype='application/json')
+    if request.method=="POST":
+        comment_id = request.POST['comment_id']
+        comment_body = request.POST['comment_body']
+        
+        comment = Comments.objects.filter(id=comment_id)[0]
+        comment.body = comment_body
+        comment.save()
+        data = {}
+        data = simplejson.dumps(data)
+        return HttpResponse(data, mimetype='application/json')
+
+    else:
+        return HttpResponseRedirect("/")    
 
 @csrf_protect
 def search_product(request):
