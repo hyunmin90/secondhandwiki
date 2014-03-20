@@ -186,17 +186,14 @@ function submit_comment(){
         url: "/products/new_comment/",
         data: {"comment_body": comment_body, "product_id": {{ product.id }}},
         success: function(data) {
-            $('#id_comment_body').val('');
-            //$('#comment_list').append("<li class='list-group-item' id='comment_"+ data['comment_id'] +"'><b>"+data['first_name']+"</b>: "+comment_body+"<span style='float:right; color:blue;' onclick='$('#id_comment_edit_"+ data['comment_id'] + "').show(); $('#id_comment_edit_button_"+data['comment_id']+"').show();'>Edit</span><span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span><textarea id='id_comment_edit_"+data['comment_id']+"' style='display:none;'></textarea><button id='id_comment_edit_button_"+data['comment_id']+"' style='display:none;' onclick='edit_comment("+data['comment_id']+");'>submit edit</button></li>");
+            $('#id_comment_body').val("");
             $('#comment_list').append(data['html_string']);
-
         }, 
         error: function(xhr, ajaxOptions, thrownError){
             alert(xhr.status);
             alert(thrownError);
         }
     });
-    //$('#add_comment_form').submit();
 }
 
 function delete_comment(id){
@@ -214,23 +211,6 @@ function delete_comment(id){
     });   
 }
 
-function edit_comment(id){
-    var edited_comment = $('#id_comment_edit_'+id.toString()).val();
-    $.ajax({
-        type: "POST",
-        url: "/products/edit_comment/",
-        data: {"comment_id": id, "comment_body": edited_comment},
-        success: function(data) {
-            var first_part = "<b>"+data['first_name']+"</b>: "+edited_comment;
-
-            $('#comment_'+id.toString()).html(first_part+"<span style='float:right; color:blue;' onclick='$('#id_comment_edit_"+ id.toString() + "').show(); $('#id_comment_edit_button_"+ id.toString()  +"').show();'>Edit</span>"+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+ id.toString() +");'></span><textarea id='id_comment_edit_"+ id.toString() +"' style='display:none;'></textarea><button id='id_comment_edit_button_"+ id.toString()+"' style='display:none;' onclick='edit_comment("+ id.toString() +");'>submit edit</button>");
-        }, 
-        error: function(xhr, ajaxOptions, thrownError){
-            alert(xhr.status);
-            alert(thrownError);
-        }
-    });   
-}
 
 function submit_description(){
     $('#id_feature_name_error').hide();
@@ -248,6 +228,5 @@ function submit_description(){
 }
 
 </script>
-
 
 {% endblock %}
