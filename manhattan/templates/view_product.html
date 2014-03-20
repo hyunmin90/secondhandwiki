@@ -67,8 +67,8 @@
             {{ comment.body }}
             {% if comment.author == user %}
                 <span style="float:right; color:blue;" onclick="edit_comment({{ comment.id }});">Edit</span>
+                <span class="glyphicon glyphicon-remove" style="float:right;" onclick="delete_comment({{ comment.id }});"></span>
             {% endif %}
-            <span class="glyphicon glyphicon-remove" style="float:right;" onclick="delete_comment({{ comment.id }});"></span>
         </li>
     {% endfor %}
     </ul>
@@ -180,11 +180,14 @@ function submit_comment(){
         url: "/products/new_comment/",
         data: {"comment_body": comment_body, "product_id": {{ product.id }}},
         success: function(data) {
+            alert('success')
             if (data['is_author']==True){
+                alert('is_author');
                 $('#id_comment_body').val() = "";
                 $('#comment_list').append("<li class='list-group-item'><b>"+data['first_name']+"</b>: "+$('#id_comment_body').val()+"<span style='float:right; color:blue;' onclick='edit_comment("+ data['comment_id']+");'>Edit</span>"+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span></li>");
             }
             else{
+                alert('not author');
                 $('#id_comment_body').val() = "";
                 $('#comment_list').append("<li class='list-group-item'><b>"+data['first_name']+"</b>: "+$('#id_comment_body').val()+"<span class='glyphicon glyphicon-remove' style='float:right;' onclick='delete_comment("+data['comment_id']+");'></span></li>");
             }
