@@ -213,6 +213,7 @@ function edit_comment(id){
         data: {"comment_id": id},
         success: function(data) {
             $('#comment_'+id.toString()).remove();
+            alert('delete success');
         }, 
         error: function(xhr, ajaxOptions, thrownError){
             alert(xhr.status);
