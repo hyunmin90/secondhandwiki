@@ -157,12 +157,9 @@ def edit_comment(request):
     if request.method=="POST":
         comment_id = request.POST['comment_id']
         comment_body = request.POST['comment_body']
-        try:
-            comment = Comments.objects.get(id=comment_id)
-            comment.body = comment_body
-            comment.save()
-        except:
-            pass
+        comment = Comments.objects.get(pk=comment_id)
+        comment.body = comment_body
+        comment.save()
         
         data = {}
         data = simplejson.dumps(data)
