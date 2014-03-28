@@ -1,12 +1,14 @@
+{% extends "nav_main.html" %}
 
+{% block content %}
 
 <html>
     <head>
         <title>Image tagging advanced functionality</title>
-        <link href="./tagging/jquery-ui.css" rel="stylesheet" type="text/css"/>
-        <script type="text/javascript" src="./tagging/jquery.min.js"></script>
-        <script type="text/javascript" src="./tagging/jquery-ui.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="./tagging/phototag.css" media="screen" />
+        <link href="tagging/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="tagging/jquery.min.js"></script>
+        <script type="text/javascript" src="tagging/jquery-ui.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="tagging/phototag.css" media="screen" />
         <script>
             $(document).ready(function() {
                 
@@ -102,7 +104,7 @@
             });
 
             $(".tagged").live("click",function(){
-                $(this).find(".tagged_box").html("<img src='del.png' class='openDialog' value='Delete' onclick='deleteTag(this)' />\n\
+                $(this).find(".tagged_box").html("<img src='tagging/del.png' class='openDialog' value='Delete' onclick='deleteTag(this)' />\n\
         <a onclick='editTag(this);' value='Comment' />Comment</a>");
 
                 var img_scope_top = $("#imageMap").offset().top + $("#imageMap").height() - $(this).find(".tagged_box").height();
@@ -175,7 +177,7 @@
 
              <div style='margin: auto; width: 600px;'>
                 <div id='image_panel' >
-                    <img src='./tagging/5d.jpg' id='imageMap'  />  <!--This photo should be dealt with the python -->
+                    <img src='tagging/5d.jpg' id='imageMap'  />  <!--This photo should be dealt with the python -->
                     <div id='mapper' ><a  onclick='openDialog()' /><font color="white">Comment</a></div>
 
                     <div id="TaggedPhoto">
@@ -212,4 +214,5 @@
     </body>
 </html>
 
+{% endblock %}
 
