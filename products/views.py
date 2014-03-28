@@ -68,12 +68,6 @@ def new_product(request):
     else:
         return render(request, 'new_product.html', {})
 
-
-#@login_required
-#@csrf_protect
-#def new_description(request):
-
-
 @login_required
 def view_product(request,slug):
     # get product
@@ -87,7 +81,11 @@ def view_product(request,slug):
 
     comments_sorted = sorted(comments, key=lambda x: x.id)
 
-    return render(request, 'view_product.html', {'product':the_product, 'comments':comments_sorted,})
+    # get features
+    features = Features.objects.raw('SELECT * FROM products_features WHERE product_id = %s', [the_product.id])
+    features = list(features)
+
+    return render(request, 'view_product.html', {'product':the_product, 'comments':comments_sorted, 'features':features,})
 
 
 @login_required
