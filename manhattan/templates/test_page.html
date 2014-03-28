@@ -5,13 +5,18 @@
     <head>
         <title>Image tagging advanced functionality</title>
         <link href="http://www.hyounmin.com/jquery-ui.css" rel="stylesheet" type="text/css"/>
-         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
-   		 <script src="http://malsup.github.com/jquery.form.js"></script> 
         <script type="text/javascript" src="http://www.hyounmin.com/jquery.min.js"></script>
         <script type="text/javascript" src="http://www.hyounmin.com/jquery-ui.min.js"></script>
         <link rel="stylesheet" type="text/css" href="http://www.hyounmin.com/phototag.css" media="screen" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+    	<script src="http://malsup.github.com/jquery.form.js"></script> 
+        
         <script>
             $(document).ready(function() {
+                
+                 $('#comment').ajaxForm(function() { 
+                alert("Thank you for your comment!"); 
+           	 }); 
                 
 
 
@@ -134,9 +139,7 @@
                 $("#title").val('');
                 $("#form_panel").hide();
                 
-                $('#comment').ajaxForm(function() { 
-                alert("Thank you for your comment!"); 
-          	     }); 
+                
                 
 
             };
