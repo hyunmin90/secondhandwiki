@@ -14,7 +14,7 @@
         <script>
             $(document).ready(function() {
                 
-                 $('#comment').ajaxForm(function() { 
+                 $('#myForm').ajaxForm(function() { 
                 alert("Thank you for your comment!"); 
            	 }); 
                 
@@ -224,8 +224,18 @@
                 <input type="button" value="Hide Tags" onclick="hideTags()" />
             </div>
         </div>
+        <form id="myForm" action="" method="post"> 
+    Name: <input type="text" name="name" /> 
+    Comment: <textarea name="comment"></textarea> 
+    <input type="submit" value="Submit Comment" /> 
+</form>
+        
+        
+        
     </body>
 </html>
+
+
 
 {% endblock %}
 
