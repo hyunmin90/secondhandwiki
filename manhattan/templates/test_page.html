@@ -123,17 +123,19 @@
             var addTag = function(){
                 var position = $('#mapper').position();
 
-				 alert("Thank you for your comment!"); 
+				alert("Thank you for your comment!"); 
                 var pos_x = position.left;
                 var pos_y = position.top;
                 var pos_width = $('#mapper').width();
                 var pos_height = $('#mapper').height();
-
-
-                $('#TaggedPhoto').append('<div class="tagged"  style="width:'+pos_width+';height:'+
+				
+				<!--Add your action here for the cordinate!!!!!-->
+                $('#TaggedPhoto').append('<div form method="post" action="" id="Location">''<div class="tagged"  style="width:'+pos_width+';height:'+
                     pos_height+';left:'+pos_x+';top:'+pos_y+';" ><div   class="tagged_box" style="width:'+pos_width+';height:'+
                     pos_height+';display:none;" ></div><div class="tagged_title" style="top:'+(pos_height+5)+';display:none;" >'+
-                    $("#title").val()+'</div></div>');
+                    $("#title").val()+'</div></div>''</form>');
+                
+                $("#Location").submit();
 
                 $("#mapper").hide();
                 $("#title").val('');
@@ -187,7 +189,6 @@
                 <div id='image_panel' >
                     <img src='http://3.static.img-dpreview.com/reviews/CanonEOS5D/Images/frontview-001.jpg?v=2779' id='imageMap'  />  <!--This photo should be dealt with the python -->
                     
-                   <!--ENTER THE FORM ACTION. Saves the comment to the database!-->
                    
                    
                     <div id='mapper' ><a  onclick='openDialog()' /><font color="white">Comment</a></div>
@@ -195,7 +196,8 @@
                     <div id="TaggedPhoto">
 
                     </div>
-                    <form id='comment' action ='' method="post"><!--The Comment form should be passed in-->
+                    <!--The COMMENT FORM should be passed in-->
+                    <form id='comment' action ='' method="post">
                     <div id='form_panel'>
                         <div class='row'>
                             <div class='label'>Comment</div><div class='field'><input type='text' id='title' /></div>
@@ -209,7 +211,8 @@
                         </div>
 
                     </div>
-                    </form><!--End of the form for commenting to send to db-->
+                    </form>
+                    <!--END OF the form for commenting to send to db INPUT TITLE will be sent-->
                 </div>
 
             </div>
