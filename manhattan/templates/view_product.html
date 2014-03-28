@@ -17,6 +17,7 @@
         {% for feature in features %}
             {% if forloop.counter == 1 %} 
                 <div class="item active" name="description_{{ feature.id }}">
+                    <h3>{{ feature.feature_name }}</h3>
                     <blockquote>
                         <p>{{ feature.description }}</p>
                         <small>{{ feature.author_id.first_name }}</small>
@@ -24,6 +25,7 @@
                 </div>
             {% else %}
                 <div class="item" name="description_{{ feature.id }}">
+                    <h3>{{ feature.feature_name }}</h3>
                     <blockquote>
                         <p>{{ feature.description }}</p>
                         <small>{{ feature.author_id.first_name }}</small>
