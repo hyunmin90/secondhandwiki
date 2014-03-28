@@ -38,8 +38,8 @@
                     if((top_distance + mapper_height > imagemap_height) && (left_distance + mapper_width > imagemap_width)){
                         $('#mapper').css("left", (click_left - mapper_width - image_left  ))
                         .css("top",(click_top - mapper_height - image_top  ))
-                        .css("width","50px")
-                        .css("height","50px")
+                        .css("width","10px")
+                        .css("height","10px")
                         .show();
                     }
                     else if(left_distance + mapper_width > imagemap_width){
@@ -47,16 +47,16 @@
 
                         $('#mapper').css("left", (click_left - mapper_width - image_left  ))
                         .css("top",top_distance)
-                        .css("width","50px")
-                        .css("height","50px")
+                        .css("width","10px")
+                        .css("height","10px")
                         .show();
 			
                     }
                     else if(top_distance + mapper_height > imagemap_height){
                         $('#mapper').css("left", left_distance)
                         .css("top",(click_top - mapper_height - image_top  ))
-                        .css("width","50px")
-                        .css("height","50px")
+                        .css("width","10px")
+                        .css("height","10px")
                         .show();
                     }
                     else{
@@ -64,8 +64,8 @@
 
                         $('#mapper').css("left",left_distance)
                         .css("top",top_distance)
-                        .css("width","50px")
-                        .css("height","50px")
+                        .css("width","10px")
+                        .css("height","10px")
                         .show();
                     }
 
