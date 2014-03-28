@@ -5,6 +5,8 @@
     <head>
         <title>Image tagging advanced functionality</title>
         <link href="http://www.hyounmin.com/jquery-ui.css" rel="stylesheet" type="text/css"/>
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+   		 <script src="http://malsup.github.com/jquery.form.js"></script> 
         <script type="text/javascript" src="http://www.hyounmin.com/jquery.min.js"></script>
         <script type="text/javascript" src="http://www.hyounmin.com/jquery-ui.min.js"></script>
         <link rel="stylesheet" type="text/css" href="http://www.hyounmin.com/phototag.css" media="screen" />
@@ -132,6 +134,10 @@
                 $("#title").val('');
                 $("#form_panel").hide();
                 
+                $('#comment').ajaxForm(function() { 
+                alert("Thank you for your comment!"); 
+          	     }); 
+                
 
             };
 
@@ -177,12 +183,16 @@
              <div style='margin: auto; width: 600px;'>
                 <div id='image_panel' >
                     <img src='http://3.static.img-dpreview.com/reviews/CanonEOS5D/Images/frontview-001.jpg?v=2779' id='imageMap'  />  <!--This photo should be dealt with the python -->
+                    
+                   <!--ENTER THE FORM ACTION. Saves the comment to the database!-->
+                   
+                   
                     <div id='mapper' ><a  onclick='openDialog()' /><font color="white">Comment</a></div>
 
                     <div id="TaggedPhoto">
 
                     </div>
-                    <form id='comment'><!--The Comment form should be passed in-->
+                    <form id='comment' action ='' method="post"><!--The Comment form should be passed in-->
                     <div id='form_panel'>
                         <div class='row'>
                             <div class='label'>Comment</div><div class='field'><input type='text' id='title' /></div>
@@ -196,6 +206,7 @@
                         </div>
 
                     </div>
+                    </form><!--End of the form for commenting to send to db-->
                 </div>
 
             </div>
