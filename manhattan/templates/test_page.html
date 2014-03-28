@@ -1,142 +1,10 @@
-{% extends "nav_main.html" %}
-
-{% block content %}
-
-
 <html>
     <head>
         <title>Image tagging advanced functionality</title>
-        <link href="http://hyounmin.com/jquery-ui.css" rel="stylesheet" type="text/css"/>
-        <script type="text/javascript" src="http://hyounmin.com/jquery.min.js"></script>
-        <script type="text/javascript" src="http://hyounmin.com/jquery-ui.min.js"></script>
-        
-        
-        
-        
-        <style type="text/css" >
-
-            body{
-                font-size:13px;
-                font-family:"Arial";
-            }
-            #mapper{
-                border:5px solid #EEE;
-                width:40px;
-                height:40px;
-                min-width:40px;
-                min-height:40px;
-                z-index:1000;
-                position:absolute;
-                top:0;
-                display:none;
-            }
-
-            #TaggedPhoto div{
-
-                display:block;
-                position:absolute;
-            }
-
-
-
-
-            #main_panel{
-                margin: auto;
-                padding: 10px;
-                width: 1000px;
-            }
-            #url_panel{
-
-            }
-            #form_panel{
-                float: left;
-                background:#eee;
-                border:5px solid #FFF;
-                outline:1px solid #eee;
-                left: 100px;
-                padding: 5px;
-                position: absolute;
-                top: 40px;
-                width: 310px;
-                display:none;
-                z-index:2000;
-            }
-
-            #form_panel input,textarea{
-                padding:3px;
-                background:#FFF;
-                border:1px solid #CFCFCF;
-                color:#000;
-            }
-
-            #image_panel{
-                float:left;
-                width:600px;
-                position:relative;
-            }
-            #image_panel img{
-                left:0;top:-102px;
-                max-width: 600px;
-                overflow: hidden;
-
-            }
-
-
-            #form_panel .label{
-                float:left;
-                width:80px;
-                padding:5px;
-            }
-
-            #form_panel .field{
-                float:left;
-                width:200px;
-                padding:5px;
-            }
-
-            #form_panel .row{
-                clear:both;
-            }
-
-            .tagged_title{
-                background: none repeat scroll 0 0 #538DD3;
-                border: 2px solid;
-                color: #FFFFFF;
-                font-size: 12px;
-                font-weight: bold;
-                padding: 3px;
-                margin-top:5px;
-            }
-
-
-            #info_panel{
-                padding:10px;
-                margin:20px 0;
-                background:#eee;
-            }
-
-
-            input[type='button']{
-                background: none repeat scroll 0 0 #2769C4;
-                border: 1px solid #CFCFCF;
-                color: #FFFFFF;
-                font-weight: bold;
-                height: 30px;
-                padding: 5px;
-            }
-
-
-        </style>
-
-
-
-        
-        
-        
-        
-        
-        
-        
+        <link href="http://www.hyounmin.com/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="http://www.hyounmin.com/jquery.min.js"></script>
+        <script type="text/javascript" src="http://www.hyounmin.com/jquery-ui.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://www.hyounmin.com/phototag.css" media="screen" />
         <script>
             $(document).ready(function() {
                 
@@ -232,7 +100,7 @@
             });
 
             $(".tagged").live("click",function(){
-                $(this).find(".tagged_box").html("<img src='http://icons.iconarchive.com/icons/custom-icon-design/office/256/delete-icon.png' class='openDialog' value='Delete' onclick='deleteTag(this)' />\n\
+                $(this).find(".tagged_box").html("<img src='tagging/del.png' class='openDialog' value='Delete' onclick='deleteTag(this)' />\n\
         <a onclick='editTag(this);' value='Comment' />Comment</a>");
 
                 var img_scope_top = $("#imageMap").offset().top + $("#imageMap").height() - $(this).find(".tagged_box").height();
@@ -305,7 +173,7 @@
 
              <div style='margin: auto; width: 600px;'>
                 <div id='image_panel' >
-                    <img src='http://ecx.images-amazon.com/images/I/51EEHMQAAEL._SY300_.jpg' id='imageMap'  />  <!--This photo should be dealt with the python -->
+                    <img src='http://www.ephotozine.com/articles/canon-eos-5d-mark-i-vs-ii-vs-iii-review-comparison-19775/images/highres-canon-eos-5d-markII_1345118742.jpg' id='imageMap'  />  <!--This photo should be dealt with the python -->
                     <div id='mapper' ><a  onclick='openDialog()' /><font color="white">Comment</a></div>
 
                     <div id="TaggedPhoto">
@@ -343,14 +211,4 @@
 </html>
 
 
-
-
-
-
-
-
-
-
-
-{% endblock %}
 
