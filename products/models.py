@@ -16,7 +16,6 @@ class Products(models.Model):
     category = models.ForeignKey(Categories)
     slug = models.CharField(max_length=100, unique=True)
     
-  
 class Features(models.Model):
     feature_name = models.CharField(max_length=100)
     description = models.CharField(max_length=1000,blank=True,null=True)
