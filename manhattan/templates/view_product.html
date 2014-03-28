@@ -20,7 +20,7 @@
                     <h3>{{ feature.feature_name }}</h3>
                     <blockquote>
                         <p>{{ feature.description }}</p>
-                        <small>{{ feature.author_id.first_name }}</small>
+                        <small>{{ feature.author.first_name }}</small>
                     </blockquote>
                 </div>
             {% else %}
@@ -28,7 +28,7 @@
                     <h3>{{ feature.feature_name }}</h3>
                     <blockquote>
                         <p>{{ feature.description }}</p>
-                        <small>{{ feature.author_id.first_name }}</small>
+                        <small>{{ feature.author.first_name }}</small>
                     </blockquote>
                 </div>
             {% endif %}
