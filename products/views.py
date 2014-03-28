@@ -174,6 +174,28 @@ def edit_comment(request):
     else:
         return HttpResponseRedirect("/")    
 
+@login_required
+@csrf_protect
+def new_feature(request):
+    if request.method=="POST":
+        feature_name = request.POST['feature_name']
+        feature_description = request.POST['feature_description']
+        product_id = request.POST['product_id']
+        
+        # save the new instance of feature
+        new_feature = Features(feature_name = feature_name, description=feature_description, product = product_id, author = request.user)
+        new_feature.save()
+
+        # retrieve the slug for the product
+        the_product = Products.objects.get(id=product_id)
+        slug = the_product.slug
+
+        return HttpResponseRedirect("/products/view_product/"+slug)
+    else:
+        # shouldn't come here ever
+        return HttpResponseRedirect("/")
+
+
 @csrf_protect
 def search_product(request):
     if request.method=='POST':
