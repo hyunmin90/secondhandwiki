@@ -41,7 +41,6 @@ def sign_s3():
                       })
 
 
-@app.route("/submit_form/", methods=["POST"])
 def submit_form(post):
     username = request.form["username"]
     full_name = request.form["full_name"]
