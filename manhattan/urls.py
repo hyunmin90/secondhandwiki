@@ -22,7 +22,5 @@ urlpatterns = patterns('',
 
 
     url(r'^testpage/', 'web.views.test_page'),
-    url(r'^account/', 'web.views.account'),
-    url(r'^submit_form/', 'web.views.submit_form'),
-    url(r'^sign_s3/', 'web.views.sign_s3'),
+   
 )
