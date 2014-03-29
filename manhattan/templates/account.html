@@ -1,0 +1,52 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="https://raw.github.com/bestiejs/lodash/v1.1.1/dist/lodash.min.js"></script>
+<script type="text/javascript" src="http://www.hyounmin.com/s3upload.js"></script>
+<script>
+function s3_upload(){
+    var s3upload = new S3Upload({
+        file_dom_selector: 'file',
+        s3_sign_put_url: '/sign_s3_upload/',
+
+        onProgress: function(percent, message) {
+            $('#status').html('Upload progress: ' + percent + '%' + message);
+        },
+        onFinishS3Put: function(url) {
+            $('#status').html('Upload completed. Uploaded to: '+ url);
+            $("#avatar_url").val(url);
+            $("#preview").html('<img src="'+url+'" style="width:300px;" />');
+        },
+        onError: function(status) {
+            $('#status').html('Upload error: ' + status);
+        }
+    });
+}
+</script>
+
+
+
+
+
+</head>
+
+<input type="file" id="file" onchange="s3_upload();"/>
+<p id="status">Please select a file</p>
+<div id="preview"><img src="http://3.static.img-dpreview.com/reviews/CanonEOS5D/Images/frontview-001.jpg?v=2779"  /></div>
+
+<form method="POST" action="/submit_form/">
+    <input type="hidden" id="avatar_url" name="avatar_url" value="http://3.static.img-dpreview.com/reviews/CanonEOS5D/Images/frontview-001.jpg?v=2779" />
+    <input type="text" name="username" placeholder="Username" /><br />
+    <input type="text" name="full_name" placeholder="Full name" /><br /><br />
+    <input type="submit" value="Update profile" />
+</form>
+
+
+
+
+
+
+
+
+
+</html>
