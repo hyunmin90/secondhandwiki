@@ -12,3 +12,5 @@ def landing(request):
 
 def test_page(request):
     return render(request, 'test_page.html', {})
+def test_page1(request):
+    return render(request, 's3Upload.html', {})
