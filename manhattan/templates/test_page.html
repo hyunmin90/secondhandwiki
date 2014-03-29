@@ -130,7 +130,7 @@
                 var pos_height = $('#mapper').height();
 				
 				<!--Add your action here for the cordinate!!!!!-->
-                $('#TaggedPhoto').append('<form method="post" action="" id="Location"><div class="tagged"  style="width:'+pos_width+';height:'+
+                $('#TaggedPhoto').append('<form method="post" action="" id="Location">{% csrf_token %}<div class="tagged"  style="width:'+pos_width+';height:'+
                     pos_height+';left:'+pos_x+';top:'+pos_y+';" ><div   class="tagged_box" style="width:'+pos_width+';height:'+
                     pos_height+';display:none;" ></div><div class="tagged_title" style="top:'+(pos_height+5)+';display:none;" >'+
                     $("#title").val()+'</div></div></form>');
@@ -194,7 +194,7 @@
                     <div id='mapper' ><a  onclick='openDialog()' /><font color="white">Comment</a></div>
 
                     <div id="TaggedPhoto">
-						{% csrf_token %}
+						
                     </div>
                     <!--The COMMENT FORM should be passed in-->
                     <form id='comment' action ='' method="post">{% csrf_token %}
