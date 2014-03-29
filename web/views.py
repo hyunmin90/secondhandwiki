@@ -17,7 +17,7 @@ def test_page(request):
 def account(request):
     return render(request,'account.html',{})
 
-def sign_s3():
+def sign_s3(request):
     AWS_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
     S3_BUCKET = os.environ.get('S3_BUCKET')
