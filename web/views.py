@@ -2,11 +2,6 @@ from django.shortcuts import render, render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
-from flask import Flask, render_template, request
-from hashlib import sha1
-import time, os, json, base64, hmac, urllib
-
-app = Flask(__name__)
 
 
 
@@ -19,11 +14,9 @@ def landing(request):
 def test_page(request):
     return render(request, 'test_page.html', {})
 
-@app.route("/account/")
-def account():
-    return render_template('account.html')
+def account(request):
+    return render(request,'account.html',{})
 
-@app.route('/sign_s3/')
 def sign_s3():
     AWS_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
@@ -49,7 +42,7 @@ def sign_s3():
 
 
 @app.route("/submit_form/", methods=["POST"])
-def submit_form():
+def submit_form(post):
     username = request.form["username"]
     full_name = request.form["full_name"]
     avatar_url = request.form["avatar_url"]
