@@ -210,7 +210,7 @@ def search_product(request):
             number = int(queryset[last_index-1])
             
             if queryset[last_index] == 'features':
-                products = Products.objects.raw("SELECT * FROM products_products WHERE product_id  IN (SELECT product_id, COUNT(feature_name) AS total FROM products_features GROUP BY product_id HAVING total >= %s", [number])
+                products = Products.objects.raw("SELECT * FROM products_products WHERE product_id IN (SELECT product_id AS total FROM products_features GROUP BY product_id HAVING COUNT(feature_name) >= %s", [number])
                 products = list(products)            
 
             elif queryset[last_index] == 'comments':
