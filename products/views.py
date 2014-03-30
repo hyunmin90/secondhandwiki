@@ -218,10 +218,23 @@ def search_product(request):
                 elif queryset[last_index] == 'comments' or queryset[last_index] == 'comment':
                     products = Products.objects.raw("SELECT * FROM products_products WHERE id IN (SELECT product_id FROM (SELECT product_id, COUNT(body) FROM products_comments GROUP BY product_id HAVING COUNT(body) >= %s) AS sub_table)", [number])
                     products = list(products)            
-            else:
-                products = Products.objects.raw("SELECT * FROM products_products NATURAL JOIN products_features",[])
+                
+            # query: 'with 3 features and 2 comments'
+            elif index == 0 and 'and' in queryset:
+                # change all to plural form
+                if 'feature' in queryset:
+                    queryset = queryset.replace('feature', 'features')
+                if 'comments' in queryset:
+                    queryset = queryset.replace('comment', 'comments')
+                
+                feature_index = queryset.index('features')
+                comment_index = queryset.index('comments')
 
-                pass
+                feature_num = queryset[feature_index-1]
+                comment_num = queryset[comment_num-1]
+                
+                products = Products.objects.raw("SELECT *, COUNT(feature_name), COUNT(body) FROM products_products NATURAL JOIN products_features NATURAL JOIN products_comments GROUP BY COUNT(feature_name), COUNT(body) HAVING COUNT(feature_name) >= %s AND COUNT(body) >= %s",[feature_num, comment_num])
+                products = list(products)
             
             return render(request, 'search_results.html', {'search_results': products})
         # normal search
@@ -239,7 +252,14 @@ def search_product(request):
             return render(request, 'search_results.html', {'search_results': productlist_with_first_5_results })
     else:
         return HttpResponseRedirect('/')
-   
+
+def is_number(s):
+    try:
+        float(s)    
+        return True
+    except ValueError:
+        return False
+
 def slugify(text):
     # convert spaces to dashes
     text = re.sub(r'\s+', '-', text.strip())
