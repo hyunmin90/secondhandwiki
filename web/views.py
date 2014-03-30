@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 
 
+
 def landing(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/main') 
@@ -12,3 +13,4 @@ def landing(request):
 
 def test_page(request):
     return render(request, 'test_page.html', {})
+
