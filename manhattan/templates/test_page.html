@@ -13,16 +13,8 @@
         
         <script>
             $(document).ready(function() {
-                
-                
-               
-         
-                
-
 
                 $("#imageMap").click(function(e){
-
-
                     var image_left = $(this).offset().left;
                     var click_left = e.pageX;
                     var left_distance = click_left - image_left;
@@ -37,11 +29,6 @@
                     var mapper_height = $('#mapper').height();
                     var imagemap_height = $('#imageMap').height();
 
-
-			
-
-
-
                     if((top_distance + mapper_height > imagemap_height) && (left_distance + mapper_width > imagemap_width)){
                         $('#mapper').css("left", (click_left - mapper_width - image_left  ))
                         .css("top",(click_top - mapper_height - image_top  ))
@@ -50,7 +37,6 @@
                         .show();
                     }
                     else if(left_distance + mapper_width > imagemap_width){
-
 
                         $('#mapper').css("left", (click_left - mapper_width - image_left  ))
                         .css("top",top_distance)
@@ -67,36 +53,23 @@
                         .show();
                     }
                     else{
-
-
                         $('#mapper').css("left",left_distance)
                         .css("top",top_distance)
                         .css("width","5px")
                         .css("height","5px")
                         .show();
                     }
-
-
                     $("#mapper").resizable({ containment: "parent" });
                     $("#mapper").draggable({ containment: "parent" });
-                    
                 });
-
-
             });
-
-
-
 
             $(".tagged").live("mouseover",function(){
                 if($(this).find(".openDialog").length == 0){
                     $(this).find(".tagged_box").css("display","block");
                     $(this).css("border","5px solid #EEE");
-
                     $(this).find(".tagged_title").css("display","block");
                 }
-			
-
             });
 
             $(".tagged").live("mouseout",function(){
@@ -105,24 +78,18 @@
                     $(this).css("border","none");
                     $(this).find(".tagged_title").css("display","none");
                 }
-			
-
             });
 
             $(".tagged").live("click",function(){
                 $(this).find(".tagged_box").html("<img src='http://www.hyounmin.com/del.png' class='openDialog' value='Delete' onclick='deleteTag(this)' />\n\
         <a onclick='editTag(this);' value='Comment' />Comment</a>");
-
                 var img_scope_top = $("#imageMap").offset().top + $("#imageMap").height() - $(this).find(".tagged_box").height();
                 var img_scope_left = $("#imageMap").offset().left + $("#imageMap").width() - $(this).find(".tagged_box").width();
-
                 $(this).draggable({ containment:[$("#imageMap").offset().left,$("#imageMap").offset().top,img_scope_left,img_scope_top]  });
-
             });
 
             var addTag = function(){
                 var position = $('#mapper').position();
-
 				alert("Thank you for your comment!"); 
                 var pos_x = position.left;
                 var pos_y = position.top;
@@ -140,10 +107,6 @@
                 $("#mapper").hide();
                 $("#title").val('');
                 $("#form_panel").hide();
-                
-                
-                
-
             };
 
             var openDialog = function(){
@@ -178,39 +141,33 @@
                 $(obj).parent().parent().remove();
             };
 
-
-
         </script>
     </head>
     <body>
         <div id='main_panel'>
-
              <div style='margin: auto; width: 600px;'>
                 <div id='image_panel' >
                     <img src='http://3.static.img-dpreview.com/reviews/CanonEOS5D/Images/frontview-001.jpg?v=2779' id='imageMap'  />  <!--This photo should be dealt with the python -->
-                    
-                   
-                   
+                                      
                     <div id='mapper' ><a  onclick='openDialog()' /><font color="white">Comment</a></div>
 
                     <div id="TaggedPhoto">
 
                     </div>
-                    <!--The COMMENT FORM should be passed in-->
-                    <form id='comment' action ='' method="post">
-                    <div id='form_panel'>
-                        <div class='row'>
-                            <div class='label'>Comment</div><div class='field'><input type='text' id='title' /></div>
-                        </div>
-                        <div class='row'>
-                            <div class='label'></div>
-                            <div class='field'>
-                                <input type='button' value='Add Tag' onclick='addTag()' />
 
+                    <!--The COMMENT FORM should be passed in-->
+                    <form id='comment' action ='' method="POST">
+                        <div id='form_panel'>
+                            <div class='row'>
+                                <div class='label'>Comment</div><div class='field'><input type='text' id='title' /></div>
+                            </div>
+                            <div class='row'>
+                                <div class='label'></div>
+                                <div class='field'>
+                                    <input type='button' value='Add Tag' onclick='addTag()' />
+                                </div>
                             </div>
                         </div>
-
-                    </div>
                     </form>
                     <!--END OF the form for commenting to send to db INPUT TITLE will be sent-->
                 </div>

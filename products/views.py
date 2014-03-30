@@ -199,20 +199,37 @@ def search_product(request):
     if request.method=='POST':
         search_query = request.POST['search_query']
         queryset = search_query.split()
-        #default list
-        product_list = []
-        #for each word in the search query
-        for q in queryset :
-            #i am not too sure if i can mix SQL and django.object.raw syntax, LIKE is regex for SQL
-            products = Products.objects.raw("SELECT * FROM products_products WHERE slug LIKE %s", tuple(["%"+q+"%"]))
-            prod_to_list = list(products)
-            product_list = product_list + prod_to_list
-        
-        #a list of all products that match the search results
-        productlist_without_duplicates = list(set(product_list))
-        productlist_with_first_5_results = productlist_without_duplicates[:5]
 
-        return render(request, 'search_results.html', {'search_results': productlist_with_first_5_results })
+        product_list = []
+
+        # 'with' search
+        if 'with' in queryset:
+            index = queryset.index('with')
+            last_index = len(queryset)-1
+
+            number = int(queryset[last_index-1])
+            
+            if queryset[last_index] == 'features':
+                products = Products.objects.raw("SELECT * FROM products_products WHERE product_id  IN (SELECT product_id, COUNT(feature_name) AS total FROM products_features GROUP BY product_id HAVING total >= %s", [number])
+                products = list(products)            
+
+            elif queryset[last_index] == 'comments':
+                pass
+            
+            return render(request, 'search_results.html', {'search_results': products})
+        # normal search
+        else:
+            #for each word in the search query
+            for q in queryset :
+                products = Products.objects.raw("SELECT * FROM products_products WHERE slug LIKE %s", tuple(["%"+q+"%"]))
+                prod_to_list = list(products)
+                product_list = product_list + prod_to_list
+            
+            #a list of all products that match the search results
+            productlist_without_duplicates = list(set(product_list))
+            productlist_with_first_5_results = productlist_without_duplicates[:5]
+
+            return render(request, 'search_results.html', {'search_results': productlist_with_first_5_results })
     else:
         return HttpResponseRedirect('/')
    
