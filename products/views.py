@@ -211,14 +211,16 @@ def search_product(request):
             
             # query: 'with 3 features/comments'
             if index == 0:
-                if queryset[last_index] == 'features':
+                if queryset[last_index] == 'features' or queryset[last_index] == 'feature':
                     products = Products.objects.raw("SELECT * FROM products_products WHERE id IN (SELECT product_id FROM (SELECT product_id, COUNT(feature_name) FROM products_features GROUP BY product_id HAVING COUNT(feature_name) >= %s) AS sub_table)", [number])
                     products = list(products)            
 
-                elif queryset[last_index] == 'comments':
+                elif queryset[last_index] == 'comments' or queryset[last_index] == 'comment':
                     products = Products.objects.raw("SELECT * FROM products_products WHERE id IN (SELECT product_id FROM (SELECT product_id, COUNT(body) FROM products_comments GROUP BY product_id HAVING COUNT(body) >= %s) AS sub_table)", [number])
                     products = list(products)            
             else:
+                products = Products.objects.raw("SELECT * FROM products_products NATURAL JOIN products_features",[])
+
                 pass
             
             return render(request, 'search_results.html', {'search_results': products})
