@@ -246,7 +246,7 @@ def search_product(request):
                 if q != 'user':
                     user_string = user_string + q
 
-            products = Products.objects.raw("SELECT product_name, description, image, category, slug FROM auth_user NATURAL JOIN accounts_profile NATURAL JOIN products_products WHERE first_name LIKE %s", tuple(["%"+user_string+"%"]))
+            products = Products.objects.raw("SELECT product_name, description, image, category_id, slug FROM auth_user NATURAL JOIN accounts_profile NATURAL JOIN products_products WHERE first_name LIKE %s", tuple(["%"+user_string+"%"]))
 
             return render(request, 'search_results.html', {'search_results': products}) 
 
