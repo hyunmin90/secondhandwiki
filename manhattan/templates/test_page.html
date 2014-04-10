@@ -13,13 +13,7 @@
         
         <script>
             $(document).ready(function() {
-                
-                
-               
-         
-                
-
-
+          
                 $("#imageMap").click(function(e){
 
 
@@ -37,11 +31,6 @@
                     var mapper_height = $('#mapper').height();
                     var imagemap_height = $('#imageMap').height();
 
-
-			
-
-
-
                     if((top_distance + mapper_height > imagemap_height) && (left_distance + mapper_width > imagemap_width)){
                         $('#mapper').css("left", (click_left - mapper_width - image_left  ))
                         .css("top",(click_top - mapper_height - image_top  ))
@@ -50,14 +39,11 @@
                         .show();
                     }
                     else if(left_distance + mapper_width > imagemap_width){
-
-
                         $('#mapper').css("left", (click_left - mapper_width - image_left  ))
                         .css("top",top_distance)
                         .css("width","5px")
                         .css("height","5px")
                         .show();
-			
                     }
                     else if(top_distance + mapper_height > imagemap_height){
                         $('#mapper').css("left", left_distance)
@@ -67,25 +53,17 @@
                         .show();
                     }
                     else{
-
-
                         $('#mapper').css("left",left_distance)
                         .css("top",top_distance)
                         .css("width","5px")
                         .css("height","5px")
                         .show();
                     }
-
-
                     $("#mapper").resizable({ containment: "parent" });
                     $("#mapper").draggable({ containment: "parent" });
                     
                 });
-
-
             });
-
-
 
 
             $(".tagged").live("mouseover",function(){
@@ -95,9 +73,7 @@
 
                     $(this).find(".tagged_title").css("display","block");
                 }
-			
-
-            });
+		    });
 
             $(".tagged").live("mouseout",function(){
                 if($(this).find(".openDialog").length == 0){
@@ -105,8 +81,6 @@
                     $(this).css("border","none");
                     $(this).find(".tagged_title").css("display","none");
                 }
-			
-
             });
 
             $(".tagged").live("click",function(){
@@ -129,9 +103,9 @@
                 var pos_width = $('#mapper').width();
                 var pos_height = $('#mapper').height();
 				
-				<!--Add your action here for the cordinate!!!!!-->
+				//Add your action here for the cordinate!!!!!
                 $('#taggform').append('<div class="tagged"  style="width:'+pos_width+';height:'+
-                    pos_height+';left:'+pos_x+';top:'+pos_y+';" ><div   class="tagged_box" style="width:'+pos_width+';height:'+
+                    pos_height+';left:'+pos_x+';top:'+pos_y+';" ><div class="tagged_box" style="width:'+pos_width+';height:'+
                     pos_height+';display:none;" ></div><div class="tagged_title" style="top:'+(pos_height+5)+';display:none;" >'+
                     $("#title").val()+'</div></div>');
                 
@@ -140,9 +114,6 @@
                 $("#mapper").hide();
                 $("#title").val('');
                 $("#form_panel").hide();
-                
-                
-                
 
             };
 
@@ -163,7 +134,6 @@
             };
 		
             var editTag = function(obj){
-
                 $(obj).parent().parent().draggable( 'disable' );
                 $(obj).parent().parent().removeAttr( 'class' );
                 $(obj).parent().parent().addClass( 'tagged' );
@@ -171,7 +141,6 @@
                 $(obj).parent().css("display","none");
                 $(obj).parent().parent().find(".tagged_title").css("display","none");
                 $(obj).parent().html('');
-
             }
 
             var deleteTag = function(obj){
@@ -184,17 +153,13 @@
     </head>
     <body>
         <div id='main_panel'>
-
              <div style='margin: auto; width: 600px;'>
                 <div id='image_panel' >
                     <img src='http://3.static.img-dpreview.com/reviews/CanonEOS5D/Images/frontview-001.jpg?v=2779' id='imageMap'  />  <!--This photo should be dealt with the python -->
-                    
-                   
-                   
                     <div id='mapper' ><a  onclick='openDialog()' /><font color="white">Comment</a></div>
 
                     <div id="TaggedPhoto">
-						<form id="taggform" method="post" action="" id="Location">{% csrf_token %}
+						<form id="tagform" method="post" action="" id="Location">{% csrf_token %}
 						
 						</form>
                     </div>
@@ -208,10 +173,8 @@
                             <div class='label'></div>
                             <div class='field'>
                                 <input type='button' value='Add Tag' onclick='addTag()' />
-
                             </div>
                         </div>
-
                     </div>
                     </form>
                     <!--END OF the form for commenting to send to db INPUT TITLE will be sent-->
@@ -229,9 +192,6 @@
                 <input type="button" value="Hide Tags" onclick="hideTags()" />
             </div>
         </div>
-
-        
-        
     </body>
 </html>
 
