@@ -109,10 +109,6 @@ def camera_page(request):
     except:
         return render(request, 'category_page.html', {'category':"Camera"})
 
-@login_required
-def tagg_photo(request):
-    
-    return render(request, 'tagg_photo.html',{})
 
 @login_required
 @csrf_protect

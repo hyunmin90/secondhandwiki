@@ -5,7 +5,6 @@ from django.views.generic import TemplateView
 urlpatterns = patterns('',
 
     url(r'^new_product/$', 'products.views.new_product'),
-    url(r'^tagg_photo/$', 'products.views.tagg_photo'),                   
     url(r'^view_product/(?P<slug>[a-zA-Z0-9\-\+]+)/$', 'products.views.view_product'),
     url(r'^delete_product/(?P<slug>[a-zA-Z0-9\-\+]+)/$', 'products.views.delete_product'),
 
