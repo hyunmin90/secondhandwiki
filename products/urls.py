@@ -8,7 +8,7 @@ urlpatterns = patterns('',
 
     # product page
     url(r'^view_product/(?P<slug>[a-zA-Z0-9\-\+]+)/$', 'products.views.view_product'),
-    url(r'^view_product/(?P<slug>[a-zA-Z0-9\-\+]+)/tagging/$', 'products.views.view_product_tagging'),
+    url(r'^view_product/tagging/(?P<slug>[a-zA-Z0-9\-\+]+)/$', 'products.views.view_product_tagging'),
 
     url(r'^delete_product/(?P<slug>[a-zA-Z0-9\-\+]+)/$', 'products.views.delete_product'),
 
