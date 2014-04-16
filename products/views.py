@@ -90,7 +90,15 @@ def view_product(request,slug):
 
 @login_required
 def view_product_tagging(request,slug):
-    return render(request, 'tagging.html')
+    if request.method=="POST":
+
+
+    else:
+        
+        
+        
+        
+        return render(request, 'tagging.html')
 
 @login_required
 @csrf_protect

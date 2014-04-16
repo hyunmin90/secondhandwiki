@@ -12,13 +12,6 @@
         
         <script>
             $(document).ready(function() {
-                
-                
-               
-         
-                
-
-
                 $("#imageMap").click(function(e){
 
 
@@ -35,11 +28,6 @@
 
                     var mapper_height = $('#mapper').height();
                     var imagemap_height = $('#imageMap').height();
-
-
-			
-
-
 
                     if((top_distance + mapper_height > imagemap_height) && (left_distance + mapper_width > imagemap_width)){
                         $('#mapper').css("left", (click_left - mapper_width - image_left  ))

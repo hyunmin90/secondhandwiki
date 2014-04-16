@@ -22,6 +22,14 @@ class Features(models.Model):
     product = models.ForeignKey(Products)
     author = models.ForeignKey(User)
 
+class ProductsTag(models.Model):
+    product = models.ForeignKey(Products)
+    content = models.CharField(max_length=100)
+    x = models.CharField(max_length=100)
+    y = models.CharField(max_length=100)
+    width = models.CharField(max_length=100)
+    height = models.CharField(max_length=100)
+
 class Comments(models.Model):
     product = models.ForeignKey(Products)
     body = models.CharField(max_length=1000)
