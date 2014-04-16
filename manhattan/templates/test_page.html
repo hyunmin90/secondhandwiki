@@ -130,7 +130,7 @@
                 var pos_height = $('#mapper').height();
 				
 				<!--Add your action here for the cordinate!!!!!-->
-                $('#taggform').append('<div class="tagged"  style="width:'+pos_width+';height:'+
+                $('#TaggedPhoto').append('<div class="tagged"  style="width:'+pos_width+';height:'+
                     pos_height+';left:'+pos_x+';top:'+pos_y+';" ><div   class="tagged_box" style="width:'+pos_width+';height:'+
                     pos_height+';display:none;" ></div><div class="tagged_title" style="top:'+(pos_height+5)+';display:none;" >'+
                     $("#title").val()+'</div></div>');
@@ -192,18 +192,18 @@
                    
                    
                     <div id='mapper' ><a  onclick='openDialog()' /><font color="white">Comment</a></div>
-
-                    <div id="TaggedPhoto">
-						<form id="taggform" method="post" action="" id="Location">{% csrf_token %}
+					
+					<form id="taggform" method="post" action="/products/tagging/" >{% csrf_token %}
+                    	<div id="TaggedPhoto">
 						
-						</form>
-                    </div>
-                    <!--The COMMENT FORM should be passed in-->
-                    <form id='comment' action ='' method="post">{% csrf_token %}
-                    <div id='form_panel'>
-                        <div class='row'>
-                            <div class='label'>Comment</div><div class='field'><input type='text' id='title' /></div>
-                        </div>
+						
+                    	</div>
+                    	<!--The COMMENT FORM should be passed in-->
+                    
+                   		 <div id='form_panel'>
+                       		 <div class='row'>
+                             <div class='label'>Comment</div><div class='field'><input type='text' id='title' /></div>
+                        	 </div>
                         <div class='row'>
                             <div class='label'></div>
                             <div class='field'>
@@ -212,9 +212,9 @@
                             </div>
                         </div>
 
-                    </div>
+                        </div>
                     </form>
-                    <!--END OF the form for commenting to send to db INPUT TITLE will be sent-->
+                    <!--END OF the form for commenting&Location to send to db INPUT TITLE will be sent-->
                 </div>
 
             </div>
