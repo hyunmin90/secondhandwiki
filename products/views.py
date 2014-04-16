@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.db import connection
 
 from accounts.models import Profile
+from django.contrib.auth.models import User
 from products.models import Products, Features, Comments, Categories 
 
 import re
@@ -237,6 +238,18 @@ def search_product(request):
                 products = list(products)
             
             return render(request, 'search_results.html', {'search_results': products})
+
+        # user search
+        elif 'user' in queryset:
+            user_string = ''
+            for q in queryset:
+                if q != 'user':
+                    user_string = user_string + q
+
+            products = Products.objects.raw("SELECT id, product_name, description, image, category_id, slug FROM auth_user NATURAL JOIN accounts_profile NATURAL JOIN products_products WHERE first_name LIKE %s", tuple(["%"+user_string+"%"]))
+
+            return render(request, 'search_results.html', {'search_results': products}) 
+
         # normal search
         else:
             #for each word in the search query
@@ -252,13 +265,6 @@ def search_product(request):
             return render(request, 'search_results.html', {'search_results': productlist_with_first_5_results })
     else:
         return HttpResponseRedirect('/')
-
-def is_number(s):
-    try:
-        float(s)    
-        return True
-    except ValueError:
-        return False
 
 def slugify(text):
     # convert spaces to dashes
