@@ -8,7 +8,7 @@ from django.db import connection
 
 from accounts.models import Profile
 from django.contrib.auth.models import User
-from products.models import Products, Features, Comments, Categories 
+from products.models import Products, Features, ProductTags, Comments, Categories 
 
 import re
 from django.utils import simplejson
@@ -91,14 +91,15 @@ def view_product(request,slug):
 @login_required
 def view_product_tagging(request,slug):
     if request.method=="POST":
-
+        
+        pass
 
     else:
+        p = Products.objects.get(slug=slug)
+        image_url = p.image
+        tag_list = ProductTags.objects.filter(product=p)
         
-        
-        
-        
-        return render(request, 'tagging.html')
+        return render(request, 'tagging.html', {'tags':tag_list, 'url':image_url})
 
 @login_required
 @csrf_protect
