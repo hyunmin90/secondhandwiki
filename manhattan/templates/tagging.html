@@ -93,12 +93,16 @@
             var addTag = function(){
                 var position = $('#mapper').position();
 
-				alert("Thank you for your comment!"); 
                 var pos_x = position.left;
                 var pos_y = position.top;
                 var pos_width = $('#mapper').width();
                 var pos_height = $('#mapper').height();
-				
+			   
+                $("#x").val(pos_x);
+                $("#y").val(pos_y);
+                $("#width").val(pos_width);
+                $("#height").val(post_height);
+
                 //$('#TaggedPhoto').append('<div class="tagged"  style="width:'+pos_width+';height:'+
                 //    pos_height+';left:'+pos_x+';top:'+pos_y+';" ><div   class="tagged_box" style="width:'+pos_width+';height:'+
                 //    pos_height+';display:none;" ></div><div class="tagged_title" style="top:'+(pos_height+5)+';display:none;" >'+
@@ -106,7 +110,8 @@
                 $("#mapper").hide();
                 $("#title").val('');
                 $("#form_panel").hide();
-
+                
+                $("#tagform").submit();
             };
 
             var openDialog = function(){
@@ -150,7 +155,7 @@
                                       
                     <div id='mapper' ><a  onclick='openDialog()' /><font color="white">Comment</a></div>
 					
-					<form id="taggform" method="post" action="/products/tagging/" >{% csrf_token %}
+					<form id="tagform" method="post" action="/products/tagging/" >{% csrf_token %}
                     	<div id="TaggedPhoto">
                             {% for t in tags %}
                             <div class="tagged" style="width:{{ t.width }}; height:{{ t.height }}; left:{{ t.x }}; top:{{ t.y }};" >
@@ -162,17 +167,22 @@
                             </div>	
                             {% endfor %}
                         </div>
-                    	<!--The COMMENT FORM should be passed in-->
                     
-                   		 <div id='form_panel'>
-                       		 <div class='row'>
-                             <div class='label'>Comment</div><div class='field'><input type='text' id='title' /></div>
-                        	 </div>
+                   	    <div id='form_panel'>
+                       	    <div class='row'>
+                            <div class='label'>Comment</div>
+                            <div class='field'>
+                                <input type='text' name='content' />
+                                <input type='hidden' id='x' name='x' value='' />
+                                <input type='hidden' id='y' name='y' value='' />
+                                <input type='hidden' id='width' name='width' value='' />
+                                <input type='hidden' id='height' name='height' value='' />
+                            </div>
+                    	</div>
                         <div class='row'>
                             <div class='label'></div>
                             <div class='field'>
                                 <input type='button' value='Add Tag' onclick='addTag()' />
-
                             </div>
                         </div>
 
