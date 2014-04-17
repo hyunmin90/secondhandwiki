@@ -91,20 +91,18 @@
             });
 
             var addTag = function(){
-                alert("add pressed");
                 var position = $('#mapper').position();
 
                 var pos_x = position.left;
                 var pos_y = position.top;
                 var pos_width = $('#mapper').width();
                 var pos_height = $('#mapper').height();
-			    alert("here1"); 
                 $("#x").val(pos_x);
-                alert("after x");
                 $("#y").val(pos_y);
                 $("#width").val(pos_width);
                 $("#height").val(pos_height);
-                alert("here2");
+
+                alert($("#content").val());
                 //$('#TaggedPhoto').append('<div class="tagged"  style="width:'+pos_width+';height:'+
                 //    pos_height+';left:'+pos_x+';top:'+pos_y+';" ><div   class="tagged_box" style="width:'+pos_width+';height:'+
                 //    pos_height+';display:none;" ></div><div class="tagged_title" style="top:'+(pos_height+5)+';display:none;" >'+
@@ -175,7 +173,7 @@
                        	    <div class='row'>
                             <div class='label'>Comment</div>
                             <div class='field'>
-                                <input type='text' name='content' />
+                                <input type='text' id='content' name='content' />
                                 <input type='hidden' id='x' name='x' value='' />
                                 <input type='hidden' id='y' name='y' value='' />
                                 <input type='hidden' id='width' name='width' value='' />
