@@ -92,6 +92,7 @@ def view_product(request,slug):
 @csrf_protect
 def view_product_tagging(request,slug):
     if request.method=="POST":
+        content = request.POST['content']
         x = request.POST['x']
         y = request.POST['y']
         width = request.POST['width']
@@ -99,7 +100,7 @@ def view_product_tagging(request,slug):
 
         # save the new tag
         p = Products.objects.get(slug=slug)
-        new_tag = ProductsTag(product=p,x=x,y=y,width=width,height=height)
+        new_tag = ProductsTag(product=p,content=content,x=x,y=y,width=width,height=height)
         new_tag.save()
         
         # get new list of tags 
