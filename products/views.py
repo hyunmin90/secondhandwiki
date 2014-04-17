@@ -45,7 +45,7 @@ def new_product(request):
             if len(product_list)>0: # product exists
                 return render(request, 'new_product.html', {'exists':True, 'product_name':product_name, 'product_slug':slug})
 
-            cursor.execute("INSERT INTO products_products(product_name, description, category_id, slug) VALUES(%s, %s, %s, %s)" , [product_name, description, the_category[0], slug])
+            cursor.execute("INSERT INTO products_products(product_name, url, description, category_id, slug) VALUES(%s, %s, %s, %s, %s)" , [product_name, url, description, the_category[0], slug])
 
         else:   # does not exist
             # add new category
