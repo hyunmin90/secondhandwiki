@@ -151,7 +151,7 @@
 
              <div style='margin: auto; width: 600px;'>
                 <div id='image_panel' >
-                    <img src='http://3.static.img-dpreview.com/reviews/CanonEOS5D/Images/frontview-001.jpg?v=2779' id='imageMap'  />  <!--This photo should be dealt with the python -->
+                    <img src='{{ url }}' id='imageMap'  />  <!--This photo should be dealt with the python -->
                                       
                     <div id='mapper' ><a  onclick='openDialog()' /><font color="white">Comment</a></div>
 					
@@ -165,7 +165,6 @@
                                     {{ t.content }}
                                 </div>
                             </div>	
-                            {{ t.content }}
                             {% endfor %}
                         </div>
                     
