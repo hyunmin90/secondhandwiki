@@ -89,6 +89,7 @@ def view_product(request,slug):
     return render(request, 'view_product.html', {'product':the_product, 'comments':comments_sorted, 'features':features,})
 
 @login_required
+@csrf_protect
 def view_product_tagging(request,slug):
     if request.method=="POST":
         x = request.POST['x']
