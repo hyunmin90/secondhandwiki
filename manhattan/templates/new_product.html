@@ -30,9 +30,12 @@
         <input name="product_name" id="id_product_name" class="form-control" placeholder="Name of Product">
     </div>
 
+    <div id="id_url_error" class="alert alert-danger" style="display:none;">
+        Please provide a URL for the image of the product.
+    </div>
     <div class="form-group">
-        <label>Image</label>
-        <input type="file" id="files">
+        <label>Image URL</label>
+        <input name="url" id="id_url" class="form-control" placeholder="URL of image">
     </div>
 
     <div id="id_description_error" class="alert alert-danger" style="display:none;">
@@ -66,6 +69,10 @@ function check_form()
     }
     if ($('#id_product_name').val() == "") {
         $('#id_name_error').show();
+        return;
+    }
+    if ($('#id_url').val() == "") {
+        $('#id_url_error').show();
         return;
     }
 

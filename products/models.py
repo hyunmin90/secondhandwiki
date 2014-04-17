@@ -22,7 +22,7 @@ class Features(models.Model):
     product = models.ForeignKey(Products)
     author = models.ForeignKey(User)
 
-class ProductsTag(models.Model):
+class ProductTags(models.Model):
     product = models.ForeignKey(Products)
     content = models.CharField(max_length=100)
     x = models.CharField(max_length=100)

@@ -8,7 +8,7 @@ from django.db import connection
 
 from accounts.models import Profile
 from django.contrib.auth.models import User
-from products.models import Products, Features, ProductsTag, Comments, Categories 
+from products.models import Products, Features, ProductTags, Comments, Categories 
 
 import re
 from django.utils import simplejson
@@ -100,19 +100,19 @@ def view_product_tagging(request,slug):
 
         # save the new tag
         p = Products.objects.get(slug=slug)
-        new_tag = ProductsTag(product=p,content=content,x=x,y=y,width=width,height=height)
+        new_tag = ProductTags(product=p,content=content,x=x,y=y,width=width,height=height)
         new_tag.save()
         
         # get new list of tags 
         image_url = p.image
-        tag_list = ProductsTag.objects.filter(product=p)
+        tag_list = ProductTags.objects.filter(product=p)
 
         return render(request, 'tagging.html', {'tags':tag_list, 'url':image_url, 'slug':slug})
         
     else:
         p = Products.objects.get(slug=slug)
         image_url = p.image
-        tag_list = ProductsTag.objects.filter(product=p)
+        tag_list = ProductTags.objects.filter(product=p)
         
         return render(request, 'tagging.html', {'tags':tag_list, 'url':image_url, 'slug':slug})
 
