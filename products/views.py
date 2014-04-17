@@ -91,9 +91,22 @@ def view_product(request,slug):
 @login_required
 def view_product_tagging(request,slug):
     if request.method=="POST":
-        
-        pass
+        x = request.POST['x']
+        y = request.POST['y']
+        width = request.POST['width']
+        height = request.POST['height']
 
+        # save the new tag
+        p = Products.objects.get(slug=slug)
+        new_tag = ProductsTag(x=x,y=y,width=width,height=height)
+        new_tag.save()
+        
+        # get new list of tags 
+        image_url = p.image
+        tag_list = ProductsTag.objects.filter(product=p)
+
+        return render(request, 'tagging.html', {'tags':tag_list, 'url':image_url})
+        
     else:
         p = Products.objects.get(slug=slug)
         image_url = p.image
