@@ -25,6 +25,7 @@ def new_product(request):
     if request.method == 'POST':
         category = request.POST['category']
         product_name = request.POST['product_name']
+        url = request.POST['url']
         description = request.POST['description']
 
         slug = slugify(product_name)
@@ -63,7 +64,7 @@ def new_product(request):
             the_category = category_list[0]
 
             # add new product
-            cursor.execute("INSERT INTO products_products(product_name, description, category_id, slug) VALUES(%s, %s, %s, %s)" , [product_name, description, the_category[0], slug])
+            cursor.execute("INSERT INTO products_products(product_name, url, description, category_id, slug) VALUES(%s, %s, %s, %s, %s)" , [product_name, url, description, the_category[0], slug])
 
         return HttpResponseRedirect('/products/view_product/'+slug)
     else:
