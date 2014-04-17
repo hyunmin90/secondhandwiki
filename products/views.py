@@ -98,7 +98,7 @@ def view_product_tagging(request,slug):
 
         # save the new tag
         p = Products.objects.get(slug=slug)
-        new_tag = ProductsTag(x=x,y=y,width=width,height=height)
+        new_tag = ProductsTag(product=p,x=x,y=y,width=width,height=height)
         new_tag.save()
         
         # get new list of tags 
