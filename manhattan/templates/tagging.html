@@ -155,7 +155,7 @@
                                       
                     <div id='mapper' ><a  onclick='openDialog()' /><font color="white">Comment</a></div>
 					
-					<form id="tagform" method="post" action="/products/tagging/" >{% csrf_token %}
+					<form id="tagform" method="post" action="/products/view_product/{{ slug }}/tagging/" >{% csrf_token %}
                     	<div id="TaggedPhoto">
                             {% for t in tags %}
                             <div class="tagged" style="width:{{ t.width }}; height:{{ t.height }}; left:{{ t.x }}; top:{{ t.y }};" >

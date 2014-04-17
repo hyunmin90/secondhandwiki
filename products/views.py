@@ -105,14 +105,14 @@ def view_product_tagging(request,slug):
         image_url = p.image
         tag_list = ProductsTag.objects.filter(product=p)
 
-        return render(request, 'tagging.html', {'tags':tag_list, 'url':image_url})
+        return render(request, 'tagging.html', {'tags':tag_list, 'url':image_url, 'slug':slug})
         
     else:
         p = Products.objects.get(slug=slug)
         image_url = p.image
         tag_list = ProductsTag.objects.filter(product=p)
         
-        return render(request, 'tagging.html', {'tags':tag_list, 'url':image_url})
+        return render(request, 'tagging.html', {'tags':tag_list, 'url':image_url, 'slug':slug})
 
 @login_required
 @csrf_protect
