@@ -17,7 +17,42 @@ from django.utils import simplejson
 @login_required
 @csrf_protect
 def main(request):
-    return render(request, 'main.html', {})    
+    return render(request, 'main.html', {})   
+
+#added it here 
+import amazonproduct
+#searchs amazon and assigns the price of the product from Amazon.com
+def amazonsearch( query ):
+    from lxml import etree
+    #API Access keys
+    config = {
+              'access_key': 'AKIAIKDCGPZIH4ZFFQGQ',
+              'secret_key': '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',
+              'associate_tag' : 'themanhproj-20',
+              'locale' : 'us'
+              }
+    #configuration of API
+    api = amazonproduct.API(cfg = config)
+    #search for related items
+    items = api.item_search('All', Keywords = query)
+    Price = 0.00
+    #looks at first search result and lookups the price for it
+    for stuff in items:
+        #gets the ASIN number for the product
+        ASIN = stuff.ASIN
+        asin_string = '%s' %(ASIN)
+        result = api.item_lookup(asin_string, ResponseGroup = 'OfferSummary')
+        for item in result.Items.Item:
+            print 'Name of Product: %s' %(stuff.ItemAttributes.Title)
+            print 'URL Link of Product: %s' %(stuff.DetailPageURL)
+            Price = int(item.OfferSummary.LowestNewPrice.Amount)/100.0
+            print 'Price amount: %s' %(Price)
+    #         print etree.tostring(item.OfferSummary.LowestNewPrice.Amount, pretty_print=True)
+            print " "
+        #only want first search result, usually the most accurate
+        break;
+    return Price
+
 
 @login_required
 @csrf_protect
@@ -29,6 +64,8 @@ def new_product(request):
         description = request.POST['description']
 
         slug = slugify(product_name)
+
+        price = amazonsearch(product_name)
 
         # Check if category already exists
         cursor = connection.cursor()
@@ -45,7 +82,7 @@ def new_product(request):
             if len(product_list)>0: # product exists
                 return render(request, 'new_product.html', {'exists':True, 'product_name':product_name, 'product_slug':slug})
 
-            cursor.execute("INSERT INTO products_products(product_name, image, description, category_id, slug) VALUES(%s, %s, %s, %s, %s)" , [product_name, url, description, the_category[0], slug])
+            cursor.execute("INSERT INTO products_products(product_name, image, description, category_id, slug, price) VALUES(%s, %s, %s, %s, %s)" , [product_name, url, description, the_category[0], slug, price])
 
         else:   # does not exist
             # add new category
@@ -64,7 +101,7 @@ def new_product(request):
             the_category = category_list[0]
 
             # add new product
-            cursor.execute("INSERT INTO products_products(product_name, image, description, category_id, slug) VALUES(%s, %s, %s, %s, %s)" , [product_name, url, description, the_category[0], slug])
+            cursor.execute("INSERT INTO products_products(product_name, image, description, category_id, slug, price) VALUES(%s, %s, %s, %s, %s)" , [product_name, url, description, the_category[0], slug, price])
 
         return HttpResponseRedirect('/products/view_product/'+slug)
     else:

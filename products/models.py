@@ -15,6 +15,7 @@ class Products(models.Model):
     image = models.CharField(max_length=100,blank=True,null=True)
     category = models.ForeignKey(Categories)
     slug = models.CharField(max_length=100, unique=True)
+    price = models.FloatField
     
 class Features(models.Model):
     feature_name = models.CharField(max_length=100)
