@@ -12,7 +12,7 @@ class Categories(models.Model):
 class Products(models.Model):
     product_name = models.CharField(max_length=100,blank=False)
     description = models.CharField(max_length=1000,blank=True,null=True)
-    image = models.CharField(max_length=100,blank=True,null=True)
+    image = models.CharField(max_length=1000,blank=True,null=True)
     category = models.ForeignKey(Categories)
     slug = models.CharField(max_length=100, unique=True)
     price = models.FloatField()
