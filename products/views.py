@@ -82,7 +82,7 @@ def new_product(request):
             if len(product_list)>0: # product exists
                 return render(request, 'new_product.html', {'exists':True, 'product_name':product_name, 'product_slug':slug})
 
-            cursor.execute("INSERT INTO products_products(product_name, image, description, category_id, slug, price) VALUES(%s, %s, %s, %s, %s)" , [product_name, url, description, the_category[0], slug, price])
+            cursor.execute("INSERT INTO products_products(product_name, image, description, category_id, slug, price) VALUES(%s, %s, %s, %s, %s, %s)" , [product_name, url, description, the_category[0], slug, price])
 
         else:   # does not exist
             # add new category
@@ -101,7 +101,7 @@ def new_product(request):
             the_category = category_list[0]
 
             # add new product
-            cursor.execute("INSERT INTO products_products(product_name, image, description, category_id, slug, price) VALUES(%s, %s, %s, %s, %s)" , [product_name, url, description, the_category[0], slug, price])
+            cursor.execute("INSERT INTO products_products(product_name, image, description, category_id, slug, price) VALUES(%s, %s, %s, %s, %s, %s)" , [product_name, url, description, the_category[0], slug, price])
 
         return HttpResponseRedirect('/products/view_product/'+slug)
     else:
