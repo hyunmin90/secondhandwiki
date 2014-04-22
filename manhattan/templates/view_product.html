@@ -1,6 +1,12 @@
 {% extends "nav_main.html" %}
 
 {% block content %}
+
+<!-- go to tagging page -->
+<div>
+    <a href="/products/view_product/{{ product.slug }}/tagging/">Click here to access tagging page</a>
+</div>
+
 <div class="carousel slide" data-ride="carousel" id="quote-carousel">
     <!-- Bottom Carousel Indicators -->
     <ol class="carousel-indicators">
@@ -44,10 +50,7 @@
     </a>
 </div>
 
-<!-- go to tagging page -->
-<div>
-    <a href="/products/view_product/{{ product.slug }}/tagging/">Click here to access tagging page</a>
-</div>
+
 
 
 <!-- display comment section -->
