@@ -247,6 +247,15 @@ function submit_description(){
     alert("before submit description");
     $('#add_feature_form').submit();
 }
+$(document).ready(function(){
+  $("#add_comment_form").hide();
+  $("#add_feature_form").hide();
+  $(".btn1").click(function(){
+    $("#hello").slideDown();
+  });
+});
+
+
 
 </script>
 
