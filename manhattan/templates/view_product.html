@@ -78,6 +78,8 @@ PRICE LOOK HERE PLEASE BE RIGHT
 {{product.price}}
 
 </div>
+<button type="button" class="btn btn-primary" id="CommentAdd">Primary</button>
+<button type="button" class="btn btn-primary"id="FeautureAdd">Primary</button>
 
 <!-- Add comment form -->
 <form class="form-horizontal" id="add_comment_form" name="add_comment">
@@ -250,8 +252,11 @@ function submit_description(){
 $(document).ready(function(){
   $("#add_comment_form").hide();
   $("#add_feature_form").hide();
-  $(".btn1").click(function(){
-    $("#hello").slideDown();
+  $("#CommentAdd").click(function(){
+    $("#add_comment_form").slideDown();
+  });
+  $("#FeautureAdd").click(function(){
+    $("#add_feature_form").slideDown();
   });
 });
 
