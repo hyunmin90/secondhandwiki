@@ -72,9 +72,10 @@
         </div>
     </div>
     
-    {% if user.is_authenticated %}
     <div class="container" style="padding-top:10px; padding-bottom:10px;">
         <div class="row">
+
+            {% if user.is_authenticated %}
             <div class="col-md-2">
                 <a href="/products/new_product">
                     <button type="button" class="btn btn-primary" style="width:100%; margin-bottom: 60px;">
@@ -89,14 +90,13 @@
                     </ul> <!-- end nav nav-list -->
                 </div>
             </div> <!-- end col-md-2 -->    
-            
+            {% endif %}
             <div class="col-md-10">
                 {% block content %}
                 {% endblock %} 
             </div> <!-- end col-md-10 -->
         </div> <!-- end row -->
     </div> <!-- /container -->
-    {% endif %}
 
 
 </body>
