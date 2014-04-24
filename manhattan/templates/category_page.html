@@ -8,6 +8,7 @@
 <ul class="list-group">
 {% for product in product_list %}
     <li class="list-group-item">
+    	<img class="img-circle"> <!--Chenghan Backend IMAGE FROM HERE-->
         <a href="/products/view_product/{{ product.slug }}">{{ product.product_name }}</a>
     </li>
 {% endfor %}
