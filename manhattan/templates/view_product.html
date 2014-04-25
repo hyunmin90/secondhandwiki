@@ -8,22 +8,24 @@
 </head>
 
 <div class="idea_container">
-            <h2>Product</h2>
             <p class="idea_heading" style= "margin-left: -15px">
                 <!--img src="{{MEDIA_ROOT}}{{ i.category.category_icon }}" height="70" width="70" -->
                 {{ product.product_name }}
-                <span class="numbers">
-                    <span class="num_count like"><span class="glyphicon glyphicon-thumbs-up"></span> upvotes </span>
-                </span>
             </p>
             <div>
                 <a href="/products/view_product/{{ product.slug }}/tagging/">Click here to access tagging page</a>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="row c_page_box">
                         <div class="cpb_body"> Description: {{product.description}}</div>
                         <div class="cpb_body"> Current Price: {{product.price}}</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row c_page_box">
+
+                        <img alt="product_image" src="{{ product.image }}" style="width:100px;height:100px" class="img-rounded">
                     </div>
                 </div>
             </div>
