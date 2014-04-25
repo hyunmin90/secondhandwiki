@@ -28,15 +28,20 @@
                     </div>
                 </div>
             </div>
-
+<div class="panel panel-info">
+    <div class = "panel-heading"> {{ feature.feature_name }} </div>
+    <div class = "panel -body"> {{ feature.description }} </div>
+</div>
             <div class = "row">
                 <div class="col-md-12">
                     <div class="row c_page_box">
                         <div class="cpb_title"> <h3>Features</h3></div>
                         <div class="cpb_body">
                             {%for feature in features%}
-                                <h4>{{ feature.feature_name }}</h4>
-                                <p>{{ feature.description }}</p>
+                                <div class="panel panel-info">
+                                    <div class = "panel-heading"> {{ feature.feature_name }} </div>
+                                    <div class = "panel -body"> {{ feature.description }} </div>
+                                </div>
                             {%endfor%}
                         </div>
                     </div>
