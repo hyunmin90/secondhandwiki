@@ -9,11 +9,10 @@
 
 <div class="idea_container">
             <p class="idea_heading" style= "margin-left: -15px">
-                <!--img src="{{MEDIA_ROOT}}{{ i.category.category_icon }}" height="70" width="70" -->
                 {{ product.product_name }}
             </p>
             <div>
-                <a href="/products/view_product/{{ product.slug }}/tagging/">Click here to access tagging page</a>
+                
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -24,21 +23,21 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row c_page_box">
-
-                        <img alt="product_image" src="{{ product.image }}" style="width:100px;height:100px" class="img-rounded">
+                        <img alt="productimage" src="{{ product.image }}"style="width:100px;height:100px" class="img-rounded">
+                        <a href="/products/view_product/{{ product.slug }}/tagging/">Tag here for the Features!</a>
                     </div>
                 </div>
             </div>
 
             <div class = "row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="row c_page_box">
                         <div class="cpb_title"> <h3>Features</h3></div>
                         <div class="cpb_body">
                             {%for feature in features%}
-                                <h3>{{ feature.feature_name }}</h3>
+                                <h2>{{ feature.feature_name }}</h2>
                                 <p>{{ feature.description }}</p>
-                                <small>{{ feature.author.first_name }}</small>
+                                <small>~{{ feature.author.first_name }}</small>
                             {%endfor%}
                         </div>
                     </div>
