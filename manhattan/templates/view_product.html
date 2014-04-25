@@ -19,18 +19,20 @@
                 <div class="col-md-6">
                     <div class = "row">
                         <div class="row c_page_box">
-                            <div class="cpb_body"> Description: {{product.description}}</div>
+                            <div class="cpb_title">Description</div>
+                            <div class="cpb_body">{{product.description}}</div>
                         </div>
                     </div>
                     <div class = "row">
                         <div class="row c_page_box">
-                            <div class="cpb_body"> Current Price: {{product.price}}</div>
+                            <div class="cpb_title">Current Price</div>
+                            <div class="cpb_body">{{product.price}}</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row c_page_box">
-                        <img alt="productimage" src="{{ product.image }}"style="width:100px;height:100px" class="img-rounded">
+                        <img alt="productimage" src="{{ product.image }}"style="width:200px;height:200px" class="img-rounded">
                         <a href="/products/view_product/{{ product.slug }}/tagging/">Tag here for the Features!</a>
                     </div>
                 </div>
