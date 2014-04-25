@@ -4,7 +4,7 @@
 
 <!-- go to tagging page -->
 <head>
-    <link rel="stylesheet" href="/site_media/styles/view_product.css">
+    <link rel="stylesheet" href="/manhattan/styles/view_product.css">
 </head>
 
 <div class="idea_container">
@@ -22,9 +22,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row c_page_box">
-                        <div class="cpb_title">Product</div>
-                        <div class="cpb_body"> {{product.description}}</div>
-                        <div class="cpb_body"> {{product.price}}</div>
+                        <div class="cpb_body"> Description: {{product.description}}</div>
+                        <div class="cpb_body"> Current Price: {{product.price}}</div>
                     </div>
                 </div>
             </div>
@@ -32,7 +31,7 @@
             <div class = "row">
                 <div class="col-md-6">
                     <div class="row c_page_box">
-                        <div class="cpb_title">Roadmap</div>
+                        <div class="cpb_title"> <h3>Features</h3></div>
                         <div class="cpb_body">
                             {%for feature in features%}
                                 <h3>{{ feature.feature_name }}</h3>
