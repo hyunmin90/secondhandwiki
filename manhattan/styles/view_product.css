@@ -39,6 +39,11 @@ body {
 	padding-left: 15px;
 }
 
+.cpb_heading_title {
+	font-size: 15pt;
+	margin-bottom: 15px;
+}
+
 .idea_heading .numbers .likes {
 	color: #32c327;
 	padding-right: 10px;
