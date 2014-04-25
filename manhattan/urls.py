@@ -22,7 +22,7 @@ urlpatterns = patterns('',
 
 
     url(r'^testpage/', 'web.views.test_page'),
-    url(r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': BASE_DIR+'/manhattan/styles'}),
+    url(r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': BASE_DIR+'/styles'}),
 
    
 )
