@@ -3,7 +3,9 @@
 {% block content %}
 
 <!-- go to tagging page -->
-
+<head>
+    <link rel="stylesheet" href="/site_media/styles/view_product.css">
+</head>
 
 <div class="idea_container">
             <h2>Product</h2>
@@ -18,29 +20,16 @@
                 <a href="/products/view_product/{{ product.slug }}/tagging/">Click here to access tagging page</a>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="row c_page_box">
-                        <div class="cpb_title">What's the idea?</div>
+                        <div class="cpb_title">Product</div>
                         <div class="cpb_body"> {{product.description}}</div>
                         <div class="cpb_body"> {{product.price}}</div>
-                        
-                    </div>
-                    <div class="row c_page_box">
-                        <div class="cpb_title">Suggestions</div>
-                        <div class="cpb_body">
-                            <div class="suggestions">
-                               suggestions here 
-                            </div>
-                            <div class="suggestions_form">
-                                <form id="comment_form" method="POST">
-                                    {%csrf_token%}
-                                    <input type="hidden" name="idea_id" value="{{i.id}}">
-                                    <input type="text" class="form-control comment_inp suggestion" name="suggestion" placeholder="Propose a suggestion">
-                                </form>
-                            </div>
-                        </div>
                     </div>
                 </div>
+            </div>
+
+            <div class = "row">
                 <div class="col-md-6">
                     <div class="row c_page_box">
                         <div class="cpb_title">Roadmap</div>
@@ -52,63 +41,12 @@
                             {%endfor%}
                         </div>
                     </div>
-                    <div class="row c_page_box" id = "developerdiv">
-                        <div class="cpb_title">Developers</div>
-                        <div class="cpb_body">
-                            <form id="offer_to_develop" method = 'POST'>
-                                {% csrf_token %}
-                                <input type="hidden" name="idea_id" value="{{i.id}}">
-                                <input type="submit" class="btn btn-primary" value="OFFER TO DEVELOP" style="width: 100%">
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
 
 
 
-<div class="carousel slide" data-ride="carousel" id="quote-carousel">
-    <!-- Bottom Carousel Indicators -->
-    <ol class="carousel-indicators">
-        {% for feature in features %}
-            {% if forloop.counter == 1 %} 
-                <li data-target="#quote-carousel" data-slide-to="{{ forloop.counter }}" class="active"></li>
-            {% else %}
-                <li data-target="#quote-carousel" data-slide-to="{{ forloop.counter }}"></li>
-            {% endif %}
-        {% endfor %}
-    </ol>
 
-    <div class="carousel-inner">
-        {% for feature in features %}
-            {% if forloop.counter == 1 %} 
-                <div class="item active" name="description_{{ feature.id }}">
-                    <blockquote>
-                        <h3>{{ feature.feature_name }}</h3>
-                        <p>{{ feature.description }}</p>
-                        <small>{{ feature.author.first_name }}</small>
-                    </blockquote>
-                </div>
-            {% else %}
-                <div class="item" name="description_{{ feature.id }}">
-                    <blockquote>
-                        <h3>{{ feature.feature_name }}</h3>
-                        <p>{{ feature.description }}</p>
-                        <small>{{ feature.author.first_name }}</small>
-                    </blockquote>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div><!-- end carousel inner -->
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#quote-carousel" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#quote-carousel" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-</div>
 
 
 
@@ -210,6 +148,58 @@ PRICE LOOK HERE PLEASE BE RIGHT
     </fieldset>
     {% csrf_token %}
 </form>
+
+
+
+
+
+<div class="carousel slide" data-ride="carousel" id="quote-carousel">
+    <!-- Bottom Carousel Indicators -->
+    <ol class="carousel-indicators">
+        {% for feature in features %}
+            {% if forloop.counter == 1 %} 
+                <li data-target="#quote-carousel" data-slide-to="{{ forloop.counter }}" class="active"></li>
+            {% else %}
+                <li data-target="#quote-carousel" data-slide-to="{{ forloop.counter }}"></li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+
+    <div class="carousel-inner">
+        {% for feature in features %}
+            {% if forloop.counter == 1 %} 
+                <div class="item active" name="description_{{ feature.id }}">
+                    <blockquote>
+                        <h3>{{ feature.feature_name }}</h3>
+                        <p>{{ feature.description }}</p>
+                        <small>{{ feature.author.first_name }}</small>
+                    </blockquote>
+                </div>
+            {% else %}
+                <div class="item" name="description_{{ feature.id }}">
+                    <blockquote>
+                        <h3>{{ feature.feature_name }}</h3>
+                        <p>{{ feature.description }}</p>
+                        <small>{{ feature.author.first_name }}</small>
+                    </blockquote>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div><!-- end carousel inner -->
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#quote-carousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#quote-carousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+
+
+
+
+
 
 
 <script type='text/javascript'>
