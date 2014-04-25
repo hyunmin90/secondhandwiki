@@ -58,22 +58,23 @@
             <div class = "row">
                 <div class = "col-md-12">
                     <div class="row c_page_box">
+                        <h4>Comments:</h4>
                          <ul class="list-group" id="comment_list">
-                        {% for comment in comments %}
-                            <li class="list-group-item" id="comment_{{ comment.id }}">
-                                <b>{{ comment.author.first_name }}: </b>
-                                {{ comment.body }}
+                            {% for comment in comments %}
+                                <li class="list-group-item" id="comment_{{ comment.id }}">
+                                    <b>{{ comment.author.first_name }}: </b>
+                                    {{ comment.body }}
 
-                                {% if comment.author == user %}
-                                    <span style="float:right; color:blue;" onclick="$('#id_comment_edit_{{ comment.id }}').show(); $('#id_comment_edit_button_{{ comment.id }}').show();">Edit</span>
-                                    <span class="glyphicon glyphicon-remove" style="float:right;" onclick="delete_comment({{ comment.id }});"></span>
-                                {% endif %}
+                                    {% if comment.author == user %}
+                                        <span style="float:right; color:blue;" onclick="$('#id_comment_edit_{{ comment.id }}').show(); $('#id_comment_edit_button_{{ comment.id }}').show();">Edit</span>
+                                        <span class="glyphicon glyphicon-remove" style="float:right;" onclick="delete_comment({{ comment.id }});"></span>
+                                    {% endif %}
 
-                                <textarea id="id_comment_edit_{{ comment.id }}" style="display:none;"></textarea>
-                                <button id="id_comment_edit_button_{{ comment.id }}" style="display:none;" onclick="edit_comment({{ comment.id }});">submit edit</button>
+                                    <textarea id="id_comment_edit_{{ comment.id }}" style="display:none;"></textarea>
+                                    <button id="id_comment_edit_button_{{ comment.id }}" style="display:none;" onclick="edit_comment({{ comment.id }});">submit edit</button>
 
-                            </li>
-                        {% endfor %}
+                                </li>
+                            {% endfor %}
                         </ul>                           
                     </div>       
                 </div>
