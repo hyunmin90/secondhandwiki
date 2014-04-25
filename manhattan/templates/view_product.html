@@ -35,9 +35,8 @@
                         <div class="cpb_title"> <h3>Features</h3></div>
                         <div class="cpb_body">
                             {%for feature in features%}
-                                <h2>{{ feature.feature_name }}</h2>
+                                <h4>{{ feature.feature_name }}</h4>
                                 <p>{{ feature.description }}</p>
-                                <small>~{{ feature.author.first_name }}</small>
                             {%endfor%}
                         </div>
                     </div>
@@ -73,12 +72,7 @@
     {% endfor %}
     </ul>
 </div>
-<!-- Product Price Info -->
-<div class = "well well-sm"> 
-PRICE LOOK HERE PLEASE BE RIGHT
-{{product.price}}
 
-</div>
 <!-- button for comment and what to check-->
 <button type="button" class="btn btn-primary" id="CommentAdd">Add Comment</button>
 
@@ -152,9 +146,8 @@ PRICE LOOK HERE PLEASE BE RIGHT
 
 
 
-
+<!--
 <div class="carousel slide" data-ride="carousel" id="quote-carousel">
-    <!-- Bottom Carousel Indicators -->
     <ol class="carousel-indicators">
         {% for feature in features %}
             {% if forloop.counter == 1 %} 
@@ -185,9 +178,7 @@ PRICE LOOK HERE PLEASE BE RIGHT
                 </div>
             {% endif %}
         {% endfor %}
-    </div><!-- end carousel inner -->
-
-    <!-- Controls -->
+    </div>
     <a class="left carousel-control" href="#quote-carousel" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
     </a>
@@ -195,8 +186,7 @@ PRICE LOOK HERE PLEASE BE RIGHT
         <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
 </div>
-
-
+-->
 
 
 
@@ -301,7 +291,7 @@ function submit_description(){
         $("#id_feature_description_error").show();
         return;
     }
-    alert("before submit description");
+    // alert("before submit description");
     $('#add_feature_form').submit();
 }
 $(document).ready(function(){
