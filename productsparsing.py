@@ -27,13 +27,12 @@ def amazonPriceSearch( query ):
         result = api.item_lookup(asin_string, ResponseGroup = 'OfferSummary')
         for item in result.Items.Item:
             try:
-	            print 'Name of Product: %s' %(stuff.ItemAttributes.Title)
-            	print 'URL Link of Product: %s' %(stuff.DetailPageURL)
+	            # print 'Name of Product: %s' %(stuff.ItemAttributes.Title)
+            	# print 'URL Link of Product: %s' %(stuff.DetailPageURL)
                 Price = int(item.OfferSummary.LowestNewPrice.Amount)/100.0
             except AttributeError:
                 x = 0
             print 'Price amount: %s' %(Price)
-    #         print etree.tostring(item.OfferSummary.LowestNewPrice.Amount, pretty_print=True)
             print " "
         #only want first search result, usually the most accurate
         break;
@@ -64,10 +63,8 @@ def amazonListSearch( query, num_results ):
 	        print ASIN
 	        asin_string = '%s' %(ASIN)
 	        imagesresult = api.item_lookup(asin_string, ResponseGroup = 'Images')
-	#         print etree.tostring(imagesresult, pretty_print=True)
 	        newproduct = "hi"
 	        productname = '%s' %(stuff.ItemAttributes.Title)
-	#         print 'Name of Product: %s' %(productname)
 	        for item in imagesresult.Items.Item:
 	            tempURL = item.LargeImage.URL
 	            imageURL = '%s' %tempURL
@@ -75,18 +72,14 @@ def amazonListSearch( query, num_results ):
 	        
 	        mediumresult = api.item_lookup(asin_string, ResponseGroup = 'Large')
 	        for item in mediumresult.Items.Item:
-	#             print etree.tostring(item, pretty_print=True)
 	            featurecount = 0
 	            description = ''
 	            for stuff in item.ItemAttributes.Feature:
-	#                 print etree.tostring(stuff)
-	#                 print stuff
 	                converted_stuff = '%s' %(stuff)
 	                description += converted_stuff +', '
 	                featurecount+=1
 	                if featurecount == 4:
 	                    break
-	#             print etree.tostring(item.ItemAttributes.Feature)
 	        if count == num_results:
 	            break
 	        count+=1
