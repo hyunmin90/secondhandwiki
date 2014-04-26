@@ -8,7 +8,7 @@ from amazonproduct import NoExactMatchesFound
 def amazonPriceSearch( query ):
     from lxml import etree
     #API Access keys
-
+    Price = 0.00
     try:
 	    config = {
 	              'access_key': 'AKIAIKDCGPZIH4ZFFQGQ',
@@ -20,7 +20,6 @@ def amazonPriceSearch( query ):
 	    api = amazonproduct.API(cfg = config)
 	    #search for related items
 	    items = api.item_search('All', Keywords = query)
-	    Price = 0.00
 	    #looks at first search result and lookups the price for it
 	    for stuff in items:
 	        #gets the ASIN number for the product
@@ -40,6 +39,7 @@ def amazonPriceSearch( query ):
 	        break;
     except NoExactMatchesFound:
     	x = 0
+
     return Price
 
 def amazonListSearch( query, num_results ):
@@ -53,13 +53,14 @@ def amazonListSearch( query, num_results ):
               }
     #configuration of API
     api = amazonproduct.API(cfg = config)
+    product_list = []
     try:
 	    #search for related items
 	    items = api.item_search('All', Keywords = query)
 	    Price = 0.00
 	    count = 0
 	    #product name, image url, features concatenated into a string
-	    product_list = []
+	    
 	    try:
 		    #looks at first search result and lookups the price for it
 		    for stuff in items:
