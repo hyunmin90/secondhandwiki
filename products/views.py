@@ -184,7 +184,7 @@ def camera_page(request):
 def view_category(request, category_name):
     try:
         allcategories = Categories.objects.all()
-        current_category = Categories.objects.raw("SELECT * FROM products_categories WHERE category_name = category_name")[0]
+        current_category = Categories.objects.raw("SELECT * FROM products_categories WHERE category_name = %s", [category_name])[0] 
         product_list = Products.objects.raw("SELECT * FROM products_products where category_id = %s", [current_category.id])
 
         return render(request, 'category_page.html', {'product_list':product_list, 'category':"Camera", 'categories' : allcategories})

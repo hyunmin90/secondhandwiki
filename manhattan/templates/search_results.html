@@ -8,6 +8,7 @@
 <ul class="list-group">
 {% for product in search_results %}
     <li class="list-group-item">
+    	<img alt="THIS IS THE CIRCLE IMAGE" src="{{ product.image }}" style="width:100px;height:100px" class="img-rounded">
         <a href="/products/view_product/{{ product.slug }}">{{ product.product_name }}</a>
     </li>
 {% endfor %}
