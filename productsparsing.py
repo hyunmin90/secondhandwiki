@@ -133,7 +133,6 @@ def dumpProducts( category_type, query, limit):
 dumpProducts("TV", "Sony TV", 8)
 dumpProducts("Phones", "samsung phone", 5)
 dumpProducts("Phones", "lg phone", 5)
-dumpProducts("Appliances", "samsung laptop", 5)
 dumpProducts("laptop", "samsung laptop", 5)
 dumpProducts("laptop", "dell laptop", 5)
 dumpProducts("laptop", "sony laptop", 5)
