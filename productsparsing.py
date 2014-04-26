@@ -117,6 +117,8 @@ def dumpProducts( category_type, query, limit):
 
 	for newproduct in newproductstoadd:
 		product_name = newproduct[0]
+		if len(product_name) >= 95:
+			break
 		print product_name
 		imageURL = newproduct[1]
 		print imageURL
