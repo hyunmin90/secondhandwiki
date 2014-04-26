@@ -58,6 +58,7 @@ def amazonsearch( query ):
 @login_required
 @csrf_protect
 def new_product(request):
+    allcategories = Categories.objects.all()
     if request.method == 'POST':
         category = request.POST['category']
         product_name = request.POST['product_name']
@@ -73,7 +74,7 @@ def new_product(request):
         cursor.execute("SELECT * FROM products_categories WHERE category_name=%s", [category])
         category_list = cursor.fetchall()
 
-        allcategories = Categories.objects.all()
+
 
         if category_list: # Category exists
             the_category = category_list[0]
