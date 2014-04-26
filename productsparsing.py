@@ -102,12 +102,13 @@ def slugify(text):
     # convert to lower case. That is all.
     return text.lower()
 
-'''
-these 2 lines below will change what we add to the database
-'''
-#category TV
-
 def dumpProducts( category_type, query, limit):
+	'''
+	@params
+	category_type: string of the category name, for example "TV"
+	query: the search engine query, for example "SONY TV"
+	limit: the number of data entries you want to add to database
+	'''
 	target_category = Categories.objects.get(category_name = category_type)
 	newproductstoadd = amazonListSearch(query, limit)
 
@@ -127,12 +128,11 @@ def dumpProducts( category_type, query, limit):
 		p1 = Products(product_name = product_name, image = imageURL , description = description, category = target_category, slug = slug, price = price)
 		p1.save()
 
-dumpProducts("Phones", "lg phone", 5)
+
+dumpProducts("laptop", "dell laptop", 8)
 sleep(20)
-dumpProducts("laptop", "samsung laptop", 5)
+dumpProducts("laptop", "sony laptop", 8)
 sleep(20)
-dumpProducts("laptop", "dell laptop", 5)
-sleep(20)
-dumpProducts("laptop", "sony laptop", 5)
+dumpProducts("camera", "nikon camera", 8)
 
 
