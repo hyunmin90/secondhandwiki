@@ -26,9 +26,9 @@ def amazonPriceSearch( query ):
         asin_string = '%s' %(ASIN)
         result = api.item_lookup(asin_string, ResponseGroup = 'OfferSummary')
         for item in result.Items.Item:
-            print 'Name of Product: %s' %(stuff.ItemAttributes.Title)
-            print 'URL Link of Product: %s' %(stuff.DetailPageURL)
             try:
+	            print 'Name of Product: %s' %(stuff.ItemAttributes.Title)
+            	print 'URL Link of Product: %s' %(stuff.DetailPageURL)
                 Price = int(item.OfferSummary.LowestNewPrice.Amount)/100.0
             except AttributeError:
                 x = 0
@@ -56,43 +56,46 @@ def amazonListSearch( query, num_results ):
     count = 0
     #product name, image url, features concatenated into a string
     product_list = []
-    #looks at first search result and lookups the price for it
-    for stuff in items:
-        #gets the ASIN number for the product
-        ASIN = stuff.ASIN
-        print ASIN
-        asin_string = '%s' %(ASIN)
-        imagesresult = api.item_lookup(asin_string, ResponseGroup = 'Images')
-#         print etree.tostring(imagesresult, pretty_print=True)
-        newproduct = "hi"
-        productname = '%s' %(stuff.ItemAttributes.Title)
-#         print 'Name of Product: %s' %(productname)
-        for item in imagesresult.Items.Item:
-            tempURL = item.LargeImage.URL
-            imageURL = '%s' %tempURL
-            break
-        
-        mediumresult = api.item_lookup(asin_string, ResponseGroup = 'Large')
-        for item in mediumresult.Items.Item:
-#             print etree.tostring(item, pretty_print=True)
-            featurecount = 0
-            description = ''
-            for stuff in item.ItemAttributes.Feature:
-#                 print etree.tostring(stuff)
-#                 print stuff
-                converted_stuff = '%s' %(stuff)
-                description += converted_stuff +', '
-                featurecount+=1
-                if featurecount == 4:
-                    break
-#             print etree.tostring(item.ItemAttributes.Feature)
-        if count == num_results:
-            break
-        count+=1
-        
-        newproduct = (productname,imageURL,description)
-        product_list.append(newproduct)
-        
+    try:
+	    #looks at first search result and lookups the price for it
+	    for stuff in items:
+	        #gets the ASIN number for the product
+	        ASIN = stuff.ASIN
+	        print ASIN
+	        asin_string = '%s' %(ASIN)
+	        imagesresult = api.item_lookup(asin_string, ResponseGroup = 'Images')
+	#         print etree.tostring(imagesresult, pretty_print=True)
+	        newproduct = "hi"
+	        productname = '%s' %(stuff.ItemAttributes.Title)
+	#         print 'Name of Product: %s' %(productname)
+	        for item in imagesresult.Items.Item:
+	            tempURL = item.LargeImage.URL
+	            imageURL = '%s' %tempURL
+	            break
+	        
+	        mediumresult = api.item_lookup(asin_string, ResponseGroup = 'Large')
+	        for item in mediumresult.Items.Item:
+	#             print etree.tostring(item, pretty_print=True)
+	            featurecount = 0
+	            description = ''
+	            for stuff in item.ItemAttributes.Feature:
+	#                 print etree.tostring(stuff)
+	#                 print stuff
+	                converted_stuff = '%s' %(stuff)
+	                description += converted_stuff +', '
+	                featurecount+=1
+	                if featurecount == 4:
+	                    break
+	#             print etree.tostring(item.ItemAttributes.Feature)
+	        if count == num_results:
+	            break
+	        count+=1
+	        
+	        newproduct = (productname,imageURL,description)
+	        product_list.append(newproduct)
+    except AttributeError:
+    	x = 0
+
     return product_list
 
 import re
