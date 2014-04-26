@@ -213,7 +213,7 @@ def new_comment(request):
 
         html = "<li class=\'list-group-item\' id=\'comment_" + str(comment_id) + "\'><b>" + request.user.first_name + ":</b> " + comment_body + "<span style=\'float:right; color:blue;\' onclick=\"$(\'#id_comment_edit_" + str(comment_id) + "\').show(); $(\'#id_comment_edit_button_" + str(comment_id) + "\').show();\">Edit</span><span class=\'glyphicon glyphicon-remove\' style=\'float:right;\' onclick=\"delete_comment(" + str(comment_id) + ");\"></span><textarea id=\'id_comment_edit_" + str(comment_id) + "\' style=\'display:none;\'></textarea><button id=\'id_comment_edit_button_" + str(comment_id) + "\' style=\'display:none;\' onclick=\"edit_comment(" + str(comment_id) + ");\">submit edit</button></li>"
 
-        allcategories = Categories.objects.all()
+        allcategories = 1#Categories.objects.all()
 
         data = {'first_name': request.user.first_name, 'comment_id': comment_id, 'html_string': html, 'body':new_comment.body, 'categories' : allcategories}
         data = simplejson.dumps(data)
@@ -228,7 +228,7 @@ def delete_comment(request):
     if request.method=="POST":
         comment_id = request.POST['comment_id']
 
-        allcategories = Categories.objects.all()
+        allcategories = 1#Categories.objects.all()
 
         cursor = connection.cursor()
         # delete comment
