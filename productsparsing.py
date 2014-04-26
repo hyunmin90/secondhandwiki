@@ -4,7 +4,39 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "manhattan.settings")
 from products.models import Products, Categories, Features, ProductTags, Comments
 
 import amazonproduct
-def amazonsearch( query, num_results ):
+
+def amazonPriceSearch( query ):
+    from lxml import etree
+    #API Access keys
+    config = {
+              'access_key': 'AKIAIKDCGPZIH4ZFFQGQ',
+              'secret_key': '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',
+              'associate_tag' : 'themanhproj-20',
+              'locale' : 'us'
+              }
+    #configuration of API
+    api = amazonproduct.API(cfg = config)
+    #search for related items
+    items = api.item_search('All', Keywords = query)
+    Price = 0.00
+    #looks at first search result and lookups the price for it
+    for stuff in items:
+        #gets the ASIN number for the product
+        ASIN = stuff.ASIN
+        asin_string = '%s' %(ASIN)
+        result = api.item_lookup(asin_string, ResponseGroup = 'OfferSummary')
+        for item in result.Items.Item:
+            print 'Name of Product: %s' %(stuff.ItemAttributes.Title)
+            print 'URL Link of Product: %s' %(stuff.DetailPageURL)
+            Price = int(item.OfferSummary.LowestNewPrice.Amount)/100.0
+            print 'Price amount: %s' %(Price)
+    #         print etree.tostring(item.OfferSummary.LowestNewPrice.Amount, pretty_print=True)
+            print " "
+        #only want first search result, usually the most accurate
+        break;
+    return Price
+
+def amazonListSearch( query, num_results ):
     from lxml import etree
     #API Access keys
     config = {
@@ -60,13 +92,15 @@ def amazonsearch( query, num_results ):
 
 #category TV
 target_category = Categories.objects.get(category_name = "TV")
-newproductstoadd = amazonsearch("hdtv", 5)
+newproductstoadd = amazonListSearch("hdtv", 5)
 
 for newproduct in newproductstoadd:
 	product_name = newproduct[0]
 	imageURL = newproduct[1]
 	description = newproduct[2]
-	p1 = Products(product_name = product_name, image = imageURL , description = description, category = target_category)
+	slug = slugify(product_name)
+	price = amazonPriceSearch(product_name)
+	p1 = Products(product_name = product_name, image = imageURL , description = description, category = target_category, slug = slug, price = price)
 	p1.save()
 
 
