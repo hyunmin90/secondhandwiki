@@ -9,7 +9,7 @@ def landing(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/main') 
     else:
-        return HttpResponseRedirect('/login')
+        return render(request, 'landing.html')
 
 def test_page(request):
     return render(request, 'test_page.html', {})
