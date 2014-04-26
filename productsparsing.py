@@ -89,7 +89,19 @@ def amazonListSearch( query, num_results ):
         
     return product_list
 
+def slugify(text):
+    # convert spaces to dashes
+    text = re.sub(r'\s+', '-', text.strip())
+    # convert underscores to dashes
+    text = re.sub(r'\_', '-', text.strip())
+    # convert anything not a letter or number or - or _ or to empty string
+    text = re.sub(r'[^a-zA-Z0-9\-\_]', '', text)
+    # convert to lower case. That is all.
+    return text.lower()
 
+'''
+these 2 lines below will change what we add to the database
+'''
 #category TV
 target_category = Categories.objects.get(category_name = "TV")
 newproductstoadd = amazonListSearch("hdtv", 5)
