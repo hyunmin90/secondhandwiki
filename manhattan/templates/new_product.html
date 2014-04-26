@@ -18,10 +18,12 @@
     <select class="form-control" name="category" id="id_category" style="margin-bottom: 10px;">
         <option selected>Please select a category</option>
         {% for c in categories%}
-          <option value="camera">{{c.category_name}}</option>
+          <option value="{{c.category_name}}">{{c.category_name}}</option>
         {%endfor%}
+        <!--
         <option value="camera">Camera</option>
         <option value="laptop">Laptop</option>
+        -->
     </select>
 
     <div id="id_name_error" class="alert alert-danger" style="display:none;">
