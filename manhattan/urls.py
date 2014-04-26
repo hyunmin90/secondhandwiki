@@ -19,10 +19,9 @@ urlpatterns = patterns('',
 
     # products
     url(r'^products/', include('products.urls')),
-
-
+    
     url(r'^testpage/', 'web.views.test_page'),
     url(r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': BASE_DIR+'/styles'}),
 
-   
+    
 )
