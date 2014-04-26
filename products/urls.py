@@ -21,6 +21,6 @@ urlpatterns = patterns('',
     url(r'^new_feature/$', 'products.views.new_feature'),
 
     # categories
-    url(r'^camera/$', 'products.views.camera_page'),
+    # url(r'^camera/$', 'products.views.camera_page'),
     url(r'^(?P<category_name>.*)/$', 'products.views.view_category'),
 )

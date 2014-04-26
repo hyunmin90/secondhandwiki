@@ -170,15 +170,15 @@ def delete_product(request, slug):
     # delete the product itself
     cursor.execute("DELETE FROM products_products WHERE slug = %s", [slug])
 
-@login_required
-def camera_page(request):
-    try:
-        allcategories = Categories.objects.all()
-        camera_category = Categories.objects.raw("SELECT * FROM products_categories WHERE category_name = 'camera'")[0]
-        product_list = Products.objects.raw("SELECT * FROM products_products where category_id = %s", [camera_category.id])
-        return render(request, 'category_page.html', {'product_list':product_list, 'category':"Camera", 'categories' : allcategories})
-    except:
-        return render(request, 'category_page.html', {'category':"Camera"})
+# @login_required
+# def camera_page(request):
+#     try:
+#         allcategories = Categories.objects.all()
+#         camera_category = Categories.objects.raw("SELECT * FROM products_categories WHERE category_name = 'camera'")[0]
+#         product_list = Products.objects.raw("SELECT * FROM products_products where category_id = %s", [camera_category.id])
+#         return render(request, 'category_page.html', {'product_list':product_list, 'category':"Camera", 'categories' : allcategories})
+#     except:
+#         return render(request, 'category_page.html', {'category':"Camera"})
 
 @login_required
 def view_category(request, category_name):
