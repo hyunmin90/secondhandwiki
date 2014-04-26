@@ -2,7 +2,7 @@ import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "manhattan.settings")
 
 from products.models import Products, Categories, Features, ProductTags, Comments
-
+from time import sleep
 import amazonproduct
 
 def amazonPriceSearch( query ):
@@ -117,8 +117,7 @@ def dumpProducts( category_type, query, limit):
 
 	for newproduct in newproductstoadd:
 		product_name = newproduct[0]
-		if len(product_name) >= 95:
-			break
+		product_name = product_name[:95]
 		print product_name
 		imageURL = newproduct[1]
 		print imageURL
@@ -132,11 +131,12 @@ def dumpProducts( category_type, query, limit):
 		p1 = Products(product_name = product_name, image = imageURL , description = description, category = target_category, slug = slug, price = price)
 		p1.save()
 
-# dumpProducts("TV", "Sony TV", 8)
-dumpProducts("Phones", "samsung phone", 5)
-# dumpProducts("Phones", "lg phone", 5)
-# dumpProducts("laptop", "samsung laptop", 5)
-# dumpProducts("laptop", "dell laptop", 5)
-# dumpProducts("laptop", "sony laptop", 5)
-dumpProducts("Music", "Guitar", 5)
+dumpProducts("Phones", "lg phone", 5)
+sleep(20)
+dumpProducts("laptop", "samsung laptop", 5)
+sleep(20)
+dumpProducts("laptop", "dell laptop", 5)
+sleep(20)
+dumpProducts("laptop", "sony laptop", 5)
+
 

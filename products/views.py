@@ -286,6 +286,7 @@ def new_feature(request):
 
 @csrf_protect
 def search_product(request):
+    allcategories = Categories.objects.all()
     if request.method=='POST':
         search_query = request.POST['search_query']
         queryset = search_query.split()
@@ -326,7 +327,7 @@ def search_product(request):
                 products = Products.objects.raw("SELECT *, COUNT(feature_name), COUNT(body) FROM products_products NATURAL JOIN products_features NATURAL JOIN products_comments GROUP BY COUNT(feature_name), COUNT(body) HAVING COUNT(feature_name) >= %s AND COUNT(body) >= %s",[feature_num, comment_num])
                 products = list(products)
             
-            return render(request, 'search_results.html', {'search_results': products})
+            return render(request, 'search_results.html', {'search_results': products, 'categories' : allcategories})
 
         # user search
         elif 'user' in queryset:
@@ -337,7 +338,7 @@ def search_product(request):
 
             products = Products.objects.raw("SELECT id, product_name, description, image, category_id, slug FROM auth_user NATURAL JOIN accounts_profile NATURAL JOIN products_products WHERE first_name LIKE %s", tuple(["%"+user_string+"%"]))
 
-            return render(request, 'search_results.html', {'search_results': products}) 
+            return render(request, 'search_results.html', {'search_results': products, 'categories' : allcategories}) 
 
         # normal search
         else:
@@ -351,7 +352,7 @@ def search_product(request):
             productlist_without_duplicates = list(set(product_list))
             productlist_with_first_5_results = productlist_without_duplicates[:5]
 
-            return render(request, 'search_results.html', {'search_results': productlist_with_first_5_results })
+            return render(request, 'search_results.html', {'search_results': productlist_with_first_5_results , 'categories' : allcategories})
     else:
         return HttpResponseRedirect('/')
 
