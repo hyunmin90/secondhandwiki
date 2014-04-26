@@ -28,7 +28,10 @@ def amazonPriceSearch( query ):
         for item in result.Items.Item:
             print 'Name of Product: %s' %(stuff.ItemAttributes.Title)
             print 'URL Link of Product: %s' %(stuff.DetailPageURL)
-            Price = int(item.OfferSummary.LowestNewPrice.Amount)/100.0
+            try:
+                Price = int(item.OfferSummary.LowestNewPrice.Amount)/100.0
+            except AttributeError:
+                x = 0
             print 'Price amount: %s' %(Price)
     #         print etree.tostring(item.OfferSummary.LowestNewPrice.Amount, pretty_print=True)
             print " "
