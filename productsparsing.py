@@ -110,23 +110,32 @@ def slugify(text):
 these 2 lines below will change what we add to the database
 '''
 #category TV
-target_category = Categories.objects.get(category_name = "TV")
-newproductstoadd = amazonListSearch("hdtv", 5)
 
-for newproduct in newproductstoadd:
-	product_name = newproduct[0]
-	print product_name
-	imageURL = newproduct[1]
-	print imageURL
-	description = newproduct[2]
-	print description
-	slug = slugify(product_name)
-	print slug
-	price = amazonPriceSearch(product_name)
-	print price
-	print " "
-	p1 = Products(product_name = product_name, image = imageURL , description = description, category = target_category, slug = slug, price = price)
-	p1.save()
+def dumpProducts( category_type, query, limit):
+	target_category = Categories.objects.get(category_name = category_type)
+	newproductstoadd = amazonListSearch(query, limit)
 
+	for newproduct in newproductstoadd:
+		product_name = newproduct[0]
+		print product_name
+		imageURL = newproduct[1]
+		print imageURL
+		description = newproduct[2]
+		print description
+		slug = slugify(product_name)
+		print slug
+		price = amazonPriceSearch(product_name)
+		print price
+		print " "
+		p1 = Products(product_name = product_name, image = imageURL , description = description, category = target_category, slug = slug, price = price)
+		p1.save()
 
+dumpProducts("TV", "Sony TV", 8)
+dumpProducts("Phones", "samsung phone", 5)
+dumpProducts("Phones", "lg phone", 5)
+dumpProducts("Appliances", "samsung laptop", 5)
+dumpProducts("laptop", "samsung laptop", 5)
+dumpProducts("laptop", "dell laptop", 5)
+dumpProducts("laptop", "sony laptop", 5)
+dumpProducts("Music", "Guitar", 5)
 
