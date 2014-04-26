@@ -93,7 +93,7 @@ def amazonListSearch( query, num_results ):
 		        product_list.append(newproduct)
 	    except AttributeError:
 	    	x = 0
-	except NoExactMatchesFound:
+    except NoExactMatchesFound:
 		x = 0
 
     return product_list
