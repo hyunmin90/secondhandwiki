@@ -68,7 +68,8 @@ def new_product(request):
         slug = slugify(product_name)
 
         price = amazonsearch(product_name)
-
+        if price == None:
+            price = 0.00
         # Check if category already exists
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM products_categories WHERE category_name=%s", [category])
