@@ -17,7 +17,8 @@ from django.utils import simplejson
 @login_required
 @csrf_protect
 def main(request):
-    return render(request, 'main.html', {})   
+    allcategories = Categories.objects.all()
+    return render(request, 'main.html', {'categories' : allcategories})   
 
 #added it here 
 import amazonproduct
