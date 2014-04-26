@@ -89,6 +89,7 @@ def amazonListSearch( query, num_results ):
         
     return product_list
 
+import re
 def slugify(text):
     # convert spaces to dashes
     text = re.sub(r'\s+', '-', text.strip())
