@@ -129,9 +129,8 @@ def dumpProducts( category_type, query, limit):
 		p1.save()
 
 
-dumpProducts("laptop", "dell laptop", 8)
-sleep(20)
-dumpProducts("laptop", "sony laptop", 8)
+
+dumpProducts("laptop", "sony laptop", 6)
 sleep(20)
 dumpProducts("camera", "nikon camera", 8)
 
