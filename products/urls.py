@@ -22,4 +22,5 @@ urlpatterns = patterns('',
 
     # categories
     url(r'^camera/$', 'products.views.camera_page'),
+    url(r'^(?P<category>.*)/$', 'products.views.view_category'),
 )

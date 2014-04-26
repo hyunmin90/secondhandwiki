@@ -104,9 +104,7 @@
                     <ul class="nav"> 
 
                         {%for c in categories%}
-
-                            {{c.category_name}}
-
+                            <li><a href="/products/{{c.category_name}}">{{c.category_name}}</a></li>
                         {%endfor%}
 
                         <li><a href="/products/camera">Camera</a></li>
