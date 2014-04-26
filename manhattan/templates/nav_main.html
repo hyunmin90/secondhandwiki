@@ -102,6 +102,13 @@
 
                 <div class="well well-lg">
                     <ul class="nav"> 
+
+                        {%for c in categories}
+
+                        {{c.category_name}}
+
+                        {%endfor%}
+
                         <li><a href="/products/camera">Camera</a></li>
                         <li><a href="#">Laptop</a></li>
                     </ul> <!-- end nav nav-list -->

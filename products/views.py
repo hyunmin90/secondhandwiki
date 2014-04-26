@@ -72,6 +72,8 @@ def new_product(request):
         cursor.execute("SELECT * FROM products_categories WHERE category_name=%s", [category])
         category_list = cursor.fetchall()
 
+        allcategories = Categories.objects.all()
+
         if category_list: # Category exists
             the_category = category_list[0]
 
@@ -80,7 +82,7 @@ def new_product(request):
             product_list = cursor.fetchall()
 
             if len(product_list)>0: # product exists
-                return render(request, 'new_product.html', {'exists':True, 'product_name':product_name, 'product_slug':slug})
+                return render(request, 'new_product.html', {'exists':True, 'product_name':product_name, 'product_slug':slug, 'categories':allcategories})
 
             cursor.execute("INSERT INTO products_products(product_name, image, description, category_id, slug, price) VALUES(%s, %s, %s, %s, %s, %s)" , [product_name, url, description, the_category[0], slug, price])
 
@@ -93,7 +95,7 @@ def new_product(request):
             product_list = cursor.fetchall()
 
             if len(product_list)>0: # product exists
-                return render(request, 'new_product.html', {'exists':True, 'product_name':product_name, 'product_slug':slug})
+                return render(request, 'new_product.html', {'exists':True, 'product_name':product_name, 'product_slug':slug, 'categories':allcategories})
 
             # get category
             cursor.execute("SELECT * FROM products_categories WHERE category_name=%s", [category])
@@ -105,7 +107,7 @@ def new_product(request):
 
         return HttpResponseRedirect('/products/view_product/'+slug)
     else:
-        return render(request, 'new_product.html', {})
+        return render(request, 'new_product.html', {'categories':allcategories})
 
 @login_required
 def view_product(request,slug):
@@ -124,7 +126,8 @@ def view_product(request,slug):
     features = Features.objects.raw('SELECT * FROM products_features WHERE product_id = %s', [the_product.id])
     features = list(features)
 
-    return render(request, 'view_product.html', {'product':the_product, 'comments':comments_sorted, 'features':features,})
+    allcategories = Categories.objects.all()
+    return render(request, 'view_product.html', {'product':the_product, 'comments':comments_sorted, 'features':features,'categories':allcategories})
 
 @login_required
 @csrf_protect
@@ -168,12 +171,16 @@ def delete_product(request, slug):
 @login_required
 def camera_page(request):
     try:
+        allcategories = Categories.objects.all()
         camera_category = Categories.objects.raw("SELECT * FROM products_categories WHERE category_name = 'camera'")[0]
         product_list = Products.objects.raw("SELECT * FROM products_products where category_id = %s", [camera_category.id])
-        return render(request, 'category_page.html', {'product_list':product_list, 'category':"Camera"})
+        return render(request, 'category_page.html', {'product_list':product_list, 'category':"Camera", 'categories' : allcategories})
     except:
         return render(request, 'category_page.html', {'category':"Camera"})
 
+@login_required
+def view_category(request):
+    return
 
 @login_required
 @csrf_protect
@@ -193,7 +200,9 @@ def new_comment(request):
 
         html = "<li class=\'list-group-item\' id=\'comment_" + str(comment_id) + "\'><b>" + request.user.first_name + ":</b> " + comment_body + "<span style=\'float:right; color:blue;\' onclick=\"$(\'#id_comment_edit_" + str(comment_id) + "\').show(); $(\'#id_comment_edit_button_" + str(comment_id) + "\').show();\">Edit</span><span class=\'glyphicon glyphicon-remove\' style=\'float:right;\' onclick=\"delete_comment(" + str(comment_id) + ");\"></span><textarea id=\'id_comment_edit_" + str(comment_id) + "\' style=\'display:none;\'></textarea><button id=\'id_comment_edit_button_" + str(comment_id) + "\' style=\'display:none;\' onclick=\"edit_comment(" + str(comment_id) + ");\">submit edit</button></li>"
 
-        data = {'first_name': request.user.first_name, 'comment_id': comment_id, 'html_string': html, 'body':new_comment.body}
+        allcategories = Categories.objects.all()
+
+        data = {'first_name': request.user.first_name, 'comment_id': comment_id, 'html_string': html, 'body':new_comment.body, 'categories' : allcategories}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
     
@@ -206,10 +215,12 @@ def delete_comment(request):
     if request.method=="POST":
         comment_id = request.POST['comment_id']
 
+        allcategories = Categories.objects.all()
+
         cursor = connection.cursor()
         # delete comment
         cursor.execute("DELETE FROM products_comments WHERE id = %s" , [comment_id])
-        data = {}
+        data = {'categories' : allcategories}
         data = simplejson.dumps(data)
         return HttpResponse(data, mimetype='application/json')
     else:
