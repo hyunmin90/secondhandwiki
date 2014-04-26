@@ -57,14 +57,16 @@ def amazonListSearch( query, num_results ):
     for stuff in items:
         #gets the ASIN number for the product
         ASIN = stuff.ASIN
+        print ASIN
         asin_string = '%s' %(ASIN)
         imagesresult = api.item_lookup(asin_string, ResponseGroup = 'Images')
 #         print etree.tostring(imagesresult, pretty_print=True)
         newproduct = "hi"
-        productname = stuff.ItemAttributes.Title
+        productname = '%s' %(stuff.ItemAttributes.Title)
 #         print 'Name of Product: %s' %(productname)
         for item in imagesresult.Items.Item:
-            imageURL = item.LargeImage.URL
+            tempURL = item.LargeImage.URL
+            imageURL = '%s' %tempURL
             break
         
         mediumresult = api.item_lookup(asin_string, ResponseGroup = 'Large')
@@ -75,7 +77,8 @@ def amazonListSearch( query, num_results ):
             for stuff in item.ItemAttributes.Feature:
 #                 print etree.tostring(stuff)
 #                 print stuff
-                description += stuff +', '
+                converted_stuff = '%s' %(stuff)
+                description += converted_stuff +', '
                 featurecount+=1
                 if featurecount == 4:
                     break
