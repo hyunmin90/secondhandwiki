@@ -129,6 +129,6 @@ def dumpProducts( category_type, query, limit):
 		p1.save()
 
 
-dumpProducts("camera", "canon", 5)
+dumpProducts("Phones", "HTC Phone", 5)
 sleep(5)
-dumpProducts("camera", "canon powershot", 5)
+dumpProducts("Phones", "iphone", 5)
