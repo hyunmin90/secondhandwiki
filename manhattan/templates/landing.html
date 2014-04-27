@@ -18,10 +18,29 @@
 
     <div id="formContainer">
       <form id="login" method="post" action="/login/">
+                    {% if invalid %}
+                    <div class="alert alert-danger">
+                        The email and password you entered does not belong to any account.
+                    </div>
+                    {% endif %}
+
+                    <div id="id_email_absent" class="alert alert-danger" style="display:none;">
+                        Please enter an email address
+                    </div>
+
+                    <div id="id_email_invalid" class="alert alert-danger" style="display:none;">
+                        Please enter a valid email address
+                    </div>
+
         <a href="#" id="flipToRegister" class="flipLink">Register</a>
-        <input type="text" name="loginEmail" id="loginEmail" value="Email" />
-        <input type="password" name="loginPass" id="loginPass" value="pass" />
-        <input type="submit" name="submit" value="Login" />
+        <input type="text" name="loginEmail" id="loginEmail" placeholder="hello@example.com"/>
+        <input type="password" name="loginPass" id="loginPass" placeholder="******" type=password />
+        
+        <div id="id_password_absent" class="alert alert-danger" style="display:none;">
+                        Please enter a password 
+        </div>
+
+        <input type="submit" name="submit" value="Login" onclick="submit_login();" />
       </form>
       <form id="register" method="post" action="/sign_up/">
         <a href="#" id="flipToLogin" class="flipLink">Login</a>
@@ -34,6 +53,51 @@
               <!-- JavaScript includes -->
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="http://www.hyounmin.com/data/script.js"></script>
+    <script>
+function submit_login()
+{
+    $('#id_email_absent').hide();
+    $('#id_email_invalid').hide();
+    $('#id_password_absent').hide();
+
+    email = $('#loginEmail').val();
+    password = $('#loginPass').val();
+
+    if(email=="" || email==null){
+        $('#id_email_absent').show();
+        return;
+    }
+    
+    if (!validate_email()){
+        return;
+    }
+
+    if(password=="" || password==null){
+        $('#id_password_absent').show();
+        return;
+    }
+
+    $('#id_login_form').submit();
+}
+
+function validate_email()
+{
+    var x=document.forms["login_form"]["email"].value;
+    var atpos=x.indexOf("@");
+    var dotpos=x.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+    {
+        $('#id_email_invalid').show()
+        return false;
+    }
+    return true;
+}
+
+</script>
+
+
+
+
 
     </body>
 </html>
