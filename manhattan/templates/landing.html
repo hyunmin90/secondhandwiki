@@ -24,7 +24,9 @@ background: #6ecff6;
     <body>
 
     <div id="formContainer">
-      <form id="login" method="post" action="/login/">
+
+
+    <form action="/login/" method="POST" name="login_form" id="id_login_form">
                     {% if invalid %}
                     <div class="alert alert-danger">
                         The email and password you entered does not belong to any account.
@@ -39,23 +41,27 @@ background: #6ecff6;
                         Please enter a valid email address
                     </div>
 
-        <a href="#" id="flipToRegister" class="flipLink">Register</a>
-  
-                      <input class="form-control" name="email" id="id_email" placeholder="hello@example.com" type="text">
-      
+                    <div class="form-group">
+                      <input class="form-control" name="email" id="email" placeholder="hello@example.com" type="text">
+                    </div>
 
-    
-                      <input class="form-control" name="password" id="password" placeholder="******" type="password">
-      
-        
-        <div id="id_password_absent" class="alert alert-danger" style="display:none;">
+                    <div id="id_password_absent" class="alert alert-danger" style="display:none;">
                         Please enter a password 
-        </div>
+                    </div>
 
-        <input type="submit" name="submit" value="Login" onclick="submit_login();" />
-         {% csrf_token %}
-      </form>
+                    <div class="form-group">
+                      <input class="form-control" name="password" id="password" placeholder="******" type="password">
+                    </div>
+
+                    <div class="form-group">
+                      <button type="button" class="btn btn-primary btn-block" onclick="submit_login();">Login</button>
+                    </div>
+                    {% csrf_token %}
+                </form>
      
+
+
+
 
      <form action="/sign_up/" method="POST" id="register" name="signup_form">
             <a href="#" id="flipToLogin" class="flipLink">Login</a>
@@ -74,7 +80,7 @@ background: #6ecff6;
                     </div>
 
                     <div class="form-group">
-                ]
+                
                       <input class="form-control" name="email" id="id_email" placeholder="hello@example.com" type="text">
                     </div>
 
@@ -83,7 +89,7 @@ background: #6ecff6;
                     </div>
 
                     <div class="form-group">
-                 ]
+                 
                       <input class="form-control" name="first_name" id="first_name" placeholder="First Name" type="text">
                     </div>
                     <!--
