@@ -45,11 +45,15 @@
          {% csrf_token %}
       </form>
       <form id="register" method="post" action="/sign_up/">
+        
         <a href="#" id="flipToLogin" class="flipLink">Login</a>
-        <input type="text" name="registerEmail" id="loginEmail" value="Email" />
-        <input type="password" name="register" id="loginPass" value="pass" />
-        <input type="text" name="registerEmail" id="loginEmail" value="Email" />
+        
+        <input type="text" name="registername" id="registername" placeholder="Hyounmin Wang" />
+        <input type="text" name="register" id="loginEmail" placeholder="hello@example.com" />
+        <input type="password" name="register" id="loginPass" placeholder="******" type=password  />
+        
         <input type="submit" name="submit" value="Register" />
+        
          {% csrf_token %}
       </form>
     </div>
