@@ -40,6 +40,8 @@ background: #6ecff6;
                     <div id="id_email_invalid" class="alert alert-danger" style="display:none;">
                         Please enter a valid email address
                     </div>
+                     <a href="#" id="flipToRegister" class="flipLink">Register</a>
+
 
                     <div class="form-group">
                       <input class="form-control" name="email" id="email" placeholder="hello@example.com" type="text">
@@ -54,7 +56,7 @@ background: #6ecff6;
                     </div>
 
                     <div class="form-group">
-                      <button type="button" class="btn btn-primary btn-block" onclick="submit_login();">Login</button>
+                      <input type="button" name="submit" value="Login" onclick="submit_login();" />
                     </div>
                     {% csrf_token %}
                 </form>
