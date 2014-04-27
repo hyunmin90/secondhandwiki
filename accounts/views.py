@@ -22,9 +22,9 @@ def login(request):
                 return HttpResponseRedirect('/')
         else:
             # invalid login
-            return render(request, 'login.html', {'invalid':True})
+            return render(request, 'landing.html', {'invalid':True})
     else:
-        return render(request, 'login.html', {})
+        return render(request, 'landing.html', {})
 
 @login_required
 def logout(request):
