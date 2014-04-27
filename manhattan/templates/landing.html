@@ -39,7 +39,7 @@
       
 
     
-                      <input class="form-control" name="password" id="id_password" placeholder="******" type="password">
+                      <input class="form-control" name="password" id="password" placeholder="******" type="password">
       
         
         <div id="id_password_absent" class="alert alert-danger" style="display:none;">
@@ -75,8 +75,8 @@ function submit_login()
     $('#id_email_invalid').hide();
     $('#id_password_absent').hide();
 
-    email = $('#id_email').val();
-    password = $('#id_password').val();
+    email = $('#loginEmail').val();
+    password = $('#password').val();
 
     if(email=="" || email==null){
         $('#id_email_absent').show();
