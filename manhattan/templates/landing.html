@@ -34,8 +34,8 @@
                     </div>
 
         <a href="#" id="flipToRegister" class="flipLink">Register</a>
-        <input type="text" name="loginEmail" id="loginEmail" placeholder="hello@example.com"/>
-        <input type="password" name="loginPass" id="loginPass" placeholder="******" type=password />
+        <input type="text" name="loginEmail" id="id_email" placeholder="hello@example.com"/>
+        <input type="password" name="loginPass" id="id_password" placeholder="******" type=password />
         
         <div id="id_password_absent" class="alert alert-danger" style="display:none;">
                         Please enter a password 
@@ -66,8 +66,8 @@ function submit_login()
     $('#id_email_invalid').hide();
     $('#id_password_absent').hide();
 
-    email = $('#loginEmail').val();
-    password = $('#loginPass').val();
+    email = $('#id_email').val();
+    password = $('#id_password').val();
 
     if(email=="" || email==null){
         $('#id_email_absent').show();
