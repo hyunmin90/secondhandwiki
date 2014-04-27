@@ -68,7 +68,7 @@ def sign_up(request):
 
         else:
             # email already exists
-            return render(request,'sign_up.html', {'email_exists':True})
+            return render(request,'landing.html', {'email_exists':True})
     
     else:
-        return render(request, 'sign_up.html', {})
+        return render(request, 'landing.html', {})
