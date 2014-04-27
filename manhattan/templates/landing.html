@@ -54,14 +54,10 @@ background: #6ecff6;
 
         <input type="submit" name="submit" value="Login" onclick="submit_login();" />
          {% csrf_token %}
-      
-
-
-
       </form>
      
-        
-         <form action="/sign_up/" method="POST" id="id_signup_form" name="signup_form">
+
+     <form action="/sign_up/" method="POST" id="register" name="signup_form">
             <a href="#" id="flipToLogin" class="flipLink">Login</a>
                     {% if email_exists %}
                         <div id="id_email_already_exists" class="alert alert-danger"> 
@@ -78,7 +74,7 @@ background: #6ecff6;
                     </div>
 
                     <div class="form-group">
-                      <label class="control-label">E-Mail</label>
+                ]
                       <input class="form-control" name="email" id="id_email" placeholder="hello@example.com" type="text">
                     </div>
 
@@ -87,8 +83,8 @@ background: #6ecff6;
                     </div>
 
                     <div class="form-group">
-                      <label class="control-label">First Name</label>
-                      <input class="form-control" name="first_name" id="id_first_name" placeholder="First Name" type="text">
+                 ]
+                      <input class="form-control" name="first_name" id="first_name" placeholder="First Name" type="text">
                     </div>
                     <!--
                     <div class="form-group">
@@ -102,7 +98,7 @@ background: #6ecff6;
 
                     <div class="form-group">
                       <label for="inputPassword" class="control-label">Password</label>
-                      <input class="form-control" name="password" id="id_password" placeholder="******" type="password">
+                      <input class="form-control" name="password" id="password" placeholder="******" type="password">
                     </div>
 
                     <div class="form-group">
@@ -112,11 +108,9 @@ background: #6ecff6;
                 </form>
 
 
-
-
-
-
-
+      
+        
+     
     </div>
 
               <!-- JavaScript includes -->
