@@ -54,22 +54,69 @@ background: #6ecff6;
 
         <input type="submit" name="submit" value="Login" onclick="submit_login();" />
          {% csrf_token %}
-      </form>
-      <form id="register" method="post" action="/sign_up/">
-        
-        <a href="#" id="flipToLogin" class="flipLink">Login</a>
-        
-         <input class="form-control" name="first_name" id="first_name" placeholder="First Name" type="text">
-
-       
-         <input class="form-control" name="email" id="id_email" placeholder="hello@example.com" type="text">
       
-        <input class="form-control" name="password" id="password" placeholder="******" type="password">
-        
-        <input type="submit" name="submit" value="Register" />
-        
-         {% csrf_token %}
+
+
+
       </form>
+     
+        
+         <form action="/sign_up/" method="POST" id="id_signup_form" name="signup_form">
+            <a href="#" id="flipToLogin" class="flipLink">Login</a>
+                    {% if email_exists %}
+                        <div id="id_email_already_exists" class="alert alert-danger"> 
+                            The email provided is already being used. Please use another email.
+                        </div>
+                    {% endif %}
+
+                    <div id="id_email_absent" class="alert alert-danger" style="display:none;">
+                        Please enter an email address
+                    </div>
+
+                    <div id="id_email_invalid" class="alert alert-danger" style="display:none;">
+                        Please enter a valid email address
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label">E-Mail</label>
+                      <input class="form-control" name="email" id="id_email" placeholder="hello@example.com" type="text">
+                    </div>
+
+                    <div id="id_first_name_absent" class="alert alert-danger" style="display:none;">
+                        Please enter your first name 
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label">First Name</label>
+                      <input class="form-control" name="first_name" id="id_first_name" placeholder="First Name" type="text">
+                    </div>
+                    <!--
+                    <div class="form-group">
+                      <label class="control-label">Last Name</label>
+                      <input class="form-control" name="last_name" id="id_last_name" placeholder="last name" type="text">
+                    </div>
+                    -->
+                    <div id="id_password_absent" class="alert alert-danger" style="display:none;">
+                        Please enter a password 
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputPassword" class="control-label">Password</label>
+                      <input class="form-control" name="password" id="id_password" placeholder="******" type="password">
+                    </div>
+
+                    <div class="form-group">
+                      <button type="submit" name="submit" value="Login" onclick="submit_signup();">Sign up</button>
+                    </div>
+                    {% csrf_token %}
+                </form>
+
+
+
+
+
+
+
     </div>
 
               <!-- JavaScript includes -->
@@ -116,6 +163,62 @@ function validate_email()
     }
     return true;
 }
+
+function submit_signup()
+{
+    $('#id_email_already_exists').hide();
+    $('#id_email_absent').hide();
+    $('#id_email_invalid').hide();
+    $('#id_first_name_absent').hide();
+    $('#id_password_absent').hide();
+
+    email = $('#id_email').val();
+    password = $('#id_password').val();
+    first_name = $('#id_first_name').val();
+
+    if(email=="" || email==null){
+        $('#id_email_absent').show();
+        return;
+    }
+    
+    if (!validate_email()){
+        return;
+    }
+
+    if(first_name=="" || first_name==null){
+        $('#id_first_name_absent').show();
+        return;
+    }
+
+    if(password=="" || password==null){
+        $('#id_password_absent').show();
+        return;
+    }
+    $('#id_signup_form').submit();
+}
+
+function validate_email()
+{
+    var x=document.forms["signup_form"]["email"].value;
+    var atpos=x.indexOf("@");
+    var dotpos=x.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+    {
+        $('#id_email_invalid').show()
+        return false;
+    }
+    return true;
+}
+
+
+
+
+
+
+
+
+
+
 
 </script>
 
