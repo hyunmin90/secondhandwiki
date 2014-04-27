@@ -27,12 +27,7 @@ background: #6ecff6;
 
 
     <form action="/login/" method="POST" name="login_form" id="login">
-                    {% if invalid %}
-                    <div class="alert alert-danger">
-                        The email and password you entered does not belong to any account.
-                    </div>
-                    {% endif %}
-
+                    
                     <div id="id_email_absent" class="alert alert-danger" style="display:none;">
                         Please enter an email address
                     </div>
