@@ -1,0 +1,163 @@
+body {
+	margin: 0;
+	padding-top: 55px;
+	background-size: cover;
+	font-family: 'Open Sans', sans-serif;
+	/*background-color: #6ecff6;*/
+	background-color: #d9edf7;
+	/*overflow: hidden;*/
+	/*text-align: center;*/
+}
+
+.container {
+	width: 100%;
+	margin: 0 auto;
+	/*max-width: 1440px;*/
+}
+
+.no-btn {
+	border: none;
+	background-color: rgba(0,0,0,0);
+}
+
+.header-search-btn {
+	font-size: 15pt;
+	margin-bottom: 3px;
+	vertical-align: middle;
+}
+
+.header-write-btn {
+	margin-top: 12px;
+	font-size: 15pt;
+}
+
+.hor-padding-10 {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.hor-padding-5 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.p-right-35 {
+	padding-right: 35px;
+}
+
+.fs-15 {
+	font-size: 15pt;
+
+}
+
+h2 {
+	text-align: center;
+
+}
+
+.ideas {
+	width: 95%;
+	margin: 0 auto;
+	margin-top: 30px;
+	/*overflow-y: scroll;*/
+}
+
+
+.ph-custom {
+	display: inline-block;
+	color: #555;
+	font-size: 20pt;
+	vertical-align: bottom;
+}
+
+.pf-custom {
+	/*text-align: right;*/
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-bottom: 10px;
+	color: #0054a6;
+}
+
+.p-small {
+	padding: 2px 10px;
+}
+
+.like_svg {
+	vertical-align: middle;
+	fill: #66cd00;
+}
+
+.dislike_svg {
+	vertical-align: middle;
+	fill: #ccc;
+}
+
+.idea {
+	border: none;
+	background-color: rgba(255,255,255,0.9);
+	text-overflow: ellipsis;
+}
+
+.pf-custom .action {
+	font-size: 12pt;
+	padding: 0 10px;
+	/*border-left: 1px solid #999;*/
+	cursor: pointer;
+}
+
+.pb-custom {
+	position: relative;
+	max-height: 150px;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+.discuss {
+	margin-left: 10px;
+	color: #4280c3;
+	opacity: 0.5;
+}
+
+.discuss:hover {
+	color: #4280c3;
+	opacity: 1;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.like {
+	/*color: #d9eecc;*/
+	font-size: 15pt;
+	color: #326327;
+}
+
+.like:hover {
+}
+
+.dislike {
+	color: #ccc;
+}
+
+.dislike:hover {
+	color: #953331;
+}
+
+.m-1 {
+	margin: 0 2px;
+}
+
+.menu_col {
+	height: 100%;
+	background-color: #fff;
+	padding-left: 10px;
+}
+
+.menu {
+	margin: 15px auto;
+	margin-left: 10px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #ccc;
+}
