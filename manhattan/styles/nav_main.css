@@ -4,7 +4,7 @@ body {
 	background-size: cover;
 	font-family: 'Open Sans', sans-serif;
 	/*background-color: #6ecff6;*/
-	background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.7) 100%), url(http://www.hyounmin.com/data/Sea_of_phones.jpg) no-repeat 0 0;
+	background-color: white;
 	/*overflow: hidden;*/
 	/*text-align: center;*/
 }
