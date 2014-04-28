@@ -94,12 +94,14 @@
 
             {% if user.is_authenticated %}
             <div class="col-md-2">
+                <div>
+                    <ul class="nav nav-pills nav-stacked menu category_menu">
+                        {% for c in categories  %}
+                            <li><a href="/products/{{c.category_name}}">{{c.category_name}}</a></li>
+                        {%endfor%}
+                    </ul>                
+                </div>
 
-                <ul class="nav nav-pills nav-stacked menu category_menu">
-                    {% for c in categories  %}
-                        <li><a href="/products/{{c.category_name}}">{{c.category_name}}</a></li>
-                    {%endfor%}
-                </ul>
 
                 <a href="/products/new_product">
                     <button type="button" class="btn btn-primary" style="width:100%; margin-bottom: 60px;">
@@ -107,13 +109,13 @@
                     </button>
                 </a>
 
-                <div class="well well-lg">
+                <!--div class="well well-lg">
                     <ul class="nav"> 
                         {%for c in categories%}
                             <li><a href="/products/{{c.category_name}}">{{c.category_name}}</a></li>
                         {%endfor%}
-                    </ul> <!-- end nav nav-list -->
-                </div>
+                    </ul> 
+                </div-->
             </div> <!-- end col-md-2 -->    
             {% endif %}
             <div class="col-md-10">
