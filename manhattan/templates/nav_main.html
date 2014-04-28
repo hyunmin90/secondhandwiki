@@ -94,14 +94,6 @@
 
             {% if user.is_authenticated %}
             <div class="col-md-2">
-                <div>
-                    <ul class="nav nav-pills nav-stacked menu category_menu">
-                        {% for c in categories  %}
-                            <li><a href="/products/{{c.category_name}}">{{c.category_name}}</a></li>
-                        {%endfor%}
-                    </ul>                
-                </div>
-
 
                 <a href="/products/new_product">
                     <button type="button" class="btn btn-primary" style="width:100%; margin-bottom: 60px;">
@@ -109,6 +101,13 @@
                     </button>
                 </a>
 
+                <div>
+                    <ul class="nav nav-pills nav-stacked menu category_menu">
+                        {% for c in categories  %}
+                            <li><a href="/products/{{c.category_name}}">{{c.category_name}}</a></li>
+                        {%endfor%}
+                    </ul>                
+                </div>
                 <!--div class="well well-lg">
                     <ul class="nav"> 
                         {%for c in categories%}

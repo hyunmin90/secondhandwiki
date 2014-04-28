@@ -9,13 +9,12 @@ body {
 	/*text-align: center;*/
 }
 
-.container {
+/*.container {
 	width: 100%;
 	margin: 0 auto;
-	/*max-width: 1440px;*/
-}
+}*/
 
-.no-btn {
+/*.no-btn {
 	border: none;
 	background-color: rgba(0,0,0,0);
 }
@@ -52,14 +51,14 @@ body {
 
 h2 {
 	text-align: center;
+	}
+*/
 
-}
 
-.ideas {
+/*.ideas {
 	width: 95%;
 	margin: 0 auto;
 	margin-top: 30px;
-	/*overflow-y: scroll;*/
 }
 
 
@@ -71,7 +70,6 @@ h2 {
 }
 
 .pf-custom {
-	/*text-align: right;*/
 	padding-right: 20px;
 	padding-left: 20px;
 	padding-bottom: 10px;
@@ -96,7 +94,7 @@ h2 {
 	border: none;
 	background-color: rgba(255,255,255,0.9);
 	text-overflow: ellipsis;
-}
+}*/
 
 .pf-custom .action {
 	font-size: 12pt;
